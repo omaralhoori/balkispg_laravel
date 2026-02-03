@@ -32,3 +32,50 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #d4af35;
 }
+
+/* Hero Section Animations */
+.hero-content-wrapper {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.hero-background {
+    transition: opacity 0.7s ease-in-out, background-image 0.7s ease-in-out;
+}
+
+.service-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card.active {
+    border-color: var(--color-primary);
+    border-width: 2px;
+    opacity: 1;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 1024px) {
+    .service-card.active {
+        transform: scale(1.02);
+        height: 180px;
+    }
+    
+    .service-card.inactive {
+        height: 160px;
+    }
+}
+
+.service-card.inactive {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-width: 1px;
+    opacity: 0.7;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+}
+
+@media (min-width: 1024px) {
+    .service-card.active:hover {
+        transform: translateY(-4px) scale(1.02);
+    }
+}
