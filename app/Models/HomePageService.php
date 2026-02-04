@@ -31,6 +31,28 @@ class HomePageService extends Model
         'order' => 'integer',
     ];
 
+    public function getBackgroundImageUrlAttribute(): ?string
+    {
+        if (! $this->background_image) {
+            return null;
+        }
+
+        return asset('storage/'.$this->background_image);
+    }
+
+    public function getCardImageUrlAttribute(): ?string
+    {
+        if ($this->card_image) {
+            return asset('storage/'.$this->card_image);
+        }
+
+        if ($this->background_image) {
+            return asset('storage/'.$this->background_image);
+        }
+
+        return null;
+    }
+
     public function homePage(): BelongsTo
     {
         return $this->belongsTo(HomePage::class);

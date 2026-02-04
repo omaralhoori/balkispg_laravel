@@ -2,9 +2,8 @@
     $homePage = $homePage ?? \App\Models\HomePage::getCurrent();
     $services = $services ?? $homePage->activeServices;
     $firstService = $services->first();
-    $mainBgImage = $homePage->main_background_image 
-        ? asset('storage/' . $homePage->main_background_image) 
-        : 'https://lh3.googleusercontent.com/aida-public/AB6AXuDgY6giqkj21tUvclk3yFwACm-TA3MpuiAmhESMAAJH30FG5E4lt2_XTywcqzvo_tHIfTmiA9hjqoMbJe96DTcRbx07K9FiJVUTN6gWYKdvrICMQGbdOZRqq6JE4lG8olMYHgocw45mNjTi4geQCEsHg1YKHdiaEdWZDKs9I_MkCqBnAMRFfDK013HRnHSCcnlUknLqOP0_mkrOjfvmq6hKdsaJtL205T0fFp44s8SqQPysOWE2-gtWdJ5s0_C7mMn83RH_WPbkPkj7';
+    $mainBgImage = $homePage->main_background_image_url 
+        ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuDgY6giqkj21tUvclk3yFwACm-TA3MpuiAmhESMAAJH30FG5E4lt2_XTywcqzvo_tHIfTmiA9hjqoMbJe96DTcRbx07K9FiJVUTN6gWYKdvrICMQGbdOZRqq6JE4lG8olMYHgocw45mNjTi4geQCEsHg1YKHdiaEdWZDKs9I_MkCqBnAMRFfDK013HRnHSCcnlUknLqOP0_mkrOjfvmq6hKdsaJtL205T0fFp44s8SqQPysOWE2-gtWdJ5s0_C7mMn83RH_WPbkPkj7';
 @endphp
 
 <section class="hero-section flex-grow flex items-center relative min-h-screen pt-20">
@@ -76,11 +75,7 @@
             @foreach($services as $index => $service)
                 @php
                     $isActive = $index === 0;
-                    $cardImage = $service->card_image 
-                        ? asset('storage/' . $service->card_image) 
-                        : ($service->background_image 
-                            ? asset('storage/' . $service->background_image) 
-                            : 'https://via.placeholder.com/400x300');
+                    $cardImage = $service->card_image_url ?? 'https://via.placeholder.com/400x300';
                     $cardClass = $isActive 
                         ? 'service-card active group relative shrink-0 w-[280px] lg:w-full h-[180px] rounded-xl overflow-hidden cursor-pointer border-2 border-primary shadow-2xl transition-all duration-500 hover:-translate-y-1 snap-center' 
                         : 'service-card inactive group relative shrink-0 w-[280px] lg:w-full h-[160px] rounded-xl overflow-hidden cursor-pointer border border-white/10 opacity-70 hover:opacity-100 hover:border-primary/50 transition-all duration-500 snap-center';
@@ -119,7 +114,7 @@
             'description' => $service->description,
             'badge' => $service->badge_text,
             'badgeIcon' => $service->badge_icon,
-            'backgroundImage' => $service->background_image ? asset('storage/' . $service->background_image) : null,
+            'backgroundImage' => $service->background_image_url,
             'stats' => $service->stats ?? [],
         ]];
     })->toArray();

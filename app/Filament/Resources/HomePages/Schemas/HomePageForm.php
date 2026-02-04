@@ -52,6 +52,7 @@ class HomePageForm
                         FileUpload::make('main_background_image')
                             ->label('صورة الخلفية الرئيسية')
                             ->image()
+                            ->disk('public')
                             ->directory('home-page')
                             ->visibility('public')
                             ->columnSpanFull(),
@@ -113,13 +114,15 @@ class HomePageForm
                                 FileUpload::make('background_image')
                                     ->label('صورة الخلفية')
                                     ->image()
+                                    ->disk('public')
                                     ->directory('home-page/services')
                                     ->visibility('public')
                                     ->columnSpanFull(),
-
+                                
                                 FileUpload::make('card_image')
                                     ->label('صورة الكارت')
                                     ->image()
+                                    ->disk('public')
                                     ->directory('home-page/services/cards')
                                     ->visibility('public')
                                     ->columnSpanFull(),

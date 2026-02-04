@@ -22,6 +22,15 @@ class HomePage extends Model
         'main_description' => 'string',
     ];
 
+    public function getMainBackgroundImageUrlAttribute(): ?string
+    {
+        if (! $this->main_background_image) {
+            return null;
+        }
+
+        return asset('storage/'.$this->main_background_image);
+    }
+
     public function services(): HasMany
     {
         return $this->hasMany(HomePageService::class)->orderBy('order');
