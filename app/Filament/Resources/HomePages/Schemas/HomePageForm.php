@@ -39,11 +39,13 @@ class HomePageForm
                         TextInput::make('main_badge_text')
                             ->label('نص الشارة')
                             ->maxLength(255)
+                            ->nullable()
                             ->default('التميز والفخامة'),
-
+                        
                         TextInput::make('main_badge_icon')
                             ->label('أيقونة الشارة (Material Icons)')
                             ->maxLength(255)
+                            ->nullable()
                             ->default('stars')
                             ->helperText('مثال: stars, home_work, trending_up'),
 
@@ -57,11 +59,13 @@ class HomePageForm
                         TextInput::make('cta_button_text')
                             ->label('نص زر الدعوة للإجراء')
                             ->maxLength(255)
+                            ->nullable()
                             ->default('استكشف خدماتنا'),
-
+                        
                         TextInput::make('video_button_text')
                             ->label('نص زر الفيديو')
                             ->maxLength(255)
+                            ->nullable()
                             ->default('شاهد الفيديو'),
                     ])
                     ->columns(2),

@@ -17,10 +17,12 @@
     <div class="relative z-10 container mx-auto px-6 lg:px-20 py-12 flex flex-col lg:flex-row items-center gap-12 h-full">
         <!-- Content Side -->
         <div class="hero-content-wrapper flex-1 flex flex-col gap-8 text-right items-start transition-all duration-500 ease-in-out">
-            <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 border border-primary/20 backdrop-blur-md">
-                <span class="hero-badge-icon material-symbols-outlined text-primary text-sm">{{ $homePage->main_badge_icon }}</span>
-                <span class="hero-badge-text text-primary text-xs font-bold uppercase tracking-wide">{{ $homePage->main_badge_text }}</span>
-            </div>
+            @if($homePage->main_badge_text && $homePage->main_badge_icon)
+                <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 border border-primary/20 backdrop-blur-md">
+                    <span class="hero-badge-icon material-symbols-outlined text-primary text-sm">{{ $homePage->main_badge_icon }}</span>
+                    <span class="hero-badge-text text-primary text-xs font-bold uppercase tracking-wide">{{ $homePage->main_badge_text }}</span>
+                </div>
+            @endif
             <h1 class="text-4xl lg:text-6xl font-black text-white leading-[1.2]">
                 <span class="hero-title-main text-primary block mb-2">{{ $homePage->main_title }}</span>
                 <span class="hero-subtitle">{{ $homePage->main_subtitle }}</span>
@@ -28,16 +30,22 @@
             <p class="hero-description text-gray-300 text-lg leading-relaxed max-w-xl">
                 {{ $homePage->main_description ?? 'اكتشف قمة السياحة الفاخرة في تركيا، والعقارات المتميزة، والاستثمارات الاستراتيجية. نحن نصنع تجارب لا تُنسى ومستقبلاً واعداً.' }}
             </p>
-            <div class="flex gap-4 mt-4">
-                <button class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
-                    <span>{{ $homePage->cta_button_text }}</span>
-                    <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
-                </button>
-                <button class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg border border-white/20 bg-white/5 text-white font-medium hover:bg-white/10 transition-all backdrop-blur-sm">
-                    <span class="material-symbols-outlined text-xl">play_circle</span>
-                    <span>{{ $homePage->video_button_text }}</span>
-                </button>
-            </div>
+            @if($homePage->cta_button_text || $homePage->video_button_text)
+                <div class="flex gap-4 mt-4">
+                    @if($homePage->cta_button_text)
+                        <button class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
+                            <span>{{ $homePage->cta_button_text }}</span>
+                            <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
+                        </button>
+                    @endif
+                    @if($homePage->video_button_text)
+                        <button class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg border border-white/20 bg-white/5 text-white font-medium hover:bg-white/10 transition-all backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-xl">play_circle</span>
+                            <span>{{ $homePage->video_button_text }}</span>
+                        </button>
+                    @endif
+                </div>
+            @endif
             <div class="hero-stats mt-8 flex items-center gap-8 border-t border-white/10 pt-6 w-full max-w-md">
                 @if($firstService && $firstService->stats)
                     @foreach($firstService->stats as $stat)
