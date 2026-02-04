@@ -2,8 +2,13 @@
 
 @section('title', 'Balkis Premium Group')
 
+@php
+    $homePage = \App\Models\HomePage::getCurrent();
+    $services = $homePage->activeServices;
+@endphp
+
 @section('content')
-    @include('components.hero-section')
+    @include('components.hero-section', ['homePage' => $homePage, 'services' => $services])
 @endsection
 
 @section('showStatsBar')
