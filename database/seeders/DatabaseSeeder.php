@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             HomePageSeeder::class,
+            TestimonialSeeder::class,
         ]);
     }
 }

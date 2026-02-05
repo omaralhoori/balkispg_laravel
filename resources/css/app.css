@@ -89,3 +89,42 @@
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(212, 175, 53, 0.1);
 }
+
+/* Testimonials Carousel */
+.testimonials-carousel {
+    scroll-behavior: smooth;
+}
+
+.testimonial-card {
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(212, 175, 53, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.testimonial-dot.active {
+    background: var(--color-primary);
+    width: 24px;
+    border-radius: 5px;
+}
+
+.testimonial-dot:hover {
+    background: rgba(212, 175, 53, 0.6);
+}
+
+@media (max-width: 768px) {
+    .testimonials-prev,
+    .testimonials-next {
+        display: none;
+    }
+}
