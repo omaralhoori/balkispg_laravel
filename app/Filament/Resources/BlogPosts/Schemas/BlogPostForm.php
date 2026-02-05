@@ -10,6 +10,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
@@ -21,7 +22,9 @@ class BlogPostForm
         return $schema
             ->components([
                 Section::make('معلومات المقال')
+                 ->collapsible()
                     ->schema([
+                        // معلومات المقال - العمود الأول
                         TextInput::make('title')
                             ->label('عنوان المقال')
                             ->required()
@@ -79,51 +82,30 @@ class BlogPostForm
                             ->label('الترتيب')
                             ->numeric()
                             ->default(0)
-                            ->required(),
+                            ->required()
+                            ,
 
                         Toggle::make('is_featured')
                             ->label('مقال مميز')
                             ->default(false)
-                            ->helperText('سيظهر في أعلى صفحة المدونة'),
+                            ->helperText('سيظهر في أعلى صفحة المدونة')
+                            ,
 
                         Toggle::make('is_active')
                             ->label('نشط')
-                            ->default(true),
+                            ->default(true)
+                            ,
 
                         DateTimePicker::make('published_at')
                             ->label('تاريخ النشر')
                             ->default(now())
                             ->required()
                             ->displayFormat('d/m/Y H:i')
-                            ->native(false),
+                            ->native(false)
+                            ,
                     ])
                     ->columns(2),
-
-                Section::make('محتوى المقال')
-                    ->schema([
-                        RichEditor::make('content')
-                            ->label('المحتوى')
-                            ->toolbarButtons([
-                                'attachFiles',
-                                'blockquote',
-                                'bold',
-                                'bulletList',
-                                'codeBlock',
-                                'h2',
-                                'h3',
-                                'italic',
-                                'link',
-                                'orderedList',
-                                'redo',
-                                'strike',
-                                'underline',
-                                'undo',
-                            ])
-                            ->columnSpanFull(),
-                    ]),
-
-                Section::make('إعدادات SEO')
-                    ->description('تحسين محركات البحث (SEO)')
+                    Section::make('إعدادات SEO')
                     ->collapsible()
                     ->schema([
                         TextInput::make('meta_title')
@@ -165,7 +147,60 @@ class BlogPostForm
                             ->maxLength(255)
                             ->helperText('رابط الصفحة الأساسي (اتركه فارغاً لاستخدام الرابط الافتراضي)')
                             ->columnSpanFull(),
-                    ]),
-            ]);
+                    ]),   
+                    Section::make('محتوى المقال')
+                    ->columns(1)
+                    ->schema([
+                        RichEditor::make('content')
+                            ->label('المحتوى')
+                            ->toolbarButtons([
+                                ['bold',
+                                'italic',
+                                'underline',
+                                'strike',
+                                'subscript',
+                                'superscript',
+                                'h1',
+                                'h2',
+                                'h3',
+                            ],
+                            [
+                                'blockquote',
+                                'code',
+                                'codeBlock',
+                                'bulletList',
+                                'orderedList',
+                                'link',
+                                'textColor',],
+                                [
+                                'table',
+                                'tableAddColumnBefore',
+                                'tableAddColumnAfter',
+                                'tableDeleteColumn',
+                                'tableAddRowBefore',
+                                'tableAddRowAfter',
+                                'tableDeleteRow',
+                                'tableMergeCells',
+                                'tableSplitCell',
+                                'tableToggleHeaderRow',
+                                'tableToggleHeaderCell',
+                                'tableDelete',],
+                                [
+                                'attachFiles',
+                                'horizontalRule',
+                                'highlight',
+                                'small',
+                                'lead',
+                                'alignStart',
+                                'alignCenter',
+                                'alignEnd',
+                                'alignJustify',
+                                'undo',
+                                'redo',]
+                            ])
+                            ->columnSpanFull(),
+                    ]) ->columnSpanFull(),
+                          
+                  ]);
     }
 }
