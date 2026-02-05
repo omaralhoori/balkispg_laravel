@@ -9,6 +9,8 @@
 
 @section('content')
     @include('components.hero-section', ['homePage' => $homePage, 'services' => $services])
+    @include('components.testimonials-section')
+    @include('components.contact-section')
 @endsection
 
 @section('showStatsBar')

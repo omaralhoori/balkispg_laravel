@@ -1,0 +1,75 @@
+<!-- Contact Section -->
+<section class="relative py-24 px-4 md:px-10 lg:px-20 bg-[#1a180f]">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+            <!-- Contact Form Column -->
+            <div class="flex flex-col gap-8 order-2 lg:order-1">
+                <div class="flex flex-col gap-4">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">تواصل معنا</h2>
+                    <p class="text-gold-dim text-lg leading-relaxed">
+                        فريقنا جاهز للإجابة على جميع استفساراتكم المتعلقة بفرص الاستثمار العقاري والتجاري في تركيا.
+                    </p>
+                </div>
+                <form class="flex flex-col gap-6 mt-4" action="{{ route('contact.submit') }}" method="POST">
+                    @csrf
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <label class="flex flex-col gap-2">
+                            <span class="text-white text-sm font-medium">الاسم الكامل</span>
+                            <input class="w-full h-14 bg-dark-surface border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="محمد عبدالله" type="text" name="name" required/>
+                        </label>
+                        <label class="flex flex-col gap-2">
+                            <span class="text-white text-sm font-medium">رقم الهاتف</span>
+                            <input class="w-full h-14 bg-dark-surface border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+90 555 000 0000" type="tel" name="phone" required/>
+                        </label>
+                    </div>
+                    <label class="flex flex-col gap-2">
+                        <span class="text-white text-sm font-medium">البريد الإلكتروني</span>
+                        <input class="w-full h-14 bg-dark-surface border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="name@company.com" type="email" name="email" required/>
+                    </label>
+                    <label class="flex flex-col gap-2">
+                        <span class="text-white text-sm font-medium">الرسالة</span>
+                        <textarea class="w-full h-32 bg-dark-surface border border-[#3e3828] rounded-lg p-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="اكتب استفسارك هنا..." name="message" required></textarea>
+                    </label>
+                    <button class="mt-2 h-14 bg-primary hover:bg-[#b8952a] text-background-dark font-bold rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
+                        <span>إرسال الرسالة</span>
+                        <span class="material-symbols-outlined rtl:rotate-180">arrow_right_alt</span>
+                    </button>
+                </form>
+            </div>
+            <!-- Map/Info Column -->
+            <div class="flex flex-col gap-8 order-1 lg:order-2 h-full min-h-[400px]">
+                <!-- Map Container -->
+                <div class="relative w-full h-full min-h-[300px] lg:min-h-[400px] rounded-2xl overflow-hidden border border-[#3e3828] group">
+                    <!-- Dark Map Placeholder -->
+                    <div class="w-full h-full bg-cover bg-center grayscale contrast-125 brightness-[0.4]" data-alt="Dark stylized map of Istanbul city layout" data-location="Istanbul, Turkey" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtmesQwp5513ujXYuNsFkHQ7Sd0wZrfusjFZFe4_i1bRHu7X6BQeawIsj17ege0neKmTs61Ig8lC113HYUqTDEy6xXKzw0Y56sM9X-6j2Plsemu-LAFB-rZv1_amXWAzvLcpYTDA7DWfkS7fZI5gOwk1jrMWZ_XvOt0OSrULviwyqz15-SmWPrTz8XyVR7bCtk1HEcjvGXTPGt4y-wymUXrJl5ULYu4Fv22w4zIv74-wW5tCKP8FbysYZvoKqqxRe8C_sbeQ17z9RM");'>
+                    </div>
+                    <!-- Location Pin Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="relative">
+                            <div class="absolute w-12 h-12 bg-primary/30 rounded-full animate-ping"></div>
+                            <div class="relative w-12 h-12 bg-primary text-background-dark rounded-full flex items-center justify-center shadow-lg shadow-black/50">
+                                <span class="material-symbols-outlined text-2xl">location_on</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Floating Info Card -->
+                    <div class="absolute bottom-6 left-6 right-6 bg-background-dark/90 backdrop-blur-md p-5 rounded-xl border border-white/10 shadow-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-primary">apartment</span>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold text-base mb-1">المقر الرئيسي</h5>
+                                <p class="text-gray-400 text-sm leading-snug">
+                                    شيشلي، إسطنبول، تركيا<br/>
+                                    برج ترامب، الطابق 25
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -13,6 +13,8 @@
     --color-primary: #d4af35;
     --color-background-light: #f8f7f6;
     --color-background-dark: #201d12;
+    --color-gold-dim: #c3b998;
+    --color-dark-surface: #2a261a;
 }
 
 /* Custom scrollbar for webkit */
@@ -78,4 +80,12 @@
     .service-card.active:hover {
         transform: translateY(-4px) scale(1.02);
     }
+}
+
+/* Glass Card Effect */
+.glass-card {
+    background: rgba(42, 38, 26, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 175, 53, 0.1);
 }

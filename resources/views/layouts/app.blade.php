@@ -23,6 +23,8 @@
         @hasSection('showStatsBar')
             @include('components.stats-bar')
         @endif
+        
+        @include('components.footer')
     </div>
     
     @stack('scripts')
