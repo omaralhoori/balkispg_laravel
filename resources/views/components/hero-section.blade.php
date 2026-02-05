@@ -10,7 +10,7 @@
     <!-- Background Image -->
     <div class="hero-background absolute inset-0 z-0 bg-cover bg-center transition-all duration-700 ease-in-out" 
          data-alt="Panaromic view of Istanbul skyline at sunset" 
-         style="background-image: linear-gradient(rgba(32, 29, 18, 0.7), rgba(32, 29, 18, 0.8)), url('{{ $mainBgImage }}');">
+         style="background-image: linear-gradient(rgba(24, 24, 27, 0.7), rgba(24, 24, 27, 0.8)), url('{{ $mainBgImage }}');">
     </div>
     
     <div class="relative z-10 container mx-auto px-6 lg:px-20 py-12 flex flex-col lg:flex-row items-center gap-12 h-full">
@@ -104,7 +104,7 @@
     </div>
     
     <!-- Bottom decorative element -->
-    <div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-background-dark to-transparent pointer-events-none"></div>
+    <div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-bg-main to-transparent pointer-events-none"></div>
 </section>
 
 @push('scripts')

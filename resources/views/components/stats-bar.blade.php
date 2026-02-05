@@ -1,4 +1,4 @@
-<section class="bg-[#1a1810] border-t border-[#433d28] py-8 relative z-20">
+<section class="bg-zinc-dark border-t border-primary/20 py-8 relative z-20">
     <div class="container mx-auto px-6 lg:px-20 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div class="flex flex-col items-center gap-2">
             <span class="material-symbols-outlined text-primary text-3xl">verified_user</span>

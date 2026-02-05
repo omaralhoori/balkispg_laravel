@@ -24,7 +24,7 @@
     $termsUrl = $homePage->footer_terms_url ?? '#';
 @endphp
 
-<footer class="bg-[#15130b] border-t border-[#2a261a] pt-16 pb-8 px-4 md:px-10 lg:px-20">
+<footer class="bg-zinc-dark border-t border-primary/20 pt-16 pb-8 px-4 md:px-10 lg:px-20">
     <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <!-- Brand Column -->

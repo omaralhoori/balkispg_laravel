@@ -6,14 +6,14 @@
     <title>@yield('title', 'Balkis Premium Group')</title>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans+Arabic:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white">
-    <div class="relative flex min-h-screen flex-col overflow-hidden bg-background-light dark:bg-background-dark">
+<body class="bg-bg-main font-display text-gray-200">
+    <div class="relative flex min-h-screen flex-col overflow-hidden bg-bg-main">
         @include('components.navigation')
         
         <main class="flex-grow">

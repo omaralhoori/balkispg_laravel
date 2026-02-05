@@ -8,7 +8,7 @@
 
 @section('content')
 <section class="relative pt-44 pb-20 luxury-pattern">
-    <div class="absolute inset-0 bg-gradient-to-b from-background-dark/50 via-background-dark to-background-dark"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-bg-main/50 via-bg-main to-bg-main"></div>
     <div class="relative z-10 container mx-auto px-6 text-center">
         <h1 class="text-5xl md:text-6xl font-black text-primary mb-6 font-display tracking-tight leading-tight">
             برامجنا الحصرية والمميزة
@@ -19,7 +19,7 @@
     </div>
 </section>
 
-<section class="sticky top-0 z-40 bg-background-dark/95 border-b border-white/5 py-6 backdrop-blur-md">
+<section class="sticky top-[73px] z-40 bg-bg-main/95 border-b border-white/5 py-6 backdrop-blur-md">
     <div class="container mx-auto px-6">
         <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
             <div class="flex flex-wrap gap-2 justify-center">
@@ -33,7 +33,7 @@
                 @endforeach
             </div>
             <div class="relative w-full lg:w-96">
-                <input id="search-input" class="w-full bg-dark-surface border border-white/10 text-white px-5 py-2.5 pr-12 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none text-sm" placeholder="ابحث عن برنامج..." type="text"/>
+                <input id="search-input" class="w-full bg-zinc-dark border border-white/10 text-white px-5 py-2.5 pr-12 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none text-sm" placeholder="ابحث عن برنامج..." type="text"/>
                 <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-primary text-xl">search</span>
             </div>
         </div>
@@ -43,7 +43,7 @@
 <main class="container mx-auto px-6 py-16">
     <div id="programs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
         @foreach($programs as $program)
-            <div class="program-card group bg-dark-surface border border-white/5 rounded-2xl overflow-hidden card-shadow transition-all duration-500 hover:-translate-y-2" data-category="{{ $program->category }}" data-title="{{ strtolower($program->title) }}" data-description="{{ strtolower($program->description ?? '') }}">
+            <div class="program-card group bg-zinc-dark border border-white/5 rounded-2xl overflow-hidden card-shadow transition-all duration-500 hover:-translate-y-2" data-category="{{ $program->category }}" data-title="{{ strtolower($program->title) }}" data-description="{{ strtolower($program->description ?? '') }}">
                 <div class="relative h-64 overflow-hidden">
                     @if($program->image_url)
                         <img alt="{{ $program->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $program->image_url }}"/>
@@ -52,7 +52,7 @@
                             <span class="material-symbols-outlined text-6xl text-gray-600">image</span>
                         </div>
                     @endif
-                    <div class="absolute top-4 right-4 bg-primary text-background-dark px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-sm">
+                    <div class="absolute top-4 right-4 bg-primary text-zinc-dark px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-sm">
                         {{ $program->category }}
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     @if($program->description)
                         <p class="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-2">{{ $program->description }}</p>
                     @endif
-                    <a href="{{ $program->url ?? '#' }}" class="w-full flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary text-sm font-bold hover:bg-primary hover:text-background-dark transition-all group-hover:border-primary">
+                    <a href="{{ $program->url ?? '#' }}" class="w-full flex items-center justify-center gap-2 py-3 border border-primary/30 text-primary text-sm font-bold hover:bg-primary hover:text-zinc-dark transition-all group-hover:border-primary">
                         <span>استكشف التفاصيل</span>
                         <span class="material-symbols-outlined text-lg">arrow_left_alt</span>
                     </a>

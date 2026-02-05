@@ -26,7 +26,7 @@
                 </p>
             </div>
             <div class="flex items-center gap-4 self-start md:self-end">
-                <a class="flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/30 text-primary hover:bg-primary hover:text-background-dark transition-all duration-300 font-bold group" href="{{ route('programs.index') }}">
+                <a class="flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/30 text-primary hover:bg-primary hover:text-zinc-dark transition-all duration-300 font-bold group" href="{{ route('programs.index') }}">
                     <span>عرض جميع البرامج</span>
                     <span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-[-4px]">arrow_left_alt</span>
                 </a>
@@ -36,10 +36,10 @@
         <!-- Programs Carousel -->
         <div class="relative group">
             <!-- Navigation Buttons -->
-            <button class="programs-prev absolute right-[-20px] lg:right-[-40px] top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-primary/30 bg-background-dark/80 backdrop-blur-md text-primary flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all hidden lg:flex shadow-xl" aria-label="السابق">
+            <button class="programs-prev absolute right-[-20px] lg:right-[-40px] top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-primary/30 bg-bg-main/80 backdrop-blur-md text-primary flex items-center justify-center hover:bg-primary hover:text-zinc-dark transition-all hidden lg:flex shadow-xl" aria-label="السابق">
                 <span class="material-symbols-outlined font-bold">chevron_right</span>
             </button>
-            <button class="programs-next absolute left-[-20px] lg:left-[-40px] top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-primary/30 bg-background-dark/80 backdrop-blur-md text-primary flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all hidden lg:flex shadow-xl" aria-label="التالي">
+            <button class="programs-next absolute left-[-20px] lg:left-[-40px] top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-primary/30 bg-bg-main/80 backdrop-blur-md text-primary flex items-center justify-center hover:bg-primary hover:text-zinc-dark transition-all hidden lg:flex shadow-xl" aria-label="التالي">
                 <span class="material-symbols-outlined font-bold">chevron_left</span>
             </button>
             
@@ -62,9 +62,9 @@
                                     {{ $program->description }}
                                 </p>
                             @endif
-                            <a href="{{ $program->url ?? '#' }}" class="flex justify-between items-center pt-2 border-t border-white/10 w-full">
+                            <a href="{{ $program->url ?? '#' }}" class="flex justify-between items-center pt-3 border-t border-white/10 w-full">
                                 <span class="text-primary font-bold">اكتشف المزيد</span>
-                                <span class="material-symbols-outlined text-primary text-xl">arrow_forward</span>
+                                <span class="material-symbols-outlined text-primary text-xl">arrow_back</span>
                             </a>
                         </div>
                     </div>

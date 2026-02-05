@@ -8,7 +8,7 @@
 @endphp
 
 <!-- Contact Section -->
-<section class="relative py-24 px-4 md:px-10 lg:px-20 bg-[#1a180f]">
+<section class="relative py-24 px-4 md:px-10 lg:px-20 bg-zinc-dark">
     <div class="max-w-7xl mx-auto">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
             <!-- Contact Form Column -->
@@ -45,22 +45,22 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <label class="flex flex-col gap-2">
                             <span class="text-white text-sm font-medium">الاسم الكامل</span>
-                            <input class="w-full h-14 bg-dark-surface border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="محمد عبدالله" type="text" name="name" required/>
+                            <input class="w-full h-14 bg-zinc-dark border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="محمد عبدالله" type="text" name="name" required/>
                         </label>
                         <label class="flex flex-col gap-2">
                             <span class="text-white text-sm font-medium">رقم الهاتف</span>
-                            <input class="w-full h-14 bg-dark-surface border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+90 555 000 0000" type="tel" name="phone" required/>
+                            <input class="w-full h-14 bg-zinc-dark border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+90 555 000 0000" type="tel" name="phone" required/>
                         </label>
                     </div>
                     <label class="flex flex-col gap-2">
                         <span class="text-white text-sm font-medium">البريد الإلكتروني</span>
-                        <input class="w-full h-14 bg-dark-surface border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="name@company.com" type="email" name="email" required/>
+                        <input class="w-full h-14 bg-zinc-dark border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="name@company.com" type="email" name="email" required/>
                     </label>
                     <label class="flex flex-col gap-2">
                         <span class="text-white text-sm font-medium">الرسالة</span>
-                        <textarea class="w-full h-32 bg-dark-surface border border-[#3e3828] rounded-lg p-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="اكتب استفسارك هنا..." name="message" required></textarea>
+                        <textarea class="w-full h-32 bg-zinc-dark border border-[#3e3828] rounded-lg p-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="اكتب استفسارك هنا..." name="message" required></textarea>
                     </label>
-                    <button class="mt-2 h-14 bg-primary hover:bg-[#b8952a] text-background-dark font-bold rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
+                    <button class="mt-2 h-14 bg-primary hover:bg-[#b8952a] text-zinc-dark font-bold rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
                         <span>إرسال الرسالة</span>
                         <span class="material-symbols-outlined rtl:rotate-180">arrow_right_alt</span>
                     </button>
@@ -83,13 +83,13 @@
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                         <div class="relative">
                             <div class="absolute w-12 h-12 bg-primary/30 rounded-full animate-ping"></div>
-                            <div class="relative w-12 h-12 bg-primary text-background-dark rounded-full flex items-center justify-center shadow-lg shadow-black/50">
+                            <div class="relative w-12 h-12 bg-primary text-zinc-dark rounded-full flex items-center justify-center shadow-lg shadow-black/50">
                                 <span class="material-symbols-outlined text-2xl">location_on</span>
                             </div>
                         </div>
                     </div>
                     <!-- Floating Info Card -->
-                    <div class="absolute bottom-6 left-6 right-6 bg-background-dark/90 backdrop-blur-md p-5 rounded-xl border border-white/10 shadow-xl">
+                    <div class="absolute bottom-6 left-6 right-6 bg-bg-main/90 backdrop-blur-md p-5 rounded-xl border border-white/10 shadow-xl">
                         <div class="flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                                 <span class="material-symbols-outlined text-primary">apartment</span>

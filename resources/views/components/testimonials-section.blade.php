@@ -21,10 +21,10 @@
         <!-- Carousel -->
         <div class="w-full relative mt-8">
             <!-- Navigation Buttons -->
-            <button class="testimonials-prev absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-background-dark/80 backdrop-blur-md border border-primary/20 hover:bg-primary hover:text-background-dark text-primary transition-all duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Previous testimonial">
+            <button class="testimonials-prev absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-bg-main/80 backdrop-blur-md border border-primary/20 hover:bg-primary hover:text-zinc-dark text-primary transition-all duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Previous testimonial">
                 <span class="material-symbols-outlined">chevron_right</span>
             </button>
-            <button class="testimonials-next absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-background-dark/80 backdrop-blur-md border border-primary/20 hover:bg-primary hover:text-background-dark text-primary transition-all duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Next testimonial">
+            <button class="testimonials-next absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-bg-main/80 backdrop-blur-md border border-primary/20 hover:bg-primary hover:text-zinc-dark text-primary transition-all duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" aria-label="Next testimonial">
                 <span class="material-symbols-outlined">chevron_left</span>
             </button>
             
