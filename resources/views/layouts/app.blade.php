@@ -24,7 +24,10 @@
             @include('components.stats-bar')
         @endif
         
-        @include('components.footer')
+        @php
+            $homePage = $homePage ?? \App\Models\HomePage::getCurrent();
+        @endphp
+        @include('components.footer', ['homePage' => $homePage])
     </div>
     
     @stack('scripts')
