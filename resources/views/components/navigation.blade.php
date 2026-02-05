@@ -9,6 +9,7 @@
         <nav class="hidden md:flex gap-8">
             <a class="text-gray-400 hover:text-primary transition-colors text-sm font-medium {{ request()->routeIs('home') ? 'text-primary border-b border-primary' : '' }}" href="{{ route('home') }}">الرئيسية</a>
             <a class="text-gray-400 hover:text-primary transition-colors text-sm font-medium {{ request()->routeIs('programs.*') ? 'text-primary border-b border-primary' : '' }}" href="{{ route('programs.index') }}">برامجنا</a>
+            <a class="text-gray-400 hover:text-primary transition-colors text-sm font-medium {{ request()->routeIs('blog.*') ? 'text-primary border-b border-primary' : '' }}" href="{{ route('blog.index') }}">المدونة</a>
             <a class="text-gray-400 hover:text-primary transition-colors text-sm font-medium" href="#services">خدمات الاستثمار</a>
             <a class="text-gray-400 hover:text-primary transition-colors text-sm font-medium" href="#contact">عن المجموعة</a>
         </nav>
