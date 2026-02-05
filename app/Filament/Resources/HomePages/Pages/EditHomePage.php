@@ -13,8 +13,12 @@ class EditHomePage extends EditRecord
 
     public function mount(int|string $record = null): void
     {
-        $homePage = \App\Models\HomePage::getCurrent();
-        $this->record = $homePage->getKey();
+        if ($record === null) {
+            $homePage = \App\Models\HomePage::getCurrent();
+            $this->record = $homePage->getKey();
+        } else {
+            $this->record = $record;
+        }
         
         parent::mount($this->record);
     }

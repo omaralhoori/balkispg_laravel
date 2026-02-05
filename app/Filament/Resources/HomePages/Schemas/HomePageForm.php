@@ -62,6 +62,14 @@ class HomePageForm
                             ->maxLength(255)
                             ->nullable()
                             ->default('استكشف خدماتنا'),
+
+                        TextInput::make('cta_button_url')
+                            ->label('رابط زر الدعوة للإجراء')
+                            ->url()
+                            ->maxLength(255)
+                            ->nullable()
+                            ->default('#')
+                            ->helperText('مثال: /services أو https://example.com'),
                         
                         TextInput::make('video_button_text')
                             ->label('نص زر الفيديو')
@@ -140,6 +148,28 @@ class HomePageForm
                                 TextInput::make('card_icon')
                                     ->label('أيقونة الكارت')
                                     ->maxLength(255),
+
+                                TextInput::make('card_url')
+                                    ->label('رابط الكارت')
+                                    ->url()
+                                    ->maxLength(255)
+                                    ->nullable()
+                                    ->default('#')
+                                    ->helperText('مثال: /tourism أو https://example.com'),
+
+                                TextInput::make('cta_button_text')
+                                    ->label('نص زر الدعوة للإجراء')
+                                    ->maxLength(255)
+                                    ->nullable()
+                                    ->default('اكتشف المزيد'),
+
+                                TextInput::make('cta_button_url')
+                                    ->label('رابط زر الدعوة للإجراء')
+                                    ->url()
+                                    ->maxLength(255)
+                                    ->nullable()
+                                    ->default('#')
+                                    ->helperText('مثال: /services/tourism أو https://example.com'),
 
                                 TextInput::make('order')
                                     ->label('الترتيب')

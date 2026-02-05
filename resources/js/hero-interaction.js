@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const badgeSpan = heroSection.querySelector('.hero-badge-text');
     const badgeIcon = heroSection.querySelector('.hero-badge-icon');
     const statsContainer = heroSection.querySelector('.hero-stats');
+    const ctaButton = heroSection.querySelector('.service-cta-button');
+    const ctaButtonText = heroSection.querySelector('.service-cta-text');
     const cards = heroSection.querySelectorAll('.service-card');
 
     let currentService = 'tourism';
@@ -67,6 +69,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
 
+            // Update CTA button
+            if (ctaButton && service.ctaButtonText) {
+                if (ctaButtonText) {
+                    ctaButtonText.textContent = service.ctaButtonText;
+                }
+                ctaButton.setAttribute('href', service.ctaButtonUrl || '#');
+                ctaButton.style.display = 'flex';
+            } else if (ctaButton && !service.ctaButtonText) {
+                ctaButton.style.display = 'none';
+            }
+
             // Fade in new content
             if (contentWrapper) {
                 contentWrapper.style.opacity = '1';
@@ -101,8 +114,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add click handlers to cards
     cards.forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function(e) {
             const serviceId = this.dataset.serviceId;
+            const href = this.getAttribute('href');
+            
+            // If there's a real URL (not '#' or empty), allow navigation
+            if (href && href !== '#' && href !== '') {
+                // Still update hero content for visual feedback
+                if (serviceId && !isTransitioning) {
+                    updateHeroContent(serviceId);
+                    updateCardStates(serviceId);
+                }
+                // Allow default navigation to proceed
+                return true;
+            }
+            
+            // If no real URL, prevent navigation and just update hero content
+            e.preventDefault();
             if (serviceId && !isTransitioning) {
                 updateHeroContent(serviceId);
                 updateCardStates(serviceId);

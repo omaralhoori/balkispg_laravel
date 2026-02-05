@@ -22,6 +22,13 @@ class HomePageResource extends Resource
 
     protected static ?string $pluralModelLabel = 'الصفحة الرئيسية';
 
+    protected static ?int $navigationSort = 1;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'المحتوى';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return HomePageForm::configure($schema);
@@ -30,6 +37,7 @@ class HomePageResource extends Resource
     public static function getPages(): array
     {
         return [
+            'index' => \App\Filament\Resources\HomePages\Pages\ListHomePage::route('/'),
             'edit' => EditHomePage::route('/edit'),
         ];
     }

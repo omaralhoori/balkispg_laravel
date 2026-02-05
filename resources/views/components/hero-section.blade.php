@@ -29,22 +29,25 @@
             <p class="hero-description text-gray-300 text-lg leading-relaxed max-w-xl">
                 {{ $homePage->main_description ?? 'اكتشف قمة السياحة الفاخرة في تركيا، والعقارات المتميزة، والاستثمارات الاستراتيجية. نحن نصنع تجارب لا تُنسى ومستقبلاً واعداً.' }}
             </p>
-            @if($homePage->cta_button_text || $homePage->video_button_text)
-                <div class="flex gap-4 mt-4">
-                    @if($homePage->cta_button_text)
-                        <button class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
-                            <span>{{ $homePage->cta_button_text }}</span>
-                            <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
-                        </button>
-                    @endif
-                    @if($homePage->video_button_text)
-                        <button class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg border border-white/20 bg-white/5 text-white font-medium hover:bg-white/10 transition-all backdrop-blur-sm">
-                            <span class="material-symbols-outlined text-xl">play_circle</span>
-                            <span>{{ $homePage->video_button_text }}</span>
-                        </button>
-                    @endif
-                </div>
-            @endif
+            <div class="flex gap-4 mt-4">
+                @if($firstService && $firstService->cta_button_text)
+                    <a href="{{ $firstService->cta_button_url ?? '#' }}" class="service-cta-button flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
+                        <span class="service-cta-text">{{ $firstService->cta_button_text }}</span>
+                        <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
+                    </a>
+                @elseif($homePage->cta_button_text)
+                    <a href="{{ $homePage->cta_button_url ?? '#' }}" class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
+                        <span>{{ $homePage->cta_button_text }}</span>
+                        <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
+                    </a>
+                @endif
+                @if($homePage->video_button_text)
+                    <button class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg border border-white/20 bg-white/5 text-white font-medium hover:bg-white/10 transition-all backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-xl">play_circle</span>
+                        <span>{{ $homePage->video_button_text }}</span>
+                    </button>
+                @endif
+            </div>
             <div class="hero-stats mt-8 flex items-center gap-8 border-t border-white/10 pt-6 w-full max-w-md">
                 @if($firstService && $firstService->stats)
                     @foreach($firstService->stats as $stat)
@@ -81,7 +84,7 @@
                         : 'service-card inactive group relative shrink-0 w-[280px] lg:w-full h-[160px] rounded-xl overflow-hidden cursor-pointer border border-white/10 opacity-70 hover:opacity-100 hover:border-primary/50 transition-all duration-500 snap-center';
                 @endphp
                 
-                <div class="{{ $cardClass }}" data-service-id="{{ $service->service_key }}">
+                <a href="{{ $service->card_url ?? '#' }}" class="{{ $cardClass }}" data-service-id="{{ $service->service_key }}">
                     <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
                          style="background-image: url('{{ $cardImage }}');">
                     </div>
@@ -95,7 +98,7 @@
                             <span class="material-symbols-outlined {{ !$isActive ? 'text-sm' : '' }}">{{ $service->card_icon }}</span>
                         </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
@@ -115,6 +118,8 @@
             'badge' => $service->badge_text,
             'badgeIcon' => $service->badge_icon,
             'backgroundImage' => $service->background_image_url,
+            'ctaButtonText' => $service->cta_button_text,
+            'ctaButtonUrl' => $service->cta_button_url ?? '#',
             'stats' => $service->stats ?? [],
         ]];
     })->toArray();

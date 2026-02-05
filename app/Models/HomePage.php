@@ -15,6 +15,7 @@ class HomePage extends Model
         'main_badge_icon',
         'main_background_image',
         'cta_button_text',
+        'cta_button_url',
         'video_button_text',
     ];
 
