@@ -79,6 +79,66 @@ class HomePageForm
                     ])
                     ->columns(2),
 
+                Section::make('الإحصائيات')
+                    ->schema([
+                        TextInput::make('statistics_badge_text')
+                            ->label('نص الشارة')
+                            ->maxLength(255)
+                            ->nullable()
+                            ->default('إنجازاتنا')
+                            ->helperText('النص الذي يظهر كشارة في أعلى القسم'),
+
+                        TextInput::make('statistics_title')
+                            ->label('العنوان الرئيسي')
+                            ->maxLength(255)
+                            ->nullable()
+                            ->default('أرقام تتحدث')
+                            ->helperText('العنوان الرئيسي لقسم الإحصائيات'),
+
+                        TextInput::make('statistics_subtitle')
+                            ->label('العنوان الفرعي')
+                            ->maxLength(255)
+                            ->nullable()
+                            ->helperText('العنوان الفرعي (اختياري)'),
+
+                        Textarea::make('statistics_description')
+                            ->label('الوصف')
+                            ->rows(3)
+                            ->nullable()
+                            ->default('نحن نفخر بإنجازاتنا وشراكاتنا الاستراتيجية مع نخبة المستثمرين ورجال الأعمال في المنطقة')
+                            ->helperText('الوصف الذي يظهر تحت العنوان')
+                            ->columnSpanFull(),
+
+                        Repeater::make('statistics')
+                            ->label('إحصائيات الصفحة الرئيسية')
+                            ->schema([
+                                TextInput::make('value')
+                                    ->label('القيمة')
+                                    ->required()
+                                    ->placeholder('مثال: ١٥+ أو ٥٠٠+')
+                                    ->helperText('القيمة الرقمية أو النصية للإحصائية'),
+
+                                TextInput::make('label')
+                                    ->label('التسمية')
+                                    ->required()
+                                    ->placeholder('مثال: سنة خبرة')
+                                    ->helperText('النص الذي يظهر تحت القيمة'),
+
+                                TextInput::make('icon')
+                                    ->label('الأيقونة (Material Icons)')
+                                    ->maxLength(255)
+                                    ->nullable()
+                                    ->placeholder('مثال: calendar_today')
+                                    ->helperText('اسم أيقونة Material Icons (اختياري)'),
+                            ])
+                            ->defaultItems(4)
+                            ->columns(3)
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => ($state['value'] ?? '') . ' - ' . ($state['label'] ?? ''))
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2),
+
                 Section::make('الخدمات')
                     ->schema([
                         Repeater::make('services')

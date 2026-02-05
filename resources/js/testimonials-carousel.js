@@ -34,21 +34,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function updateCarousel() {
+    function updateCarousel(shouldScroll = false) {
         const cardWidth = getCardWidth();
         if (cardWidth === 0) return;
 
         // In RTL, scrollLeft is negative, so we need to scroll to negative position
         const scrollPosition = currentIndex * cardWidth;
         
-        // Scroll to the card position
-        const targetCard = cards[currentIndex];
-        if (targetCard) {
-            targetCard.scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest',
-                inline: 'center',
-            });
+        // Scroll to the card position only if explicitly requested (user interaction)
+        // Don't scroll on initial load to prevent page jumping
+        if (shouldScroll) {
+            const targetCard = cards[currentIndex];
+            if (targetCard) {
+                targetCard.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center',
+                });
+            }
         }
 
         // Update dots
@@ -73,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function goToSlide(index) {
         if (index < 0 || index >= cards.length) return;
         currentIndex = index;
-        updateCarousel();
+        updateCarousel(true); // Allow scrolling for user interaction
         resetAutoPlay();
     }
 
@@ -83,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             currentIndex = 0; // Loop back to start
         }
-        updateCarousel();
+        updateCarousel(true); // Allow scrolling for user interaction
         resetAutoPlay();
     }
 
@@ -93,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             currentIndex = cards.length - 1; // Loop to end
         }
-        updateCarousel();
+        updateCarousel(true); // Allow scrolling for user interaction
         resetAutoPlay();
     }
 
@@ -159,8 +162,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initialize
-    updateCarousel();
+    // Initialize without scrolling to prevent page jump on load
+    updateCarousel(false);
     // Auto-play disabled - only manual navigation
     // startAutoPlay();
 
@@ -169,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-            updateCarousel();
+            updateCarousel(false); // Don't scroll on resize
         }, 250);
     });
 });

@@ -17,10 +17,16 @@ class HomePage extends Model
         'cta_button_text',
         'cta_button_url',
         'video_button_text',
+        'statistics',
+        'statistics_badge_text',
+        'statistics_title',
+        'statistics_subtitle',
+        'statistics_description',
     ];
 
     protected $casts = [
         'main_description' => 'string',
+        'statistics' => 'array',
     ];
 
     public function getMainBackgroundImageUrlAttribute(): ?string
