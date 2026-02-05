@@ -122,24 +122,61 @@
                 @endif
             </div>
 
+            @php
+                $approvedComments = $post->approvedComments()->orderBy('created_at', 'desc')->get();
+            @endphp
+
+            @if($approvedComments->count() > 0)
+                <section class="mt-20">
+                    <h3 class="text-2xl font-bold text-white mb-8 font-almarai">التعليقات ({{ $approvedComments->count() }})</h3>
+                    <div class="space-y-6">
+                        @foreach($approvedComments as $comment)
+                            <div class="bg-zinc-dark p-6 rounded-2xl border border-white/5">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div>
+                                        <h4 class="text-white font-bold mb-1">{{ $comment->name }}</h4>
+                                        <p class="text-gray-500 text-xs">{{ $comment->created_at->format('d M Y, H:i') }}</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 leading-relaxed">{{ $comment->message }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                </section>
+            @endif
+
             <section class="mt-20">
                 <h3 class="text-2xl font-bold text-white mb-8 font-almarai">اترك تعليقاً</h3>
-                <form class="space-y-6 bg-zinc-dark p-8 rounded-2xl border border-white/5" action="{{ route('contact.submit') }}" method="POST">
+                @if(session('comment_success'))
+                    <div class="bg-primary/20 border border-primary/30 text-primary px-6 py-4 rounded-lg mb-6">
+                        {{ session('comment_success') }}
+                    </div>
+                @endif
+                @if($errors->any())
+                    <div class="bg-red-500/20 border border-red-500/30 text-red-400 px-6 py-4 rounded-lg mb-6">
+                        <ul class="list-disc list-inside space-y-1">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form class="space-y-6 bg-zinc-dark p-8 rounded-2xl border border-white/5" action="{{ route('comments.store') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="subject" value="تعليق على: {{ $post->title }}">
+                    <input type="hidden" name="blog_post_id" value="{{ $post->id }}">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-2">
                             <label class="text-sm text-gray-400 mr-2">الاسم بالكامل</label>
-                            <input name="name" class="w-full bg-bg-main border-white/10 rounded-lg focus:ring-primary focus:border-primary text-white px-4 py-3" placeholder="مثال: أحمد محمد" type="text" required/>
+                            <input name="name" value="{{ old('name') }}" class="w-full bg-bg-main border-white/10 rounded-lg focus:ring-primary focus:border-primary text-white px-4 py-3 @error('name') border-red-500 @enderror" placeholder="مثال: أحمد محمد" type="text" required/>
                         </div>
                         <div class="space-y-2">
                             <label class="text-sm text-gray-400 mr-2">البريد الإلكتروني</label>
-                            <input name="email" class="w-full bg-bg-main border-white/10 rounded-lg focus:ring-primary focus:border-primary text-white px-4 py-3" placeholder="your@email.com" type="email" required/>
+                            <input name="email" value="{{ old('email') }}" class="w-full bg-bg-main border-white/10 rounded-lg focus:ring-primary focus:border-primary text-white px-4 py-3 @error('email') border-red-500 @enderror" placeholder="your@email.com" type="email" required/>
                         </div>
                     </div>
                     <div class="space-y-2">
                         <label class="text-sm text-gray-400 mr-2">التعليق</label>
-                        <textarea name="message" class="w-full bg-bg-main border-white/10 rounded-lg focus:ring-primary focus:border-primary text-white px-4 py-3" placeholder="اكتب رأيك هنا..." rows="5" required></textarea>
+                        <textarea name="message" class="w-full bg-bg-main border-white/10 rounded-lg focus:ring-primary focus:border-primary text-white px-4 py-3 @error('message') border-red-500 @enderror" placeholder="اكتب رأيك هنا..." rows="5" required>{{ old('message') }}</textarea>
                     </div>
                     <button class="bg-primary text-zinc-dark px-10 py-3 font-bold hover:bg-white transition-colors rounded-sm" type="submit">إرسال التعليق</button>
                 </form>
