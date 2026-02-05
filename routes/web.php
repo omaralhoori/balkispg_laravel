@@ -96,3 +96,5 @@ Route::get('/about', function () {
     $aboutPage = \App\Models\AboutPage::getCurrent();
     return view('about', ['aboutPage' => $aboutPage]);
 })->name('about');
+
+Route::get('/whatsapp', [\App\Http\Controllers\WhatsAppController::class, 'redirect'])->name('whatsapp.redirect');

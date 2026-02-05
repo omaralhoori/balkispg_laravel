@@ -11,7 +11,7 @@
             <a class="text-gray-400 hover:text-primary transition-colors text-sm font-medium {{ request()->routeIs('about') ? 'text-primary border-b border-primary' : '' }}" href="{{ route('about') }}">عن المجموعة</a>
         </nav>
         <div class="flex items-center gap-4">
-            <a href="#contact" class="bg-primary text-zinc-dark px-5 py-2 text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors">اتصل بنا</a>
+            <a href="{{ route('whatsapp.redirect') }}" target="_blank" rel="noopener noreferrer" class="bg-primary text-zinc-dark px-5 py-2 text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors">اتصل بنا</a>
             <div class="md:hidden text-white">
                 <span class="material-symbols-outlined cursor-pointer">menu</span>
             </div>
