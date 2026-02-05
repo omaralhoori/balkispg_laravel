@@ -26,7 +26,7 @@
                 </p>
             </div>
             <div class="flex items-center gap-4 self-start md:self-end">
-                <a class="flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/30 text-primary hover:bg-primary hover:text-background-dark transition-all duration-300 font-bold group" href="#">
+                <a class="flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/30 text-primary hover:bg-primary hover:text-background-dark transition-all duration-300 font-bold group" href="{{ route('programs.index') }}">
                     <span>عرض جميع البرامج</span>
                     <span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-[-4px]">arrow_left_alt</span>
                 </a>
@@ -73,7 +73,7 @@
             
             <!-- Pagination Dots -->
             @if($programs->count() > 1)
-                <div class="flex justify-center gap-2 mt-8">
+                <div class="justify-center gap-2 mt-8 hidden">
                     @foreach($programs as $index => $program)
                         <div class="programs-dot h-1.5 {{ $index === 0 ? 'w-8 bg-primary' : 'w-2 bg-white/20' }} rounded-full transition-all duration-300" data-index="{{ $index }}"></div>
                     @endforeach

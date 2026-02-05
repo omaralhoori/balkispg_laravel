@@ -8,6 +8,7 @@
         </div>
         <nav class="hidden md:flex flex-1 justify-end gap-10">
             <a class="text-white hover:text-primary transition-colors text-sm font-medium" href="{{ route('home') }}">الرئيسية</a>
+            <a class="text-white hover:text-primary transition-colors text-sm font-medium {{ request()->routeIs('programs.*') ? 'text-primary border-b border-primary' : '' }}" href="{{ route('programs.index') }}">برامجنا</a>
             <a class="text-white hover:text-primary transition-colors text-sm font-medium" href="#services">خدماتنا</a>
             <a class="text-white hover:text-primary transition-colors text-sm font-medium" href="#packages">الباقات</a>
             <a class="text-white hover:text-primary transition-colors text-sm font-medium" href="#contact">تواصل معنا</a>

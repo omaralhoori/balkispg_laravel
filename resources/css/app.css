@@ -144,3 +144,20 @@
     backdrop-filter: blur(12px);
     border-top: 1px solid rgba(212, 175, 53, 0.2);
 }
+
+/* Luxury Pattern Background */
+.luxury-pattern {
+    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6TT-gLHjEF3IFtcz3PEPeJRofVTBFz2stwXglpO-MkeL6uZwJ3kHwwq2oB9I3B9suBS55k0dqqi4dvS42KJocibVMHq1E8dhiiomBuNCAC4Ap3zkdGLAN8f6pl2uFKYhdOdrzq4vzFNQ_pC28pA6Uy6Jqp9gtnuFG5PQLt2OMKDn1VihxWxbBtfNR0prBM-vMkOFL_HLdsajwYCvzBlTESe2q2gHoz9MEUVw3jzHJdaHAfcQp7f094OGd8OiOxQnMPeH9SGifuycw');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Card Shadow Effects */
+.card-shadow {
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+}
+
+.card-shadow:hover {
+    box-shadow: 0 20px 40px -20px rgba(212, 175, 53, 0.2);
+}
