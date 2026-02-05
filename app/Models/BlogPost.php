@@ -21,6 +21,11 @@ class BlogPost extends Model
         'is_active',
         'order',
         'published_at',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'og_image',
+        'canonical_url',
     ];
 
     protected $casts = [
@@ -37,5 +42,24 @@ class BlogPost extends Model
         }
 
         return asset('storage/'.$this->featured_image);
+    }
+
+    public function getOgImageUrlAttribute(): ?string
+    {
+        if (! $this->og_image) {
+            return $this->featured_image_url;
+        }
+
+        return asset('storage/'.$this->og_image);
+    }
+
+    public function getMetaTitleAttribute($value): string
+    {
+        return $value ?: $this->title;
+    }
+
+    public function getMetaDescriptionAttribute($value): ?string
+    {
+        return $value ?: $this->excerpt;
     }
 }

@@ -4,7 +4,23 @@
 
 @php
     $homePage = \App\Models\HomePage::getCurrent();
+    
+    // SEO Meta Tags
+    $metaDescription = 'اكتشف أحدث المقالات والتقارير حول الاستثمار العقاري في تركيا، الجنسية التركية، والسياحة الفاخرة من خبراء بلقيس بريميوم جروب.';
+    $metaKeywords = 'استثمار عقاري، تركيا، الجنسية التركية، عقارات، استثمار، بلقيس، مقالات، تقارير';
+    $currentUrl = url()->current();
 @endphp
+
+@section('meta_description', $metaDescription)
+@section('meta_keywords', $metaKeywords)
+
+@section('og_type', 'website')
+@section('og_url', $currentUrl)
+@section('og_title', 'المدونة والتقارير - Balkis Premium Group')
+@section('og_description', $metaDescription)
+@section('og_image', asset('images/og-blog.jpg'))
+
+@section('canonical_url', $currentUrl)
 
 @section('content')
 <section class="relative pt-24 px-6">
@@ -25,7 +41,7 @@
                     @if($featuredPost->excerpt)
                         <p class="text-gray-300 text-lg mb-8 line-clamp-2 md:line-clamp-none">{{ $featuredPost->excerpt }}</p>
                     @endif
-                    <a class="inline-flex items-center gap-3 text-primary font-bold group/link" href="#">
+                    <a class="inline-flex items-center gap-3 text-primary font-bold group/link" href="{{ route('blog.show', $featuredPost->slug) }}">
                         <span>قراءة المقال بالكامل</span>
                         <span class="material-symbols-outlined transition-transform group-hover/link:-translate-x-2">arrow_left_alt</span>
                     </a>
@@ -63,8 +79,21 @@
                 <h3 class="text-zinc-dark text-xl font-bold mb-3 font-display relative z-10">نشرة بلقيس البريدية</h3>
                 <p class="text-zinc-dark/80 text-sm mb-6 relative z-10">اشترك ليصلك أحدث التقارير الحصرية وفرص الاستثمار مباشرة.</p>
                 <div class="space-y-3 relative z-10">
-                    <input class="w-full bg-white/20 border-transparent placeholder-zinc-dark/60 text-zinc-dark text-sm px-4 py-3 rounded focus:ring-zinc-dark/40 focus:border-transparent" placeholder="بريدك الإلكتروني" type="email"/>
-                    <button class="w-full bg-zinc-dark text-white py-3 font-bold text-sm hover:bg-black transition-colors">اشترك الآن</button>
+                    @if(session('newsletter_success'))
+                        <div class="bg-white/20 text-zinc-dark px-4 py-3 rounded text-sm font-medium mb-3">
+                            {{ session('newsletter_success') }}
+                        </div>
+                    @endif
+                    @if($errors->has('email') || $errors->has('newsletter'))
+                        <div class="bg-red-500/20 text-red-900 px-4 py-3 rounded text-sm font-medium mb-3">
+                            {{ $errors->first('email') ?: $errors->first('newsletter') }}
+                        </div>
+                    @endif
+                    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="space-y-3">
+                        @csrf
+                        <input name="email" value="{{ old('email') }}" class="w-full bg-white/20 border-transparent placeholder-zinc-dark/60 text-zinc-dark text-sm px-4 py-3 rounded focus:ring-zinc-dark/40 focus:border-transparent @error('email') border-red-500 @enderror" placeholder="بريدك الإلكتروني" type="email" required/>
+                        <button type="submit" class="w-full bg-zinc-dark text-white py-3 font-bold text-sm hover:bg-black transition-colors">اشترك الآن</button>
+                    </form>
                 </div>
             </div>
         </aside>
@@ -92,7 +121,7 @@
                             @if($post->excerpt)
                                 <p class="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">{{ $post->excerpt }}</p>
                             @endif
-                            <a class="inline-flex items-center gap-2 text-primary text-sm font-bold border-b border-primary/30 pb-1 group/btn hover:border-primary transition-all" href="#">
+                            <a class="inline-flex items-center gap-2 text-primary text-sm font-bold border-b border-primary/30 pb-1 group/btn hover:border-primary transition-all" href="{{ route('blog.show', $post->slug) }}">
                                 <span>اقرأ المزيد</span>
                                 <span class="material-symbols-outlined text-lg transition-transform group-hover/btn:-translate-x-1">arrow_left_alt</span>
                             </a>
