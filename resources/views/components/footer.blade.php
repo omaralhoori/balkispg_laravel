@@ -30,9 +30,6 @@
             <!-- Brand Column -->
             <div class="flex flex-col gap-6 max-w-sm">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-[#8a6e15] rounded-lg flex items-center justify-center">
-                        <span class="material-symbols-outlined text-white">diamond</span>
-                    </div>
                     <span class="text-2xl font-bold text-white tracking-tight">{{ $brandName }}</span>
                 </div>
                 @if($brandDescription)
