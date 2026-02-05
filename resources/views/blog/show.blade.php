@@ -242,8 +242,8 @@
 
             <div class="relative bg-primary p-8 rounded-2xl overflow-hidden">
                 <div class="absolute -top-12 -right-12 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-                <h3 class="text-zinc-dark text-xl font-bold mb-3 font-almarai relative z-10">النشرة الحصرية</h3>
-                <p class="text-zinc-dark/80 text-sm mb-6 relative z-10">اشترك لتصلك تحليلات السوق مباشرة إلى بريدك.</p>
+                <h3 class="text-zinc-dark text-xl font-bold mb-3 font-almarai relative z-10">نشرة بلقيس البريدية</h3>
+                <p class="text-zinc-dark/80 text-sm mb-6 relative z-10">اشترك ليصلك أحدث التقارير الحصرية وفرص الاستثمار مباشرة.</p>
                 <div class="space-y-3 relative z-10">
                     @if(session('newsletter_success'))
                         <div class="bg-white/20 text-zinc-dark px-4 py-3 rounded text-sm font-medium mb-3">

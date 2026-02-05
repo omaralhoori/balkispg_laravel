@@ -49,6 +49,7 @@
     
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
 </head>
 <body class="bg-bg-main font-display text-gray-200">
     <div class="relative flex min-h-screen flex-col overflow-hidden bg-bg-main">
