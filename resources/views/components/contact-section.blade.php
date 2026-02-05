@@ -19,6 +19,27 @@
                         فريقنا جاهز للإجابة على جميع استفساراتكم المتعلقة بفرص الاستثمار العقاري والتجاري في تركيا.
                     </p>
                 </div>
+                @if(session('success'))
+                    <div class="bg-green-500/10 border border-green-500/20 text-green-400 px-6 py-4 rounded-lg flex items-center gap-3">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span>{{ session('success') }}</span>
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="bg-red-500/10 border border-red-500/20 text-red-400 px-6 py-4 rounded-lg flex flex-col gap-2">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined">error</span>
+                            <span>حدث خطأ في إرسال الرسالة:</span>
+                        </div>
+                        <ul class="list-disc list-inside mr-4">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form class="flex flex-col gap-6 mt-4" action="{{ route('contact.submit') }}" method="POST">
                     @csrf
                     <div class="grid md:grid-cols-2 gap-6">

@@ -6,7 +6,4 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::post('/contact', function () {
-    // TODO: Handle contact form submission
-    return back()->with('success', 'تم إرسال رسالتك بنجاح!');
-})->name('contact.submit');
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.submit');
