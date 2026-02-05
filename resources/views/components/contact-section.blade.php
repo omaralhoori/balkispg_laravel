@@ -1,3 +1,12 @@
+@php
+    $homePage = $homePage ?? \App\Models\HomePage::getCurrent();
+    $mapImage = $homePage->map_image_url ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuCtmesQwp5513ujXYuNsFkHQ7Sd0wZrfusjFZFe4_i1bRHu7X6BQeawIsj17ege0neKmTs61Ig8lC113HYUqTDEy6xXKzw0Y56sM9X-6j2Plsemu-LAFB-rZv1_amXWAzvLcpYTDA7DWfkS7fZI5gOwk1jrMWZ_XvOt0OSrULviwyqz15-SmWPrTz8XyVR7bCtk1HEcjvGXTPGt4y-wymUXrJl5ULYu4Fv22w4zIv74-wW5tCKP8FbysYZvoKqqxRe8C_sbeQ17z9RM';
+    $mapLocationTitle = $homePage->map_location_title ?? 'المقر الرئيسي';
+    $mapAddressLine1 = $homePage->map_address_line1 ?? 'شيشلي، إسطنبول، تركيا';
+    $mapAddressLine2 = $homePage->map_address_line2 ?? 'برج ترامب، الطابق 25';
+    $mapUrl = $homePage->map_url ?? null;
+@endphp
+
 <!-- Contact Section -->
 <section class="relative py-24 px-4 md:px-10 lg:px-20 bg-[#1a180f]">
     <div class="max-w-7xl mx-auto">
@@ -40,9 +49,15 @@
             <div class="flex flex-col gap-8 order-1 lg:order-2 h-full min-h-[400px]">
                 <!-- Map Container -->
                 <div class="relative w-full h-full min-h-[300px] lg:min-h-[400px] rounded-2xl overflow-hidden border border-[#3e3828] group">
-                    <!-- Dark Map Placeholder -->
-                    <div class="w-full h-full bg-cover bg-center grayscale contrast-125 brightness-[0.4]" data-alt="Dark stylized map of Istanbul city layout" data-location="Istanbul, Turkey" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtmesQwp5513ujXYuNsFkHQ7Sd0wZrfusjFZFe4_i1bRHu7X6BQeawIsj17ege0neKmTs61Ig8lC113HYUqTDEy6xXKzw0Y56sM9X-6j2Plsemu-LAFB-rZv1_amXWAzvLcpYTDA7DWfkS7fZI5gOwk1jrMWZ_XvOt0OSrULviwyqz15-SmWPrTz8XyVR7bCtk1HEcjvGXTPGt4y-wymUXrJl5ULYu4Fv22w4zIv74-wW5tCKP8FbysYZvoKqqxRe8C_sbeQ17z9RM");'>
+                    @if($mapUrl)
+                        <a href="{{ $mapUrl }}" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                    @endif
+                    <!-- Dark Map Image -->
+                    <div class="w-full h-full bg-cover bg-center grayscale contrast-125 brightness-[0.4]" data-alt="Dark stylized map" style="background-image: url('{{ $mapImage }}');">
                     </div>
+                    @if($mapUrl)
+                        </a>
+                    @endif
                     <!-- Location Pin Overlay -->
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                         <div class="relative">
@@ -59,10 +74,9 @@
                                 <span class="material-symbols-outlined text-primary">apartment</span>
                             </div>
                             <div>
-                                <h5 class="text-white font-bold text-base mb-1">المقر الرئيسي</h5>
+                                <h5 class="text-white font-bold text-base mb-1">{{ $mapLocationTitle }}</h5>
                                 <p class="text-gray-400 text-sm leading-snug">
-                                    شيشلي، إسطنبول، تركيا<br/>
-                                    برج ترامب، الطابق 25
+                                    {{ $mapAddressLine1 }}@if($mapAddressLine2)<br/>{{ $mapAddressLine2 }}@endif
                                 </p>
                             </div>
                         </div>

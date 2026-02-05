@@ -11,7 +11,7 @@
     @include('components.hero-section', ['homePage' => $homePage, 'services' => $services])
     @include('components.statistics-section', ['homePage' => $homePage])
     @include('components.testimonials-section')
-    @include('components.contact-section')
+    @include('components.contact-section', ['homePage' => $homePage])
 @endsection
 
 @section('showStatsBar')

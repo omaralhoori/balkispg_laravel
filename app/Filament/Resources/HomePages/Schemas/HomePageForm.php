@@ -139,6 +139,60 @@ class HomePageForm
                     ])
                     ->columns(2),
 
+                Section::make('الخريطة والموقع')
+                    ->schema([
+                        FileUpload::make('map_image')
+                            ->label('صورة الخريطة')
+                            ->image()
+                            ->disk('public')
+                            ->directory('home-page/map')
+                            ->visibility('public')
+                            ->helperText('صورة الخريطة التي تظهر في قسم الاتصال')
+                            ->columnSpanFull(),
+
+                        TextInput::make('map_location_title')
+                            ->label('عنوان الموقع')
+                            ->maxLength(255)
+                            ->nullable()
+                            ->default('المقر الرئيسي')
+                            ->helperText('مثال: المقر الرئيسي، المكتب الرئيسي'),
+
+                        TextInput::make('map_address_line1')
+                            ->label('السطر الأول من العنوان')
+                            ->maxLength(255)
+                            ->nullable()
+                            ->default('شيشلي، إسطنبول، تركيا')
+                            ->helperText('السطر الأول من عنوان الموقع'),
+
+                        TextInput::make('map_address_line2')
+                            ->label('السطر الثاني من العنوان')
+                            ->maxLength(255)
+                            ->nullable()
+                            ->default('برج ترامب، الطابق 25')
+                            ->helperText('السطر الثاني من عنوان الموقع (اختياري)'),
+
+                        TextInput::make('map_url')
+                            ->label('رابط الخريطة')
+                            ->url()
+                            ->maxLength(500)
+                            ->nullable()
+                            ->helperText('رابط Google Maps أو أي رابط آخر للخريطة (اختياري)')
+                            ->columnSpanFull(),
+
+                        TextInput::make('map_latitude')
+                            ->label('خط العرض (Latitude)')
+                            ->numeric()
+                            ->nullable()
+                            ->helperText('إحداثيات خط العرض للاستخدام المستقبلي (اختياري)'),
+
+                        TextInput::make('map_longitude')
+                            ->label('خط الطول (Longitude)')
+                            ->numeric()
+                            ->nullable()
+                            ->helperText('إحداثيات خط الطول للاستخدام المستقبلي (اختياري)'),
+                    ])
+                    ->columns(2),
+
                 Section::make('الخدمات')
                     ->schema([
                         Repeater::make('services')

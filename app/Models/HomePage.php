@@ -22,6 +22,13 @@ class HomePage extends Model
         'statistics_title',
         'statistics_subtitle',
         'statistics_description',
+        'map_image',
+        'map_location_title',
+        'map_address_line1',
+        'map_address_line2',
+        'map_url',
+        'map_latitude',
+        'map_longitude',
     ];
 
     protected $casts = [
@@ -36,6 +43,15 @@ class HomePage extends Model
         }
 
         return asset('storage/'.$this->main_background_image);
+    }
+
+    public function getMapImageUrlAttribute(): ?string
+    {
+        if (! $this->map_image) {
+            return 'https://lh3.googleusercontent.com/aida-public/AB6AXuCtmesQwp5513ujXYuNsFkHQ7Sd0wZrfusjFZFe4_i1bRHu7X6BQeawIsj17ege0neKmTs61Ig8lC113HYUqTDEy6xXKzw0Y56sM9X-6j2Plsemu-LAFB-rZv1_amXWAzvLcpYTDA7DWfkS7fZI5gOwk1jrMWZ_XvOt0OSrULviwyqz15-SmWPrTz8XyVR7bCtk1HEcjvGXTPGt4y-wymUXrJl5ULYu4Fv22w4zIv74-wW5tCKP8FbysYZvoKqqxRe8C_sbeQ17z9RM';
+        }
+
+        return asset('storage/'.$this->map_image);
     }
 
     public function services(): HasMany
