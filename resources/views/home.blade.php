@@ -5,10 +5,12 @@
 @php
     $homePage = \App\Models\HomePage::getCurrent();
     $services = $homePage->activeServices;
+    $programs = \App\Models\Program::where('is_active', true)->orderBy('order')->get();
 @endphp
 
 @section('content')
     @include('components.hero-section', ['homePage' => $homePage, 'services' => $services])
+    @include('components.programs-section', ['programs' => $programs])
     @include('components.statistics-section', ['homePage' => $homePage])
     @include('components.testimonials-section')
     @include('components.contact-section', ['homePage' => $homePage])
