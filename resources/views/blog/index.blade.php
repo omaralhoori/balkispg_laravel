@@ -41,7 +41,7 @@
                     @if($featuredPost->excerpt)
                         <p class="text-gray-300 text-lg mb-8 line-clamp-2 md:line-clamp-none">{{ $featuredPost->excerpt }}</p>
                     @endif
-                    <a class="inline-flex items-center gap-3 text-primary font-bold group/link" href="{{ route('blog.show', $featuredPost->slug) }}">
+                    <a class="inline-flex items-center gap-3 text-primary font-bold group/link" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $featuredPost->slug]) }}">
                         <span>قراءة المقال بالكامل</span>
                         <span class="material-symbols-outlined transition-transform group-hover/link:-translate-x-2">arrow_left_alt</span>
                     </a>
@@ -57,13 +57,13 @@
             <div class="bg-zinc-dark p-8 border border-white/5 rounded-2xl">
                 <h3 class="text-white text-lg font-bold mb-6 font-display">بحث في المقالات</h3>
                 <div class="relative">
-                    <input id="blog-search" class="w-full bg-bg-main border border-white/10 text-white px-5 py-3 pr-12 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none text-sm transition-all" placeholder="ابحث عن موضوع..." type="text"/>
-                    <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-primary text-xl">search</span>
+                    <input id="blog-search" class="w-full bg-bg-main border border-white/10 text-white px-5 py-3 pe-12 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none text-sm transition-all" placeholder="{{ __('Search for a topic...') }}" type="text"/>
+                    <span class="material-symbols-outlined absolute end-4 top-1/2 -translate-y-1/2 text-primary text-xl">search</span>
                 </div>
             </div>
             
             <div class="bg-zinc-dark p-8 border border-white/5 rounded-2xl">
-                <h3 class="text-white text-lg font-bold mb-6 font-display border-r-4 border-primary pr-4">أهم التصنيفات</h3>
+                <h3 class="text-white text-lg font-bold mb-6 font-display border-s-4 border-primary ps-4">{{ __('Top Categories') }}</h3>
                 <div class="space-y-4">
                     @foreach($categories as $category)
                         <a class="flex items-center justify-between text-gray-400 hover:text-primary transition-colors py-2 border-b border-white/5 group" href="#">
@@ -89,7 +89,7 @@
                             {{ $errors->first('email') ?: $errors->first('newsletter') }}
                         </div>
                     @endif
-                    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="space-y-3">
+                    <form action="{{ route('newsletter.subscribe', ['locale' => app()->getLocale()]) }}" method="POST" class="space-y-3">
                         @csrf
                         <input name="email" value="{{ old('email') }}" class="w-full bg-white/20 border-transparent placeholder-zinc-dark/60 text-zinc-dark text-sm px-4 py-3 rounded focus:ring-zinc-dark/40 focus:border-transparent @error('email') border-red-500 @enderror" placeholder="بريدك الإلكتروني" type="email" required/>
                         <button type="submit" class="w-full bg-zinc-dark text-white py-3 font-bold text-sm hover:bg-black transition-colors">اشترك الآن</button>
@@ -121,7 +121,7 @@
                             @if($post->excerpt)
                                 <p class="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">{{ $post->excerpt }}</p>
                             @endif
-                            <a class="inline-flex items-center gap-2 text-primary text-sm font-bold border-b border-primary/30 pb-1 group/btn hover:border-primary transition-all" href="{{ route('blog.show', $post->slug) }}">
+                            <a class="inline-flex items-center gap-2 text-primary text-sm font-bold border-b border-primary/30 pb-1 group/btn hover:border-primary transition-all" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $post->slug]) }}">
                                 <span>اقرأ المزيد</span>
                                 <span class="material-symbols-outlined text-lg transition-transform group-hover/btn:-translate-x-1">arrow_left_alt</span>
                             </a>

@@ -4,9 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Translatable\HasTranslations;
 
 class HomePage extends Model
 {
+    use HasTranslations;
+
+    /** @var array<string> */
+    public array $translatable = [
+        'main_title',
+        'main_subtitle',
+        'main_description',
+        'main_badge_text',
+        'cta_button_text',
+        'video_button_text',
+        'statistics_title',
+        'statistics_subtitle',
+        'map_location_title',
+    ];
+
     protected $fillable = [
         'main_title',
         'main_subtitle',
@@ -54,7 +70,6 @@ class HomePage extends Model
     ];
 
     protected $casts = [
-        'main_description' => 'string',
         'statistics' => 'array',
     ];
 

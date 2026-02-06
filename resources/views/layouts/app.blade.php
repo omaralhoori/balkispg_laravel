@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" dir="rtl" lang="ar">
+<html class="dark" dir="{{ $dir ?? 'rtl' }}" lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -23,7 +23,7 @@
         @hasSection('og_image')
             <meta property="og:image" content="@yield('og_image')">
         @endif
-        <meta property="og:locale" content="ar_AR">
+        <meta property="og:locale" content="{{ app()->getLocale() === 'ar' ? 'ar_AR' : (app()->getLocale() === 'tr' ? 'tr_TR' : 'en_US') }}">
         <meta property="og:site_name" content="Balkis Premium Group">
     @endif
     

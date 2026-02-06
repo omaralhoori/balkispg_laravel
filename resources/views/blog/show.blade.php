@@ -14,7 +14,7 @@
     $metaDescription = $post->meta_description ?: $post->excerpt;
     $metaKeywords = $post->meta_keywords;
     $ogImage = $post->og_image_url;
-    $canonicalUrl = $post->canonical_url ?: route('blog.show', $post->slug);
+    $canonicalUrl = $post->canonical_url ?: route('blog.show', ['locale' => app()->getLocale(), 'slug' => $post->slug]);
     $currentUrl = url()->current();
 @endphp
 
@@ -68,7 +68,7 @@
         <div class="w-full lg:w-2/3">
             <article class="article-content">
                 @if($post->excerpt)
-                    <p class="text-xl text-gray-200 font-medium mb-10 leading-relaxed border-r-2 border-primary/30 pr-6">
+                    <p class="text-xl text-gray-200 font-medium mb-10 leading-relaxed border-s-2 border-primary/30 ps-6">
                         {{ $post->excerpt }}
                     </p>
                 @endif
@@ -76,13 +76,13 @@
                 @if($post->content)
                     {!! $post->content !!}
                 @else
-                    <p class="text-gray-300 text-lg leading-8 mb-6">المحتوى غير متاح حالياً.</p>
+                    <p class="text-gray-300 text-lg leading-8 mb-6">{{ __('Content is currently unavailable.') }}</p>
                 @endif
             </article>
 
             <div class="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between gap-8">
                 @if($prevPost)
-                    <a class="flex-1 group flex items-center gap-4 p-4 rounded-xl bg-zinc-dark hover:bg-zinc-800 transition-all border border-white/5" href="{{ route('blog.show', $prevPost->slug) }}">
+                    <a class="flex-1 group flex items-center gap-4 p-4 rounded-xl bg-zinc-dark hover:bg-zinc-800 transition-all border border-white/5" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $prevPost->slug]) }}">
                         <div class="w-20 h-20 rounded-lg overflow-hidden shrink-0">
                             @if($prevPost->featured_image_url)
                                 <img alt="{{ $prevPost->title }}" class="w-full h-full object-cover" src="{{ $prevPost->featured_image_url }}"/>
@@ -102,7 +102,7 @@
                 @endif
 
                 @if($nextPost)
-                    <a class="flex-1 group flex items-center justify-end gap-4 p-4 rounded-xl bg-zinc-dark hover:bg-zinc-800 transition-all border border-white/5 text-left" href="{{ route('blog.show', $nextPost->slug) }}">
+                    <a class="flex-1 group flex items-center justify-end gap-4 p-4 rounded-xl bg-zinc-dark hover:bg-zinc-800 transition-all border border-white/5 text-left" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $nextPost->slug]) }}">
                         <div class="text-right">
                             <span class="text-primary text-[10px] font-bold block mb-1">المقال التالي</span>
                             <h4 class="text-white text-sm font-bold group-hover:text-primary transition-colors">{{ $nextPost->title }}</h4>
@@ -161,7 +161,7 @@
                         </ul>
                     </div>
                 @endif
-                <form class="space-y-6 bg-zinc-dark p-8 rounded-2xl border border-white/5" action="{{ route('comments.store') }}" method="POST">
+                <form class="space-y-6 bg-zinc-dark p-8 rounded-2xl border border-white/5" action="{{ route('comments.store', ['locale' => app()->getLocale()]) }}" method="POST">
                     @csrf
                     <input type="hidden" name="blog_post_id" value="{{ $post->id }}">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -199,14 +199,14 @@
                             <span class="material-symbols-outlined">alternate_email</span>
                         </a>
                     @endif
-                    <a class="text-gray-500 hover:text-primary transition-colors" href="{{ route('blog.index') }}">
+                    <a class="text-gray-500 hover:text-primary transition-colors" href="{{ route('blog.index', ['locale' => app()->getLocale()]) }}">
                         <span class="material-symbols-outlined">share</span>
                     </a>
                 </div>
             </div>
 
             <div class="bg-zinc-dark p-8 rounded-2xl border border-white/5">
-                <h4 class="text-white text-sm font-bold mb-6 font-almarai border-r-4 border-primary pr-3">مشاركة المقال</h4>
+                <h4 class="text-white text-sm font-bold mb-6 font-almarai border-s-4 border-primary ps-3">{{ __('Share Article') }}</h4>
                 <div class="flex gap-4">
                     <button onclick="shareOnTwitter()" class="flex-1 bg-primary/10 border border-primary/20 text-primary py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary hover:text-zinc-dark transition-all">
                         <span class="material-symbols-outlined text-xl">share</span>
@@ -221,10 +221,10 @@
 
             @if($relatedPosts->count() > 0)
                 <div class="bg-zinc-dark p-8 rounded-2xl border border-white/5">
-                    <h4 class="text-white text-sm font-bold mb-8 font-almarai border-r-4 border-primary pr-3">مقالات رائجة</h4>
+                    <h4 class="text-white text-sm font-bold mb-8 font-almarai border-s-4 border-primary ps-3">{{ __('Trending Articles') }}</h4>
                     <div class="space-y-6">
                         @foreach($relatedPosts as $index => $relatedPost)
-                            <a class="group flex gap-4" href="{{ route('blog.show', $relatedPost->slug) }}">
+                            <a class="group flex gap-4" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $relatedPost->slug]) }}">
                                 <span class="text-2xl font-black text-white/10 group-hover:text-primary/30 transition-colors">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                                 <div>
                                     <h5 class="text-white text-sm font-bold mb-1 leading-snug group-hover:text-primary transition-colors">{{ $relatedPost->title }}</h5>
@@ -255,7 +255,7 @@
                             {{ $errors->first('email') ?: $errors->first('newsletter') }}
                         </div>
                     @endif
-                    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="space-y-3">
+                    <form action="{{ route('newsletter.subscribe', ['locale' => app()->getLocale()]) }}" method="POST" class="space-y-3">
                         @csrf
                         <input name="email" value="{{ old('email') }}" class="w-full bg-white/20 border-transparent placeholder-zinc-dark/60 text-zinc-dark text-sm px-4 py-3 rounded focus:ring-zinc-dark/40 @error('email') border-red-500 @enderror" placeholder="بريدك الإلكتروني" type="email" required/>
                         <button type="submit" class="w-full bg-zinc-dark text-white py-3 font-bold text-sm hover:bg-black transition-colors">اشترك الآن</button>

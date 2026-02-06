@@ -16,18 +16,18 @@
             <div class="max-w-2xl">
                 <div class="flex items-center gap-2 mb-4">
                     <div class="h-[1px] w-12 bg-primary"></div>
-                    <span class="text-primary text-xs font-bold uppercase tracking-[0.2em]">اكتشف برامجنا</span>
+                    <span class="text-primary text-xs font-bold uppercase tracking-[0.2em]">{{ __('Discover Our Programs') }}</span>
                 </div>
                 <h2 class="text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
-                    البرامج الحصرية <span class="text-primary">والمميزة</span>
+                    {{ __('Exclusive & Premium Programs') }}
                 </h2>
                 <p class="text-gray-400 text-lg leading-relaxed">
-                    نقدم لك مجموعة مختارة بعناية من أفضل الفرص الاستثمارية والسياحية التي تلبي تطلعات النخبة.
+                    {{ __('We offer you a carefully selected collection of the best investment and tourism opportunities.') }}
                 </p>
             </div>
             <div class="flex items-center gap-4 self-start md:self-end">
-                <a class="flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/30 text-primary hover:bg-primary hover:text-zinc-dark transition-all duration-300 font-bold group" href="{{ route('programs.index') }}">
-                    <span>عرض جميع البرامج</span>
+                <a class="flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/30 text-primary hover:bg-primary hover:text-zinc-dark transition-all duration-300 font-bold group" href="{{ route('programs.index', ['locale' => app()->getLocale()]) }}">
+                    <span>{{ __('View All Programs') }}</span>
                     <span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-[-4px]">arrow_left_alt</span>
                 </a>
             </div>
@@ -63,7 +63,7 @@
                                 </p>
                             @endif
                             <a href="{{ $program->url ?? '#' }}" class="flex justify-between items-center pt-3 border-t border-white/10 w-full">
-                                <span class="text-primary font-bold">اكتشف المزيد</span>
+                                <span class="text-primary font-bold">{{ __('Discover More') }}</span>
                                 <span class="material-symbols-outlined text-primary text-xl">arrow_back</span>
                             </a>
                         </div>

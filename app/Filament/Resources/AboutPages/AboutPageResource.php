@@ -5,6 +5,7 @@ namespace App\Filament\Resources\AboutPages;
 use App\Filament\Resources\AboutPages\Pages\EditAboutPage;
 use App\Filament\Resources\AboutPages\Pages\ListAboutPages;
 use App\Filament\Resources\AboutPages\Schemas\AboutPageForm;
+use App\Filament\Translatable\Resources\Concerns\Translatable;
 use App\Models\AboutPage;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -13,6 +14,8 @@ use Filament\Support\Icons\Heroicon;
 
 class AboutPageResource extends Resource
 {
+    use Translatable;
+
     protected static ?string $model = AboutPage::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedInformationCircle;

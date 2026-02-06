@@ -4,9 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Translatable\HasTranslations;
 
 class HomePageService extends Model
 {
+    use HasTranslations;
+
+    /** @var array<string> */
+    public array $translatable = [
+        'title',
+        'subtitle',
+        'description',
+        'badge_text',
+        'card_title',
+        'card_description',
+        'cta_button_text',
+    ];
+
     protected $fillable = [
         'home_page_id',
         'service_key',

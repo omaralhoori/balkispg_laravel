@@ -2,99 +2,110 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Redirect root to default locale
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return redirect('/'.config('app.locale', 'ar'));
+});
 
-Route::get('/programs', function () {
-    $programs = \App\Models\Program::where('is_active', true)->orderBy('order')->get();
-    $categories = \App\Models\Program::where('is_active', true)
-        ->distinct()
-        ->pluck('category')
-        ->filter()
-        ->values();
+// Locale-prefixed routes
+Route::prefix('{locale}')
+    ->where(['locale' => implode('|', config('app.supported_locales', ['ar', 'en', 'tr']))])
+    ->group(function () {
+        Route::get('/', function () {
+            return view('home');
+        })->name('home');
 
-    return view('programs.index', [
-        'programs' => $programs,
-        'categories' => $categories,
-    ]);
-})->name('programs.index');
+        Route::get('/programs', function () {
+            $programs = \App\Models\Program::where('is_active', true)->orderBy('order')->get();
+            $categories = \App\Models\Program::where('is_active', true)
+                ->distinct()
+                ->pluck('category')
+                ->filter()
+                ->values();
 
-Route::get('/blog', function () {
-    $featuredPost = \App\Models\BlogPost::where('is_active', true)
-        ->where('is_featured', true)
-        ->where('published_at', '<=', now())
-        ->orderBy('published_at', 'desc')
-        ->first();
+            return view('programs.index', [
+                'programs' => $programs,
+                'categories' => $categories,
+            ]);
+        })->name('programs.index');
 
-    $posts = \App\Models\BlogPost::where('is_active', true)
-        ->where('published_at', '<=', now())
-        ->where(function ($query) use ($featuredPost) {
-            if ($featuredPost) {
-                $query->where('id', '!=', $featuredPost->id);
-            }
-        })
-        ->orderBy('published_at', 'desc')
-        ->paginate(6);
+        Route::get('/blog', function () {
+            $featuredPost = \App\Models\BlogPost::where('is_active', true)
+                ->where('is_featured', true)
+                ->where('published_at', '<=', now())
+                ->orderBy('published_at', 'desc')
+                ->first();
 
-    $categories = \App\Models\BlogPost::where('is_active', true)
-        ->where('published_at', '<=', now())
-        ->selectRaw('category, COUNT(*) as count')
-        ->groupBy('category')
-        ->orderBy('count', 'desc')
-        ->get();
+            $posts = \App\Models\BlogPost::where('is_active', true)
+                ->where('published_at', '<=', now())
+                ->where(function ($query) use ($featuredPost) {
+                    if ($featuredPost) {
+                        $query->where('id', '!=', $featuredPost->id);
+                    }
+                })
+                ->orderBy('published_at', 'desc')
+                ->paginate(6);
 
-    return view('blog.index', [
-        'featuredPost' => $featuredPost,
-        'posts' => $posts,
-        'categories' => $categories,
-    ]);
-})->name('blog.index');
+            $categories = \App\Models\BlogPost::where('is_active', true)
+                ->where('published_at', '<=', now())
+                ->selectRaw('category, COUNT(*) as count')
+                ->groupBy('category')
+                ->orderBy('count', 'desc')
+                ->get();
 
-Route::get('/blog/{slug}', function (string $slug) {
-    $post = \App\Models\BlogPost::with('approvedComments')
-        ->where('slug', $slug)
-        ->where('is_active', true)
-        ->where('published_at', '<=', now())
-        ->firstOrFail();
+            return view('blog.index', [
+                'featuredPost' => $featuredPost,
+                'posts' => $posts,
+                'categories' => $categories,
+            ]);
+        })->name('blog.index');
 
-    $prevPost = \App\Models\BlogPost::where('is_active', true)
-        ->where('published_at', '<=', now())
-        ->where('published_at', '<', $post->published_at)
-        ->orderBy('published_at', 'desc')
-        ->first();
+        Route::get('/blog/{slug}', function (string $locale, string $slug) {
+            $post = \App\Models\BlogPost::with('approvedComments')
+                ->where('slug', $slug)
+                ->where('is_active', true)
+                ->where('published_at', '<=', now())
+                ->firstOrFail();
 
-    $nextPost = \App\Models\BlogPost::where('is_active', true)
-        ->where('published_at', '<=', now())
-        ->where('published_at', '>', $post->published_at)
-        ->orderBy('published_at', 'asc')
-        ->first();
+            $prevPost = \App\Models\BlogPost::where('is_active', true)
+                ->where('published_at', '<=', now())
+                ->where('published_at', '<', $post->published_at)
+                ->orderBy('published_at', 'desc')
+                ->first();
 
-    $relatedPosts = \App\Models\BlogPost::where('is_active', true)
-        ->where('published_at', '<=', now())
-        ->where('id', '!=', $post->id)
-        ->where('category', $post->category)
-        ->orderBy('published_at', 'desc')
-        ->limit(3)
-        ->get();
+            $nextPost = \App\Models\BlogPost::where('is_active', true)
+                ->where('published_at', '<=', now())
+                ->where('published_at', '>', $post->published_at)
+                ->orderBy('published_at', 'asc')
+                ->first();
 
-    return view('blog.show', [
-        'post' => $post,
-        'prevPost' => $prevPost,
-        'nextPost' => $nextPost,
-        'relatedPosts' => $relatedPosts,
-    ]);
-})->name('blog.show');
+            $relatedPosts = \App\Models\BlogPost::where('is_active', true)
+                ->where('published_at', '<=', now())
+                ->where('id', '!=', $post->id)
+                ->where('category', $post->category)
+                ->orderBy('published_at', 'desc')
+                ->limit(3)
+                ->get();
 
-Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.submit');
+            return view('blog.show', [
+                'post' => $post,
+                'prevPost' => $prevPost,
+                'nextPost' => $nextPost,
+                'relatedPosts' => $relatedPosts,
+            ]);
+        })->name('blog.show');
 
-Route::post('/newsletter/subscribe', [\App\Http\Controllers\NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+        Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.submit');
 
-Route::post('/comments', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
+        Route::post('/newsletter/subscribe', [\App\Http\Controllers\NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
-Route::get('/about', function () {
-    $aboutPage = \App\Models\AboutPage::getCurrent();
-    return view('about', ['aboutPage' => $aboutPage]);
-})->name('about');
+        Route::post('/comments', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 
-Route::get('/whatsapp', [\App\Http\Controllers\WhatsAppController::class, 'redirect'])->name('whatsapp.redirect');
+        Route::get('/about', function () {
+            $aboutPage = \App\Models\AboutPage::getCurrent();
+
+            return view('about', ['aboutPage' => $aboutPage]);
+        })->name('about');
+
+        Route::get('/whatsapp', [\App\Http\Controllers\WhatsAppController::class, 'redirect'])->name('whatsapp.redirect');
+    });

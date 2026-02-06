@@ -3,9 +3,31 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class AboutPage extends Model
 {
+    use HasTranslations;
+
+    /** @var array<string> */
+    public array $translatable = [
+        'hero_title',
+        'hero_description',
+        'vision_title',
+        'vision_description',
+        'mission_title',
+        'mission_description',
+        'timeline_title',
+        'values_title',
+        'team_title',
+        'commitment_title',
+        'commitment_description',
+        'compliance_title',
+        'compliance_description',
+        'contact_question',
+        'contact_description',
+    ];
+
     protected $fillable = [
         'hero_title',
         'hero_title_highlight',

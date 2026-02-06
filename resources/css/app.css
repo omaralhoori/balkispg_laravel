@@ -182,7 +182,7 @@
 
 /* Article Content Styles */
 .article-content h2 {
-    @apply text-2xl font-bold text-white mt-10 mb-4 border-r-4 border-primary pr-4;
+    @apply text-2xl font-bold text-white mt-10 mb-4 border-s-4 border-primary ps-4;
     font-family: var(--font-almarai);
 }
 
@@ -204,7 +204,7 @@
 }
 
 .article-content ol {
-    @apply mb-8 space-y-3 list-decimal mr-6;
+    @apply mb-8 space-y-3 list-decimal ms-6;
 }
 
 .article-content ol li {
@@ -224,7 +224,7 @@
 }
 
 .article-content blockquote {
-    @apply border-r-4 border-primary pr-6 my-8 italic text-gray-300 bg-zinc-dark/50 p-6 rounded-lg;
+    @apply border-s-4 border-primary ps-6 my-8 italic text-gray-300 bg-zinc-dark/50 p-6 rounded-lg;
 }
 
 .article-content code {

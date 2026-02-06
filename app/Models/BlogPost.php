@@ -5,11 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Translatable\HasTranslations;
 
 class BlogPost extends Model
 {
     /** @use HasFactory<\Database\Factories\BlogPostFactory> */
     use HasFactory;
+
+    use HasTranslations;
+
+    /** @var array<string> */
+    public array $translatable = [
+        'title',
+        'excerpt',
+        'content',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+    ];
 
     protected $fillable = [
         'title',
@@ -52,16 +65,6 @@ class BlogPost extends Model
         }
 
         return asset('storage/'.$this->og_image);
-    }
-
-    public function getMetaTitleAttribute($value): string
-    {
-        return $value ?: $this->title;
-    }
-
-    public function getMetaDescriptionAttribute($value): ?string
-    {
-        return $value ?: $this->excerpt;
     }
 
     public function comments(): HasMany

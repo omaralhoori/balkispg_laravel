@@ -92,33 +92,33 @@
             <!-- Links Columns -->
             <div class="flex flex-wrap gap-12 md:gap-24">
                 <div class="flex flex-col gap-4">
-                    <h4 class="text-white font-bold text-lg">روابط سريعة</h4>
+                    <h4 class="text-white font-bold text-lg">{{ __('Quick Links') }}</h4>
                     <ul class="flex flex-col gap-3">
                         @if($aboutUrl && $aboutUrl !== '#')
-                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $aboutUrl }}">عن الشركة</a></li>
+                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $aboutUrl }}">{{ __('About Company') }}</a></li>
                         @endif
                         @if($projectsUrl && $projectsUrl !== '#')
-                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $projectsUrl }}">مشاريعنا</a></li>
+                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $projectsUrl }}">{{ __('Our Projects') }}</a></li>
                         @endif
                         @if($servicesUrl && $servicesUrl !== '#')
-                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $servicesUrl }}">خدماتنا</a></li>
+                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $servicesUrl }}">{{ __('Our Services') }}</a></li>
                         @endif
                         @if($blogUrl && $blogUrl !== '#')
-                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $blogUrl }}">المدونة</a></li>
+                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $blogUrl }}">{{ __('Blog') }}</a></li>
                         @endif
                         @if($tourismUrl && $tourismUrl !== '#')
-                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $tourismUrl }}">بلقيس للسياحة</a></li>
+                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $tourismUrl }}">{{ __('Balkis Tourism') }}</a></li>
                         @endif
                         @if($realestateUrl && $realestateUrl !== '#')
-                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $realestateUrl }}">بلقيس العقارية</a></li>
+                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $realestateUrl }}">{{ __('Balkis Real Estate') }}</a></li>
                         @endif
                         @if($investmentUrl && $investmentUrl !== '#')
-                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $investmentUrl }}">بلقيس للاستثمار</a></li>
+                            <li><a class="text-gray-400 hover:text-primary transition-colors text-sm" href="{{ $investmentUrl }}">{{ __('Balkis Investment') }}</a></li>
                         @endif
                     </ul>
                 </div>
                 <div class="flex flex-col gap-4">
-                    <h4 class="text-white font-bold text-lg">تواصل معنا</h4>
+                    <h4 class="text-white font-bold text-lg">{{ __('Contact Info') }}</h4>
                     <ul class="flex flex-col gap-4">
                         @if($phone)
                             <li class="flex items-center gap-3 text-gray-400 text-sm">
@@ -147,10 +147,10 @@
             <p>© {{ date('Y') }} {{ $copyrightText }}</p>
             <div class="flex gap-6">
                 @if($privacyUrl && $privacyUrl !== '#')
-                    <a class="hover:text-primary transition-colors" href="{{ $privacyUrl }}">سياسة الخصوصية</a>
+                    <a class="hover:text-primary transition-colors" href="{{ $privacyUrl }}">{{ __('Privacy Policy') }}</a>
                 @endif
                 @if($termsUrl && $termsUrl !== '#')
-                    <a class="hover:text-primary transition-colors" href="{{ $termsUrl }}">شروط الاستخدام</a>
+                    <a class="hover:text-primary transition-colors" href="{{ $termsUrl }}">{{ __('Terms of Use') }}</a>
                 @endif
             </div>
         </div>

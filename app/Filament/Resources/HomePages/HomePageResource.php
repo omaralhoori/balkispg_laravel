@@ -4,6 +4,7 @@ namespace App\Filament\Resources\HomePages;
 
 use App\Filament\Resources\HomePages\Pages\EditHomePage;
 use App\Filament\Resources\HomePages\Schemas\HomePageForm;
+use App\Filament\Translatable\Resources\Concerns\Translatable;
 use App\Models\HomePage;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -12,6 +13,8 @@ use Filament\Support\Icons\Heroicon;
 
 class HomePageResource extends Resource
 {
+    use Translatable;
+
     protected static ?string $model = HomePage::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHome;

@@ -40,7 +40,7 @@
                     </div>
                 @endif
 
-                <form class="flex flex-col gap-6 mt-4" action="{{ route('contact.submit') }}" method="POST">
+                <form class="flex flex-col gap-6 mt-4" action="{{ route('contact.submit', ['locale' => app()->getLocale()]) }}" method="POST">
                     @csrf
                     <div class="grid md:grid-cols-2 gap-6">
                         <label class="flex flex-col gap-2">
