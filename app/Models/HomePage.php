@@ -18,9 +18,16 @@ class HomePage extends Model
         'main_badge_text',
         'cta_button_text',
         'video_button_text',
+        'statistics',
+        'statistics_badge_text',
         'statistics_title',
         'statistics_subtitle',
+        'statistics_description',
         'map_location_title',
+        'map_address_line1',
+        'map_address_line2',
+        'footer_brand_name',
+        'footer_brand_description'
     ];
 
     protected $fillable = [

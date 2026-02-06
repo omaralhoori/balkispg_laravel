@@ -14,9 +14,9 @@
             <!-- Contact Form Column -->
             <div class="flex flex-col gap-8 order-2 lg:order-1">
                 <div class="flex flex-col gap-4">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">تواصل معنا</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">{{ __('Contact Us') }}</h2>
                     <p class="text-gold-dim text-lg leading-relaxed">
-                        فريقنا جاهز للإجابة على جميع استفساراتكم المتعلقة بفرص الاستثمار العقاري والتجاري في تركيا.
+                        {{ __('Our team is ready to answer all your questions related to investment and business opportunities in Turkey.') }}
                     </p>
                 </div>
                 @if(session('success'))
@@ -30,7 +30,7 @@
                     <div class="bg-red-500/10 border border-red-500/20 text-red-400 px-6 py-4 rounded-lg flex flex-col gap-2">
                         <div class="flex items-center gap-3">
                             <span class="material-symbols-outlined">error</span>
-                            <span>حدث خطأ في إرسال الرسالة:</span>
+                            <span>{{ __('An error occurred while sending the message:') }}</span>
                         </div>
                         <ul class="list-disc list-inside mr-4">
                             @foreach($errors->all() as $error)
@@ -44,24 +44,24 @@
                     @csrf
                     <div class="grid md:grid-cols-2 gap-6">
                         <label class="flex flex-col gap-2">
-                            <span class="text-white text-sm font-medium">الاسم الكامل</span>
+                            <span class="text-white text-sm font-medium">{{ __('Full Name') }}</span>
                             <input class="w-full h-14 bg-zinc-dark border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="محمد عبدالله" type="text" name="name" required/>
                         </label>
                         <label class="flex flex-col gap-2">
-                            <span class="text-white text-sm font-medium">رقم الهاتف</span>
+                            <span class="text-white text-sm font-medium">{{ __('Phone Number') }}</span>
                             <input class="w-full h-14 bg-zinc-dark border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+90 555 000 0000" type="tel" name="phone" required/>
                         </label>
                     </div>
                     <label class="flex flex-col gap-2">
-                        <span class="text-white text-sm font-medium">البريد الإلكتروني</span>
+                        <span class="text-white text-sm font-medium">{{ __('Email') }}</span>
                         <input class="w-full h-14 bg-zinc-dark border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="name@company.com" type="email" name="email" required/>
                     </label>
                     <label class="flex flex-col gap-2">
-                        <span class="text-white text-sm font-medium">الرسالة</span>
-                        <textarea class="w-full h-32 bg-zinc-dark border border-[#3e3828] rounded-lg p-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="اكتب استفسارك هنا..." name="message" required></textarea>
+                        <span class="text-white text-sm font-medium">{{ __('Message') }}</span>
+                        <textarea class="w-full h-32 bg-zinc-dark border border-[#3e3828] rounded-lg p-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="{{ __('Write your message here...') }}" name="message" required></textarea>
                     </label>
                     <button class="mt-2 h-14 bg-primary hover:bg-[#b8952a] text-zinc-dark font-bold rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
-                        <span>إرسال الرسالة</span>
+                        <span>{{ __('Send Message') }}</span>
                         <span class="material-symbols-outlined rtl:rotate-180">arrow_right_alt</span>
                     </button>
                 </form>

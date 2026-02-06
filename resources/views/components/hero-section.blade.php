@@ -15,7 +15,7 @@
     
     <div class="relative z-10 container mx-auto px-6 lg:px-20 py-12 flex flex-col lg:flex-row items-center gap-12 h-full">
         <!-- Content Side -->
-        <div class="hero-content-wrapper flex-1 flex flex-col gap-8 text-right items-start transition-all duration-500 ease-in-out">
+        <div class="hero-content-wrapper flex-1 flex flex-col gap-8 items-start transition-all duration-500 ease-in-out">
             @if($homePage->main_badge_text && $homePage->main_badge_icon)
                 <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 border border-primary/20 backdrop-blur-md">
                     <span class="hero-badge-icon material-symbols-outlined text-primary text-sm">{{ $homePage->main_badge_icon }}</span>
