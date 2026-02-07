@@ -1,22 +1,42 @@
 @extends('layouts.app')
 
-@section('title', $post->meta_title . ' - Balkis Premium Group')
-
 @php
+    $currentLocale = app()->getLocale();
     $homePage = \App\Models\HomePage::getCurrent();
     
-    // Calculate reading time (assuming average reading speed of 200 words per minute)
-    $wordCount = str_word_count(strip_tags($post->content ?? ''));
+    // Set locale on model to ensure translations work correctly
+    $post->setLocale($currentLocale);
+    
+    // Use accessor directly - HasTranslations trait automatically returns translation for current locale
+    // The model's locale is set above, so $post->title, $post->content etc. will return the correct translation
+    $postTitle = $post->title;
+    $postMetaTitle = $post->meta_title;
+    
+    // Ensure they are strings
+    $postTitle = is_string($postTitle) ? $postTitle : (is_array($postTitle) ? '' : (string) $postTitle);
+    $postMetaTitle = is_string($postMetaTitle) ? $postMetaTitle : (is_array($postMetaTitle) ? '' : (string) $postMetaTitle);
+    
+    // Get translated content for reading time calculation
+    // Use content_html accessor to convert ProseMirror JSON to HTML if needed
+    $content = $post->content_html;
+    $wordCount = str_word_count(strip_tags($content));
     $readingTime = max(1, ceil($wordCount / 200));
     
-    // SEO Meta Tags
+    // SEO Meta Tags - use accessors directly
     $metaTitle = $post->meta_title ?: $post->title;
     $metaDescription = $post->meta_description ?: $post->excerpt;
     $metaKeywords = $post->meta_keywords;
+    
+    // Ensure all meta tags are strings, not arrays
+    $metaTitle = is_string($metaTitle) ? $metaTitle : (is_array($metaTitle) ? '' : (string) $metaTitle);
+    $metaDescription = is_string($metaDescription) ? $metaDescription : (is_array($metaDescription) ? '' : (string) $metaDescription);
+    $metaKeywords = is_string($metaKeywords) ? $metaKeywords : (is_array($metaKeywords) ? '' : (string) $metaKeywords);
     $ogImage = $post->og_image_url;
-    $canonicalUrl = $post->canonical_url ?: route('blog.show', ['locale' => app()->getLocale(), 'slug' => $post->slug]);
+    $canonicalUrl = $post->canonical_url ?: route('blog.show', ['locale' => $currentLocale, 'slug' => $post->slug]);
     $currentUrl = url()->current();
 @endphp
+
+@section('title', ($postMetaTitle ?: $postTitle) . ' - Balkis Premium Group')
 
 @section('meta_description', $metaDescription)
 @if($metaKeywords)
@@ -37,7 +57,7 @@
 <section class="relative pt-20">
     <div class="h-[60vh] md:h-[75vh] relative overflow-hidden">
         @if($post->featured_image_url)
-            <img alt="{{ $post->title }}" class="w-full h-full object-cover" src="{{ $post->featured_image_url }}"/>
+            <img alt="{{ $postTitle }}" class="w-full h-full object-cover" src="{{ $post->featured_image_url }}"/>
         @else
             <div class="w-full h-full bg-zinc-dark flex items-center justify-center">
                 <span class="material-symbols-outlined text-6xl text-gray-600">image</span>
@@ -57,7 +77,7 @@
                         {{ $readingTime }} دقائق قراءة
                     </span>
                 </div>
-                <h1 class="text-4xl md:text-6xl font-black text-white font-almarai leading-tight max-w-4xl">{{ $post->title }}</h1>
+                <h1 class="text-4xl md:text-6xl font-black text-white font-almarai leading-tight max-w-4xl">{{ $postTitle }}</h1>
             </div>
         </div>
     </div>
@@ -67,14 +87,23 @@
     <div class="flex flex-col lg:flex-row gap-16">
         <div class="w-full lg:w-2/3">
             <article class="article-content">
-                @if($post->excerpt)
+                @php
+                    // Use accessor directly - locale is already set on model above
+                    $excerpt = $post->excerpt;
+                    // Use content_html accessor to convert ProseMirror JSON to HTML if needed
+                    $content = $post->content_html;
+                    
+                    // Ensure excerpt is a string
+                    $excerpt = is_string($excerpt) ? $excerpt : (is_array($excerpt) ? '' : (string) $excerpt);
+                @endphp
+                @if($excerpt)
                     <p class="text-xl text-gray-200 font-medium mb-10 leading-relaxed border-s-2 border-primary/30 ps-6">
-                        {{ $post->excerpt }}
+                        {{ $excerpt }}
                     </p>
                 @endif
 
-                @if($post->content)
-                    {!! $post->content !!}
+                @if($content)
+                    {!! $content !!}
                 @else
                     <p class="text-gray-300 text-lg leading-8 mb-6">{{ __('Content is currently unavailable.') }}</p>
                 @endif
@@ -82,10 +111,15 @@
 
             <div class="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between gap-8">
                 @if($prevPost)
+                    @php
+                        $prevPost->setLocale($currentLocale);
+                        $prevPostTitle = $prevPost->title;
+                        $prevPostTitle = is_string($prevPostTitle) ? $prevPostTitle : (is_array($prevPostTitle) ? '' : (string) $prevPostTitle);
+                    @endphp
                     <a class="flex-1 group flex items-center gap-4 p-4 rounded-xl bg-zinc-dark hover:bg-zinc-800 transition-all border border-white/5" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $prevPost->slug]) }}">
                         <div class="w-20 h-20 rounded-lg overflow-hidden shrink-0">
                             @if($prevPost->featured_image_url)
-                                <img alt="{{ $prevPost->title }}" class="w-full h-full object-cover" src="{{ $prevPost->featured_image_url }}"/>
+                                <img alt="{{ $prevPostTitle }}" class="w-full h-full object-cover" src="{{ $prevPost->featured_image_url }}"/>
                             @else
                                 <div class="w-full h-full bg-zinc-800 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-2xl text-gray-600">image</span>
@@ -94,7 +128,7 @@
                         </div>
                         <div>
                             <span class="text-primary text-[10px] font-bold block mb-1">المقال السابق</span>
-                            <h4 class="text-white text-sm font-bold group-hover:text-primary transition-colors">{{ $prevPost->title }}</h4>
+                            <h4 class="text-white text-sm font-bold group-hover:text-primary transition-colors">{{ $prevPostTitle }}</h4>
                         </div>
                     </a>
                 @else
@@ -102,14 +136,19 @@
                 @endif
 
                 @if($nextPost)
+                    @php
+                        $nextPost->setLocale($currentLocale);
+                        $nextPostTitle = $nextPost->title;
+                        $nextPostTitle = is_string($nextPostTitle) ? $nextPostTitle : (is_array($nextPostTitle) ? '' : (string) $nextPostTitle);
+                    @endphp
                     <a class="flex-1 group flex items-center justify-end gap-4 p-4 rounded-xl bg-zinc-dark hover:bg-zinc-800 transition-all border border-white/5 text-left" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $nextPost->slug]) }}">
                         <div class="text-right">
                             <span class="text-primary text-[10px] font-bold block mb-1">المقال التالي</span>
-                            <h4 class="text-white text-sm font-bold group-hover:text-primary transition-colors">{{ $nextPost->title }}</h4>
+                            <h4 class="text-white text-sm font-bold group-hover:text-primary transition-colors">{{ $nextPostTitle }}</h4>
                         </div>
                         <div class="w-20 h-20 rounded-lg overflow-hidden shrink-0">
                             @if($nextPost->featured_image_url)
-                                <img alt="{{ $nextPost->title }}" class="w-full h-full object-cover" src="{{ $nextPost->featured_image_url }}"/>
+                                <img alt="{{ $nextPostTitle }}" class="w-full h-full object-cover" src="{{ $nextPost->featured_image_url }}"/>
                             @else
                                 <div class="w-full h-full bg-zinc-800 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-2xl text-gray-600">image</span>
@@ -224,14 +263,19 @@
                     <h4 class="text-white text-sm font-bold mb-8 font-almarai border-s-4 border-primary ps-3">{{ __('Trending Articles') }}</h4>
                     <div class="space-y-6">
                         @foreach($relatedPosts as $index => $relatedPost)
+                            @php
+                                $relatedPost->setLocale($currentLocale);
+                                $relatedPostTitle = $relatedPost->title;
+                                $relatedPostTitle = is_string($relatedPostTitle) ? $relatedPostTitle : (is_array($relatedPostTitle) ? '' : (string) $relatedPostTitle);
+                                // Use content_html accessor to convert ProseMirror JSON to HTML if needed
+                                $relatedContent = $relatedPost->content_html;
+                                $relatedWordCount = str_word_count(strip_tags($relatedContent));
+                                $relatedReadingTime = max(1, ceil($relatedWordCount / 200));
+                            @endphp
                             <a class="group flex gap-4" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $relatedPost->slug]) }}">
                                 <span class="text-2xl font-black text-white/10 group-hover:text-primary/30 transition-colors">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                                 <div>
-                                    <h5 class="text-white text-sm font-bold mb-1 leading-snug group-hover:text-primary transition-colors">{{ $relatedPost->title }}</h5>
-                                    @php
-                                        $relatedWordCount = str_word_count(strip_tags($relatedPost->content ?? ''));
-                                        $relatedReadingTime = max(1, ceil($relatedWordCount / 200));
-                                    @endphp
+                                    <h5 class="text-white text-sm font-bold mb-1 leading-snug group-hover:text-primary transition-colors">{{ $relatedPostTitle }}</h5>
                                     <span class="text-gray-500 text-[10px]">{{ $relatedReadingTime }} دقائق قراءة</span>
                                 </div>
                             </a>
@@ -271,7 +315,7 @@
 <script>
     function shareOnTwitter() {
         const url = encodeURIComponent(window.location.href);
-        const text = encodeURIComponent('{{ $post->title }}');
+        const text = encodeURIComponent('{{ $postTitle }}');
         window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
     }
 

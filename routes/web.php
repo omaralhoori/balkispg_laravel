@@ -67,17 +67,28 @@ Route::prefix('{locale}')
                 ->where('published_at', '<=', now())
                 ->firstOrFail();
 
+            // Set locale on post to ensure translations work correctly
+            $post->setLocale($locale);
+
             $prevPost = \App\Models\BlogPost::where('is_active', true)
                 ->where('published_at', '<=', now())
                 ->where('published_at', '<', $post->published_at)
                 ->orderBy('published_at', 'desc')
                 ->first();
 
+            if ($prevPost) {
+                $prevPost->setLocale($locale);
+            }
+
             $nextPost = \App\Models\BlogPost::where('is_active', true)
                 ->where('published_at', '<=', now())
                 ->where('published_at', '>', $post->published_at)
                 ->orderBy('published_at', 'asc')
                 ->first();
+
+            if ($nextPost) {
+                $nextPost->setLocale($locale);
+            }
 
             $relatedPosts = \App\Models\BlogPost::where('is_active', true)
                 ->where('published_at', '<=', now())
@@ -86,6 +97,11 @@ Route::prefix('{locale}')
                 ->orderBy('published_at', 'desc')
                 ->limit(3)
                 ->get();
+
+            // Set locale on all related posts
+            foreach ($relatedPosts as $relatedPost) {
+                $relatedPost->setLocale($locale);
+            }
 
             return view('blog.show', [
                 'post' => $post,
