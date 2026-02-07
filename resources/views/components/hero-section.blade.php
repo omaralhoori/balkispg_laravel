@@ -33,12 +33,20 @@
                 @if($firstService && $firstService->cta_button_text)
                     <a href="{{ $firstService->cta_button_url ?? '#' }}" class="service-cta-button flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
                         <span class="service-cta-text">{{ $firstService->cta_button_text }}</span>
-                        <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
+                        @if(app()->getLocale() == 'ar')
+                            <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
+                        @else
+                            <span class="material-symbols-outlined text-xl">arrow_right_alt</span>
+                        @endif
                     </a>
                 @elseif($homePage->cta_button_text)
                     <a href="{{ $homePage->cta_button_url ?? '#' }}" class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
                         <span>{{ $homePage->cta_button_text }}</span>
-                        <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
+                        @if(app()->getLocale() == 'ar')
+                            <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
+                        @else
+                            <span class="material-symbols-outlined text-xl">arrow_right_alt</span>
+                        @endif
                     </a>
                 @endif
                 @if($homePage->video_button_text)

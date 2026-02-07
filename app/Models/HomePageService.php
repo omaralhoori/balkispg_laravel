@@ -19,6 +19,7 @@ class HomePageService extends Model
         'card_title',
         'card_description',
         'cta_button_text',
+        'stats'
     ];
 
     protected $fillable = [

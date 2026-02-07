@@ -2,19 +2,19 @@
     <div class="container mx-auto px-6 lg:px-20 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div class="flex flex-col items-center gap-2">
             <span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
-            <span class="text-gray-400 text-sm">ضمان حكومي</span>
+            <span class="text-gray-400 text-sm">{{ __('Guaranteed Government') }}</span>
         </div>
         <div class="flex flex-col items-center gap-2">
             <span class="material-symbols-outlined text-primary text-3xl">support_agent</span>
-            <span class="text-gray-400 text-sm">استشارات مجانية</span>
+            <span class="text-gray-400 text-sm">{{ __('Free Consultations') }}</span>
         </div>
         <div class="flex flex-col items-center gap-2">
             <span class="material-symbols-outlined text-primary text-3xl">gavel</span>
-            <span class="text-gray-400 text-sm">خدمات قانونية</span>
+            <span class="text-gray-400 text-sm">{{ __('Legal Services') }}</span>
         </div>
         <div class="flex flex-col items-center gap-2">
             <span class="material-symbols-outlined text-primary text-3xl">key</span>
-            <span class="text-gray-400 text-sm">تسليم مفتاح</span>
+            <span class="text-gray-400 text-sm">{{ __('Key Delivery') }}</span>
         </div>
     </div>
 </section>

@@ -12,6 +12,7 @@ class AboutPage extends Model
     /** @var array<string> */
     public array $translatable = [
         'hero_title',
+        'hero_title_highlight',
         'hero_description',
         'vision_title',
         'vision_description',
@@ -20,6 +21,8 @@ class AboutPage extends Model
         'timeline_title',
         'values_title',
         'team_title',
+        'commitment_badge',
+        'commitment_title_highlight',
         'commitment_title',
         'commitment_description',
         'compliance_title',

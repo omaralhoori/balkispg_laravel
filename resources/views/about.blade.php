@@ -221,7 +221,7 @@
                 <span class="material-symbols-outlined text-5xl text-primary">policy</span>
             </div>
         </div>
-        <div class="flex-grow text-center md:text-right">
+        <div class="flex-grow text-center {{ app()->getLocale() == 'ar' ? 'md:text-right' : 'md:text-left' }}">
             <h4 class="text-white text-2xl font-bold font-almarai mb-4">{{ $aboutPage->compliance_title }}</h4>
             @if($aboutPage->compliance_description)
                 <p class="text-gray-300 leading-relaxed text-lg font-light">
@@ -230,7 +230,7 @@
             @endif
         </div>
         <div class="flex-shrink-0">
-            <div class="px-6 py-3 bg-primary text-zinc-dark font-bold rounded-lg text-sm uppercase">معتمد رسمياً</div>
+            <div class="px-6 py-3 bg-primary text-zinc-dark font-bold rounded-lg text-sm uppercase">{{ __('Officially Approved') }}</div>
         </div>
     </div>
 </section>
@@ -246,7 +246,7 @@
         <p class="text-gray-400 mb-10">{{ $aboutPage->contact_description }}</p>
     @endif
     <a class="inline-flex items-center gap-3 text-primary border border-primary/20 hover:border-primary px-8 py-4 rounded-full transition-all group" href="mailto:{{ $aboutPage->compliance_email }}">
-        <span>تواصل مع قسم الامتثال</span>
+        <span>{{ __('Contact Compliance Department') }}</span>
         <span class="material-symbols-outlined group-hover:translate-x-[-4px] transition-transform">mail</span>
     </a>
 </section>
