@@ -3,10 +3,14 @@
 namespace App\Filament\Resources\Footers\Pages;
 
 use App\Filament\Resources\Footers\FooterResource;
+use App\Filament\Translatable\Actions\LocaleSwitcher;
+use App\Filament\Translatable\Resources\Pages\EditRecord\Concerns\Translatable;
 use Filament\Resources\Pages\EditRecord;
 
 class EditFooter extends EditRecord
 {
+    use Translatable;
+
     protected static string $resource = FooterResource::class;
 
     protected static ?string $title = 'تعديل التذييل';
@@ -34,6 +38,14 @@ class EditFooter extends EditRecord
             static::getUrl() => static::getTitle(),
         ];
     }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            LocaleSwitcher::make(),
+        ];
+    }
+
 
     public static function getUrl(array $parameters = [], bool $isAbsolute = true, ?string $panel = null, ?\Illuminate\Database\Eloquent\Model $tenant = null, bool $shouldGuessMissingParameters = false): string
     {

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Footers;
 use App\Filament\Resources\Footers\Pages\EditFooter;
 use App\Filament\Resources\Footers\Pages\ListFooters;
 use App\Filament\Resources\Footers\Schemas\FooterForm;
+use App\Filament\Translatable\Resources\Concerns\Translatable;
 use App\Models\HomePage;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -13,6 +14,7 @@ use Filament\Support\Icons\Heroicon;
 
 class FooterResource extends Resource
 {
+    use Translatable;
     protected static ?string $model = HomePage::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
