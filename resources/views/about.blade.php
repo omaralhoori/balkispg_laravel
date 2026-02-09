@@ -9,10 +9,10 @@
 @push('styles')
 <style type="text/css">
     .timeline-line {
-        background: linear-gradient(to bottom, transparent, #d4af35, transparent);
+        background: linear-gradient(to bottom, transparent, #C6A264, transparent);
     }
     .hero-gradient {
-        background: linear-gradient(to top, #18181B 0%, rgba(24, 24, 27, 0.2) 100%);
+        background: linear-gradient(to top, rgba(248, 247, 246, 0.9) 0%, rgba(248, 247, 246, 0.2) 100%);
     }
 </style>
 @endpush

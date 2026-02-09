@@ -5,9 +5,12 @@
 @if($programs->count() > 0)
 <section class="relative pt-32 pb-20 px-6 lg:px-20 overflow-hidden">
     <!-- Background decorative elements -->
-    <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-        <div class="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-primary rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-primary rounded-full blur-[100px]"></div>
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+<!-- Pattern.png repeate -->
+ <img src="{{ asset('image/pattern1.png') }}" alt="Pattern" class="absolute top-[10%] left-[-2%] w-[200px] h-[200px] repeat-y">
+        <!-- <div class="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-primary rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-primary rounded-full blur-[100px]"></div> -->
+        <img src="{{ asset('image/pattern1.png') }}" alt="Pattern" class="absolute bottom-[10%] right-[2%] w-[200px] h-[200px] repeat-y">
     </div>
     
     <div class="container mx-auto relative z-10">
@@ -18,17 +21,28 @@
                     <div class="h-[1px] w-12 bg-primary"></div>
                     <span class="text-primary text-xs font-bold uppercase tracking-[0.2em]">{{ __('Discover Our Programs') }}</span>
                 </div>
-                <h2 class="text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
-                    {{ __('Exclusive & Premium Programs') }}
+                <h2 class="text-4xl lg:text-5xl font-black text-secondary mb-4 leading-tight">
+                    @if(app()->getLocale() == 'tr')
+                        Özel ve <span class="text-primary font-heading"> Premium </span> Programlar
+                    @elseif(app()->getLocale() == 'en')
+                        Exclusive & <span class="text-primary font-heading"> Premium </span> Programs
+                    @else
+                        برامجنا الحصرية <span class="text-primary font-heading"> والمميزة </span>
+  
+                    @endif
                 </h2>
-                <p class="text-gray-400 text-lg leading-relaxed">
+                <p class="text-secondary text-lg leading-relaxed">
                     {{ __('We offer you a carefully selected collection of the best investment and tourism opportunities.') }}
                 </p>
             </div>
-            <div class="flex items-center gap-4 self-start md:self-end">
-                <a class="flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/30 text-primary hover:bg-primary hover:text-zinc-dark transition-all duration-300 font-bold group" href="{{ route('programs.index', ['locale' => app()->getLocale()]) }}">
+            <div class="flex items-center gap-4 self-start md:self-start">
+                <a class="flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/30 text-primary hover:bg-primary hover:text-white transition-all duration-300 font-bold group" href="{{ route('programs.index', ['locale' => app()->getLocale()]) }}">
                     <span>{{ __('View All Programs') }}</span>
-                    <span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-[-4px]">arrow_left_alt</span>
+                    @if(app()->getLocale() == 'ar')
+                        <span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-[-4px]">arrow_left_alt</span>
+                    @else
+                        <span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-1">arrow_right_alt</span>
+                    @endif
                 </a>
             </div>
         </div>
@@ -36,10 +50,10 @@
         <!-- Programs Carousel -->
         <div class="relative group">
             <!-- Navigation Buttons -->
-            <button class="programs-prev absolute right-[-20px] lg:right-[-40px] top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-primary/30 bg-bg-main/80 backdrop-blur-md text-primary flex items-center justify-center hover:bg-primary hover:text-zinc-dark transition-all hidden lg:flex shadow-xl" aria-label="السابق">
+            <button class="programs-prev absolute right-[-20px] lg:right-[-40px] top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-primary/30 bg-bg-main/80 backdrop-blur-md text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all hidden lg:flex shadow-xl" aria-label="السابق">
                 <span class="material-symbols-outlined font-bold">chevron_right</span>
             </button>
-            <button class="programs-next absolute left-[-20px] lg:left-[-40px] top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-primary/30 bg-bg-main/80 backdrop-blur-md text-primary flex items-center justify-center hover:bg-primary hover:text-zinc-dark transition-all hidden lg:flex shadow-xl" aria-label="التالي">
+            <button class="programs-next absolute left-[-20px] lg:left-[-40px] top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-primary/30 bg-bg-main/80 backdrop-blur-md text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all hidden lg:flex shadow-xl" aria-label="التالي">
                 <span class="material-symbols-outlined font-bold">chevron_left</span>
             </button>
             
@@ -56,15 +70,19 @@
                                 @endif
                                 <span>{{ $program->category }}</span>
                             </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">{{ $program->title }}</h3>
+                            <h3 class="text-2xl font-bold text-secondary mb-2">{{ $program->title }}</h3>
                             @if($program->description)
-                                <p class="text-gray-300 text-sm leading-relaxed mb-4 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 delay-100">
+                                <p class="text-secondary text-sm leading-relaxed mb-4 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 delay-100">
                                     {{ $program->description }}
                                 </p>
                             @endif
                             <a href="{{ $program->url ?? '#' }}" class="flex justify-between items-center pt-3 border-t border-white/10 w-full">
                                 <span class="text-primary font-bold">{{ __('Discover More') }}</span>
-                                <span class="material-symbols-outlined text-primary text-xl">arrow_back</span>
+                                @if(app()->getLocale() == 'ar')
+                                    <span class="material-symbols-outlined text-primary text-xl">arrow_back</span>
+                                @else
+                                    <span class="material-symbols-outlined text-primary text-xl">arrow_forward</span>
+                                @endif
                             </a>
                         </div>
                     </div>

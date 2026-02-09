@@ -31,7 +31,7 @@
 <div class="relative" id="{{ $uniqueId }}">
     <button
         type="button"
-        class="lang-switcher-btn flex items-center gap-2 text-gray-400 hover:text-primary transition-colors text-sm font-medium px-3 py-1.5 border border-white/10 rounded-md hover:border-primary/30"
+        class="lang-switcher-btn flex items-center gap-2 text-gray-600 hover:text-primary transition-colors text-sm font-medium px-3 py-1.5 border border-gray-300 rounded-md hover:border-primary/50"
     >
         <span>{{ $localeFlags[$currentLocale] ?? '' }}</span>
         <span>{{ $localeLabels[$currentLocale] ?? strtoupper($currentLocale) }}</span>
@@ -41,13 +41,13 @@
     </button>
 
     <div
-        class="lang-switcher-dropdown absolute top-full mt-2 end-0 w-40 bg-zinc-dark border border-white/10 rounded-md shadow-xl z-50 overflow-hidden"
+        class="lang-switcher-dropdown absolute top-full mt-2 end-0 w-40 bg-white border border-gray-200 rounded-md shadow-xl z-50 overflow-hidden"
         style="display: none;"
     >
         @foreach ($supportedLocales as $locale)
             <a
                 href="/{{ $locale }}/{{ $pathWithoutLocale }}"
-                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors {{ $locale === $currentLocale ? 'text-primary bg-primary/10' : 'text-gray-400 hover:text-white hover:bg-white/5' }}"
+                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors {{ $locale === $currentLocale ? 'text-primary bg-primary/10' : 'text-gray-600 hover:text-primary hover:bg-gray-50' }}"
             >
                 <span>{{ $localeFlags[$locale] ?? '' }}</span>
                 <span>{{ $localeLabels[$locale] ?? strtoupper($locale) }}</span>

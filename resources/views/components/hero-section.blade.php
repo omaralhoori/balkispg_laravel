@@ -22,16 +22,16 @@
                     <span class="hero-badge-text text-primary text-xs font-bold uppercase tracking-wide">{{ $homePage->main_badge_text }}</span>
                 </div>
             @endif
-            <h1 class="text-4xl lg:text-6xl font-black text-white leading-[1.2]">
-                <span class="hero-title-main text-primary block mb-2">{{ $homePage->main_title }}</span>
-                <span class="hero-subtitle">{{ $homePage->main_subtitle }}</span>
+            <h1 class="text-4xl lg:text-6xl  text-white leading-[1.2]">
+                <span class="hero-title-main text-primary font-black block font-heading mb-2">{{ $homePage->main_title }}</span>
+                <span class="hero-subtitle font-heading">{{ $homePage->main_subtitle }}</span>
             </h1>
             <p class="hero-description text-gray-300 text-lg leading-relaxed max-w-xl">
                 {{ $homePage->main_description ?? 'اكتشف قمة السياحة الفاخرة في تركيا، والعقارات المتميزة، والاستثمارات الاستراتيجية. نحن نصنع تجارب لا تُنسى ومستقبلاً واعداً.' }}
             </p>
             <div class="flex gap-4 mt-4">
                 @if($firstService && $firstService->cta_button_text)
-                    <a href="{{ $firstService->cta_button_url ?? '#' }}" class="service-cta-button flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
+                    <a href="{{ $firstService->cta_button_url ?? '#' }}" class="service-cta-button flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-gold-gradient text-white font-bold hover:brightness-110  transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
                         <span class="service-cta-text">{{ $firstService->cta_button_text }}</span>
                         @if(app()->getLocale() == 'ar')
                             <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
@@ -40,7 +40,7 @@
                         @endif
                     </a>
                 @elseif($homePage->cta_button_text)
-                    <a href="{{ $homePage->cta_button_url ?? '#' }}" class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-primary text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
+                    <a href="{{ $homePage->cta_button_url ?? '#' }}" class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-gold-gradient text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
                         <span>{{ $homePage->cta_button_text }}</span>
                         @if(app()->getLocale() == 'ar')
                             <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
@@ -102,7 +102,7 @@
                             <h3 class="{{ $isActive ? 'text-xl' : 'text-lg' }} font-bold text-white mb-1">{{ $service->card_title }}</h3>
                             <p class="text-gray-300 {{ $isActive ? 'text-sm' : 'text-xs' }} line-clamp-1">{{ $service->card_description }}</p>
                         </div>
-                        <div class="{{ $isActive ? 'h-10 w-10 rounded-full bg-primary flex items-center justify-center text-[#201d13]' : 'h-8 w-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-primary group-hover:text-[#201d13] transition-colors' }}">
+                        <div class="{{ $isActive ? 'h-10 w-10 rounded-full bg-gold-gradient flex items-center justify-center text-[#201d13]' : 'h-8 w-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-primary group-hover:text-[#201d13] transition-colors' }}">
                             <span class="material-symbols-outlined {{ !$isActive ? 'text-sm' : '' }}">{{ $service->card_icon }}</span>
                         </div>
                     </div>

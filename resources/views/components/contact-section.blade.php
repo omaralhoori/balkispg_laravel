@@ -8,14 +8,14 @@
 @endphp
 
 <!-- Contact Section -->
-<section class="relative py-24 px-4 md:px-10 lg:px-20 bg-zinc-dark">
+<section class="relative py-24 px-4 md:px-10 lg:px-20 section-border">
     <div class="max-w-7xl mx-auto">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
             <!-- Contact Form Column -->
             <div class="flex flex-col gap-8 order-2 lg:order-1">
                 <div class="flex flex-col gap-4">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">{{ __('Contact Us') }}</h2>
-                    <p class="text-gold-dim text-lg leading-relaxed">
+                    <h2 class="text-3xl md:text-4xl font-bold text-secondary">{{ __('Contact Us') }}</h2>
+                    <p class="text-secondary text-lg leading-relaxed">
                         {{ __('Our team is ready to answer all your questions related to investment and business opportunities in Turkey.') }}
                     </p>
                 </div>
@@ -44,25 +44,25 @@
                     @csrf
                     <div class="grid md:grid-cols-2 gap-6">
                         <label class="flex flex-col gap-2">
-                            <span class="text-white text-sm font-medium">{{ __('Full Name') }}</span>
-                            <input class="w-full h-14 bg-zinc-dark border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="محمد عبدالله" type="text" name="name" required/>
+                            <span class="text-secondary text-sm font-medium">{{ __('Full Name') }}</span>
+                            <input class="w-full h-14 bg-white border border-[#3e3828] rounded-lg px-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="محمد عبدالله" type="text" name="name" required/>
                         </label>
                         <label class="flex flex-col gap-2">
-                            <span class="text-white text-sm font-medium">{{ __('Phone Number') }}</span>
-                            <input class="w-full h-14 bg-zinc-dark border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+90 555 000 0000" type="tel" name="phone" required/>
+                            <span class="text-secondary text-sm font-medium">{{ __('Phone Number') }}</span>
+                            <input class="w-full h-14 bg-white border border-[#3e3828] rounded-lg px-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+90 555 000 0000" type="tel" name="phone" required/>
                         </label>
                     </div>
                     <label class="flex flex-col gap-2">
-                        <span class="text-white text-sm font-medium">{{ __('Email') }}</span>
-                        <input class="w-full h-14 bg-zinc-dark border border-[#3e3828] rounded-lg px-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="name@company.com" type="email" name="email" required/>
+                            <span class="text-secondary text-sm font-medium">{{ __('Email') }}</span>
+                        <input class="w-full h-14 bg-white border border-[#3e3828] rounded-lg px-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="name@company.com" type="email" name="email" required/>
                     </label>
                     <label class="flex flex-col gap-2">
-                        <span class="text-white text-sm font-medium">{{ __('Message') }}</span>
-                        <textarea class="w-full h-32 bg-zinc-dark border border-[#3e3828] rounded-lg p-4 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="{{ __('Write your message here...') }}" name="message" required></textarea>
+                        <span class="text-secondary text-sm font-medium">{{ __('Message') }}</span>
+                        <textarea class="w-full h-32 bg-white border border-[#3e3828] rounded-lg p-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="{{ __('Write your message here...') }}" name="message" required></textarea>
                     </label>
-                    <button class="mt-2 h-14 bg-primary hover:bg-[#b8952a] text-zinc-dark font-bold rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
+                    <button class="mt-2 h-14 bg-gold-gradient hover:bg-[#b8952a]  text-zinc-dark font-bold rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
                         <span>{{ __('Send Message') }}</span>
-                        <span class="material-symbols-outlined rtl:rotate-180">arrow_right_alt</span>
+                        <span class="material-symbols-outlined rtl:rotate-180 ">arrow_right_alt</span>
                     </button>
                 </form>
             </div>
@@ -95,7 +95,7 @@
                                 <span class="material-symbols-outlined text-primary">apartment</span>
                             </div>
                             <div>
-                                <h5 class="text-white font-bold text-base mb-1">{{ $mapLocationTitle }}</h5>
+                                <h5 class="text-secondary font-bold text-base mb-1">{{ $mapLocationTitle }}</h5>
                                 <p class="text-gray-400 text-sm leading-snug">
                                     {{ $mapAddressLine1 }}@if($mapAddressLine2)<br/>{{ $mapAddressLine2 }}@endif
                                 </p>

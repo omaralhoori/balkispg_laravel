@@ -10,11 +10,19 @@
     <div class="max-w-7xl mx-auto flex flex-col gap-10">
         <!-- Header -->
         <div class="flex flex-col items-center text-center gap-3">
-            <span class="text-primary text-sm font-bold tracking-widest uppercase">{{ __('Success Stories') }}</span>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                {{ __('Opinions of Our Clients') }} <span class="text-primary">{{ __('The Best') }}</span>
+        <div class="flex items-center gap-2">  
+        <span class="h-[1px] w-12 bg-primary"></span> <span class="text-primary text-sm font-bold tracking-widest uppercase">{{ __('Success Stories') }}</span> <span class="h-[1px] w-12 bg-primary"></span>
+        </div>  
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary  leading-tight">
+                @if(app()->getLocale() == 'tr')
+                    <span class="text-primary font-heading"> En İyi Müşterilerimizin </span>   Yorumları 
+                @elseif(app()->getLocale() == 'en')
+                    Opinions of <span class="text-primary font-heading"> Our Best Clients </span>
+                @else
+                    آراء <span class="text-primary font-heading"> عملائنا المميزين </span>
+                @endif
             </h2>
-            <p class="text-gold-dim max-w-2xl text-lg">
+            <p class="text-secondary max-w-2xl text-lg">
                 {{ __('We are proud of our strategic partnerships with the elite investors and businessmen in the region') }}
             </p>
         </div>
@@ -45,18 +53,18 @@
                             $positionText .= ($positionText ? '، ' : '') . $testimonial->company;
                         }
                     @endphp
-                    <div class="testimonial-card snap-center shrink-0 w-[350px] md:w-[400px] glass-card p-8 rounded-xl flex flex-col gap-6 transition-all duration-300 hover:border-primary/30">
+                    <div class="testimonial-card snap-center shrink-0 w-[350px] md:w-[400px] border border-primary p-8 rounded-xl flex flex-col gap-6 transition-all duration-300  bg-white hover:shadow-md">
                         <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 rounded-full bg-cover bg-center border-2 border-primary/20 shadow-lg" style="background-image: url('{{ $testimonial->avatar_url }}');"></div>
+                            <div class="w-16 h-16 rounded-full bg-cover  bg-center border-2 border-primary/20 shadow-lg" style="background-image: url('{{ $testimonial->avatar_url }}');"></div>
                             <div>
-                                <h4 class="text-white font-bold text-lg">{{ $testimonial->name }}</h4>
+                                <h4 class="text-secondary font-bold text-lg">{{ $testimonial->name }}</h4>
                                 @if($positionText)
                                     <p class="text-primary text-sm">{{ $positionText }}</p>
                                 @endif
                             </div>
-                            <span class="material-symbols-outlined text-primary/20 text-5xl mr-auto">format_quote</span>
+                            <span class="material-symbols-outlined text-primary/20 !text-5xl mr-auto">format_quote</span>
                         </div>
-                        <p class="text-gray-300 leading-relaxed flex-grow">
+                        <p class="text-secondary leading-relaxed flex-grow">
                             "{{ $testimonial->testimonial }}"
                         </p>
                         <div class="flex gap-1 mt-auto">
