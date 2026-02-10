@@ -34,16 +34,27 @@
                         <span class="material-symbols-outlined text-6xl text-gray-600">image</span>
                     </div>
                 @endif
-                <div class="absolute inset-0 featured-gradient"></div>
-                <div class="absolute bottom-0 right-0 p-8 md:p-16 max-w-3xl">
-                    <span class="inline-block bg-primary text-zinc-dark px-4 py-1.5 text-xs font-bold mb-6 rounded-sm uppercase tracking-widest">مقال مميز</span>
+                <div class="absolute inset-0 featured-overlay"></div>
+                <div class="absolute bottom-0 @if(app()->getLocale() == 'ar') right-0 @else left-0 @endif p-8 md:p-16 max-w-3xl">
+                    <span class="inline-block bg-gold-gradient text-zinc-dark px-4 py-1.5 text-xs font-bold mb-6 rounded-sm uppercase tracking-widest">{{ __('Featured Article') }}</span>
                     <h1 class="text-3xl md:text-5xl font-black text-white mb-6 font-display leading-tight">{{ $featuredPost->title }}</h1>
                     @if($featuredPost->excerpt)
                         <p class="text-gray-300 text-lg mb-8 line-clamp-2 md:line-clamp-none">{{ $featuredPost->excerpt }}</p>
                     @endif
-                    <a class="inline-flex items-center gap-3 text-primary font-bold group/link" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $featuredPost->slug]) }}">
-                        <span>قراءة المقال بالكامل</span>
-                        <span class="material-symbols-outlined transition-transform group-hover/link:-translate-x-2">arrow_left_alt</span>
+                    <a class="backdrop-blur-sm bg-white/10 font-bold gap-3 group/link hover:bg-white  inline-flex items-center px-6 py-3 rounded-full text-primary transition-all" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $featuredPost->slug]) }}">
+                        <span>{{ __('Read Full Article') }}</span>
+                       
+                            @if(app()->getLocale() == 'ar')
+                            <span class="material-symbols-outlined transition-transform group-hover/link:-translate-x-2">
+                                arrow_left_alt
+                                </span>
+                            @else
+                                <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-2">
+                                    arrow_right_alt
+                                </span>
+                        
+                                @endif
+                        
                     </a>
                 </div>
             </div>
@@ -54,16 +65,17 @@
 <main class="max-w-7xl mx-auto px-6 py-20">
     <div class="flex flex-col lg:flex-row gap-12">
         <aside class="w-full lg:w-1/3 order-1 lg:order-2 space-y-12">
-            <div class="bg-zinc-dark p-8 border border-white/5 rounded-2xl">
-                <h3 class="text-white text-lg font-bold mb-6 font-display">بحث في المقالات</h3>
+            <div class="bg-white p-8 border border-gray-100 rounded-2xl shadow-sm">
+                
+                <h3 class="text-gray-600 text-lg  mb-6 font-display border-s-4 border-primary ps-4">{{ __('Search for a topic...') }}</h3>
                 <div class="relative">
-                    <input id="blog-search" class="w-full bg-bg-main border border-white/10 text-white px-5 py-3 pe-12 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none text-sm transition-all" placeholder="{{ __('Search for a topic...') }}" type="text"/>
+                    <input id="blog-search" class="w-full bg-white border border-secondary/20 text-secondary px-12 py-3 pe-12 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none text-sm transition-all" placeholder="{{ __('Search for a topic...') }}" type="text"/>
                     <span class="material-symbols-outlined absolute end-4 top-1/2 -translate-y-1/2 text-primary text-xl">search</span>
                 </div>
             </div>
             
-            <div class="bg-zinc-dark p-8 border border-white/5 rounded-2xl">
-                <h3 class="text-white text-lg font-bold mb-6 font-display border-s-4 border-primary ps-4">{{ __('Top Categories') }}</h3>
+            <div class="bg-white p-8 border border-gray-100 rounded-2xl shadow-sm">
+                <h3 class="text-secondary text-lg font-bold mb-6 font-display border-s-4 border-primary ps-4">{{ __('Top Categories') }}</h3>
                 <div class="space-y-4">
                     @foreach($categories as $category)
                         <a class="flex items-center justify-between text-gray-400 hover:text-primary transition-colors py-2 border-b border-white/5 group" href="#">
@@ -74,10 +86,10 @@
                 </div>
             </div>
             
-            <div class="relative bg-primary p-8 rounded-2xl overflow-hidden group">
+            <div class="relative bg-gold-gradient p-8 rounded-2xl overflow-hidden group">
                 <div class="absolute -top-12 -right-12 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-                <h3 class="text-zinc-dark text-xl font-bold mb-3 font-display relative z-10">نشرة بلقيس البريدية</h3>
-                <p class="text-zinc-dark/80 text-sm mb-6 relative z-10">اشترك ليصلك أحدث التقارير الحصرية وفرص الاستثمار مباشرة.</p>
+                <h3 class="text-white/90 text-xl font-bold mb-3 font-display relative z-10">{{ __('Balkis Newsletter') }}</h3>
+                <p class="text-white/70 text-sm mb-6 relative z-10">{{ __('Subscribe to get the latest exclusive reports and investment opportunities.') }}</p>
                 <div class="space-y-3 relative z-10">
                     @if(session('newsletter_success'))
                         <div class="bg-white/20 text-zinc-dark px-4 py-3 rounded text-sm font-medium mb-3">
@@ -91,8 +103,8 @@
                     @endif
                     <form action="{{ route('newsletter.subscribe', ['locale' => app()->getLocale()]) }}" method="POST" class="space-y-3">
                         @csrf
-                        <input name="email" value="{{ old('email') }}" class="w-full bg-white/20 border-transparent placeholder-zinc-dark/60 text-zinc-dark text-sm px-4 py-3 rounded focus:ring-zinc-dark/40 focus:border-transparent @error('email') border-red-500 @enderror" placeholder="بريدك الإلكتروني" type="email" required/>
-                        <button type="submit" class="w-full bg-zinc-dark text-white py-3 font-bold text-sm hover:bg-black transition-colors">اشترك الآن</button>
+                        <input name="email" value="{{ old('email') }}" class="w-full bg-white/20 border-transparent placeholder-zinc-dark/60 text-zinc-dark text-sm px-4 py-3 rounded focus:ring-zinc-dark/40 focus:border-transparent @error('email') border-red-500 @enderror" placeholder="{{ __('Your Email') }}" type="email" required/>
+                        <button type="submit" class="w-full bg-zinc-dark text-primary py-3 font-bold text-sm transition-colors">{{ __('Subscribe Now') }}</button>
                     </form>
                 </div>
             </div>

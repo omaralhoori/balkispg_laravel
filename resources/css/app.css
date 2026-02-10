@@ -70,6 +70,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.featured-overlay{
+    background: linear-gradient(0deg, rgba(30, 41, 59, 0.9) 0%, rgba(30, 41, 59, 0.3) 60%, rgba(30, 41, 59, 0) 100%);
+}
 .bg-pattern{
     background-image: url('/image/pattern1.png');
     background-repeat: repeat;
