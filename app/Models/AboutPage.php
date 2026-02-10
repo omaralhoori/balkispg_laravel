@@ -23,6 +23,7 @@ class AboutPage extends Model
         'timeline_items',
         'values_title',
         'core_values',
+        'team_badge',
         'team_title',
         'team_members',
         'commitment_badge',

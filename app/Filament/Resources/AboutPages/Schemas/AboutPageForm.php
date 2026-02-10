@@ -288,12 +288,29 @@ class AboutPageForm
                                             ->columnSpanFull(),
                                     ])
                                     ->defaultItems(3)
+                                    ->afterStateHydrated(function ($component, $state) {
+                                        if ($state === null || !is_array($state)) {
+                                            $component->state([]);
+                                        }
+                                    })
                                     ->columnSpanFull(),
                             ])
                             ->defaultItems(4)
                             ->columns(2)
                             ->collapsible()
                             ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                            ->afterStateHydrated(function ($component, $state) {
+                                if ($state === null) {
+                                    $component->state([]);
+                                } elseif (is_array($state)) {
+                                    foreach ($state as $index => $item) {
+                                        if (!isset($item['items']) || $item['items'] === null) {
+                                            $state[$index]['items'] = [];
+                                        }
+                                    }
+                                    $component->state($state);
+                                }
+                            })
                             ->columnSpanFull(),
                     ])
                     ->columns(2),
