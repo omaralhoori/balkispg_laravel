@@ -113,7 +113,7 @@
         <div class="w-full lg:w-2/3 order-2 lg:order-1">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @forelse($posts as $post)
-                    <div class="group bg-zinc-dark border border-white/5 rounded-2xl overflow-hidden card-shadow transition-all duration-500 hover:-translate-y-2">
+                    <div class="group bg-white border border-white/5 rounded-2xl overflow-hidden card-shadow transition-all duration-500 hover:-translate-y-2">
                         <div class="relative h-56 overflow-hidden">
                             @if($post->featured_image_url)
                                 <img alt="{{ $post->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ $post->featured_image_url }}"/>
@@ -129,13 +129,17 @@
                                 <span class="material-symbols-outlined text-sm">calendar_today</span>
                                 <span>{{ $post->published_at ? $post->published_at->format('d M Y') : $post->created_at->format('d M Y') }}</span>
                             </div>
-                            <h3 class="text-xl font-bold text-white mb-4 group-hover:text-primary transition-colors font-display leading-tight">{{ $post->title }}</h3>
+                            <h3 class="text-xl font-bold text-secondary mb-4 group-hover:text-primary transition-colors font-display leading-tight">{{ $post->title }}</h3>
                             @if($post->excerpt)
                                 <p class="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">{{ $post->excerpt }}</p>
                             @endif
                             <a class="inline-flex items-center gap-2 text-primary text-sm font-bold border-b border-primary/30 pb-1 group/btn hover:border-primary transition-all" href="{{ route('blog.show', ['locale' => app()->getLocale(), 'slug' => $post->slug]) }}">
-                                <span>اقرأ المزيد</span>
+                                <span>{{ __('Read More') }}</span>
+                                @if(app()->getLocale() == 'ar')
                                 <span class="material-symbols-outlined text-lg transition-transform group-hover/btn:-translate-x-1">arrow_left_alt</span>
+                                @else
+                                    <span class="material-symbols-outlined text-lg transition-transform group-hover/btn:translate-x-1">arrow_right_alt</span>
+                                @endif
                             </a>
                         </div>
                     </div>

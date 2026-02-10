@@ -96,25 +96,25 @@
                     <h4 class="text-slate-200 font-bold text-lg">{{ __('Quick Links') }}</h4>
                     <ul class="flex flex-col gap-3">
                         @if($aboutUrl && $aboutUrl !== '#')
-                            <li><a class="text-slate-200 hover:text-primary transition-colors text-sm" href="{{ $aboutUrl }}">{{ __('About Company') }}</a></li>
+                            <li><a class="text-slate-200 hover:brightness-110 transition-colors text-sm" href="{{ $aboutUrl }}">{{ __('About Company') }}</a></li>
                         @endif
                         @if($projectsUrl && $projectsUrl !== '#')
-                            <li><a class="text-slate-200 hover:text-primary transition-colors text-sm" href="{{ $projectsUrl }}">{{ __('Our Projects') }}</a></li>
+                            <li><a class="text-slate-200 hover:brightness-110 transition-colors text-sm" href="{{ $projectsUrl }}">{{ __('Our Projects') }}</a></li>
                         @endif
                         @if($servicesUrl && $servicesUrl !== '#')
-                            <li><a class="text-slate-200 hover:text-primary transition-colors text-sm" href="{{ $servicesUrl }}">{{ __('Our Services') }}</a></li>
+                            <li><a class="text-slate-200 hover:brightness-110 transition-colors text-sm" href="{{ $servicesUrl }}">{{ __('Our Services') }}</a></li>
                         @endif
                         @if($blogUrl && $blogUrl !== '#')
-                            <li><a class="text-slate-200 hover:text-primary transition-colors text-sm" href="{{ $blogUrl }}">{{ __('Blog') }}</a></li>
+                            <li><a class="text-slate-200 hover:brightness-110 transition-colors text-sm" href="{{ $blogUrl }}">{{ __('Blog') }}</a></li>
                         @endif
                         @if($tourismUrl && $tourismUrl !== '#')
-                            <li><a class="text-slate-200 hover:text-primary transition-colors text-sm" href="{{ $tourismUrl }}">{{ __('Balkis Tourism') }}</a></li>
+                            <li><a class="text-slate-200 hover:brightness-110 transition-colors text-sm" href="{{ $tourismUrl }}">{{ __('Balkis Tourism') }}</a></li>
                         @endif
                         @if($realestateUrl && $realestateUrl !== '#')
-                            <li><a class="text-white hover:text-primary transition-colors text-sm" href="{{ $realestateUrl }}">{{ __('Balkis Real Estate') }}</a></li>
+                            <li><a class="text-slate-200 hover:brightness-110 transition-colors text-sm" href="{{ $realestateUrl }}">{{ __('Balkis Real Estate') }}</a></li>
                         @endif
                         @if($investmentUrl && $investmentUrl !== '#')
-                            <li><a class="text-white hover:text-primary transition-colors text-sm" href="{{ $investmentUrl }}">{{ __('Balkis Investment') }}</a></li>
+                            <li><a class="text-slate-200 hover:brightness-110 transition-colors text-sm" href="{{ $investmentUrl }}">{{ __('Balkis Investment') }}</a></li>
                         @endif
                     </ul>
                 </div>
@@ -123,19 +123,19 @@
                     <ul class="flex flex-col gap-4">
                         @if($phone)
                             <li class="flex items-center gap-3 text-slate-200 text-sm">
-                                <span class="material-symbols-outlined text-primary text-lg">call</span>
+                                <span class="material-symbols-outlined text-white text-lg">call</span>
                                 <span dir="ltr">{{ $phone }}</span>
                             </li>
                         @endif
                         @if($email)
                             <li class="flex items-center gap-3 text-slate-200 text-sm">
-                                <span class="material-symbols-outlined text-primary text-lg">mail</span>
+                                <span class="material-symbols-outlined text-white text-lg">mail</span>
                                 <span>{{ $email }}</span>
                             </li>
                         @endif
                         @if($workingHours)
                             <li class="flex items-center gap-3 text-slate-200 text-sm">
-                                <span class="material-symbols-outlined text-primary text-lg">schedule</span>
+                                <span class="material-symbols-outlined text-white text-lg">schedule</span>
                                 <span>{{ $workingHours }}</span>
                             </li>
                         @endif
