@@ -124,7 +124,7 @@
         </div>
         <div class="flex flex-wrap justify-center gap-8">
             @foreach($aboutPage->core_values as $value)
-                <div class="bg-white p-10 border border-primary/40 rounded-2xl hover:border-primary/30 hover:bg-primary/10 transition-all duration-300 text-center">
+                <div class="bg-white max-w-xs p-10 border border-primary/40 rounded-2xl hover:border-primary/30 hover:bg-primary/10 transition-all duration-300 text-center">
                 <span class="material-symbols-outlined text-primary !text-5xl mb-6">{{ $value['icon'] ?? '' }}</span>
                     <h5 class="text-secondary text-xl mb-4 ">{{ $value['title'] ?? '' }}</h5>
                     @if(isset($value['description']))
@@ -189,7 +189,7 @@
 <section class="max-w-7xl mx-auto px-6">
     <div class="flex flex-wrap justify-center gap-8">
         @foreach($aboutPage->commitment_sections as $section)
-            <div class=" p-10 rounded-2xl relative bg-white border border-primary/40 overflow-hidden group hover:border-primary/30 transition-all duration-500">
+            <div class=" p-10 rounded-2xl max-w-md relative bg-white border border-primary/40 overflow-hidden group hover:border-primary/30 transition-all duration-500">
                 <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
                 <div class="flex items-center gap-5 mb-8">
                     <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-zinc-dark transition-colors duration-500">

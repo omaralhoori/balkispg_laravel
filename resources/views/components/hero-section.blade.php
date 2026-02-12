@@ -85,7 +85,7 @@
         <div class="w-full lg:w-1/3 flex flex-row lg:flex-col gap-4 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 snap-x">
             @foreach($services as $index => $service)
                 @php
-                    $isActive = $index === 0;
+                    $isActive = false;//$index === 0;
                     $cardImage = $service->card_image_url ?? 'https://via.placeholder.com/400x300';
                     $cardClass = $isActive 
                         ? 'service-card active group relative shrink-0 w-[280px] lg:w-full h-[180px] rounded-xl overflow-hidden cursor-pointer border-2 border-primary shadow-2xl transition-all duration-500 hover:-translate-y-1 snap-center' 
