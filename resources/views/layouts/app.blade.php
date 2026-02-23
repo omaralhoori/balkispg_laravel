@@ -8,10 +8,14 @@
     <!-- Meta Tags -->
     @hasSection('meta_description')
         <meta name="description" content="@yield('meta_description')">
+    @else
+        <meta name="description" content="Balkis Premium Group">
     @endif
     
     @hasSection('meta_keywords')
         <meta name="keywords" content="@yield('meta_keywords')">
+    @else
+        <meta name="keywords" content="سياحة, عقارات, استثمار, بلقيس, بريميوم, جروب, تركيا, رحلات سياحية, سياحة تركيا, عقارات تركيا, استثمار تركيا, بلقيس, بريميوم, جروب, تركيا, رحلات سياحية, سياحة تركيا, عقارات تركيا, استثمار تركيا">
     @endif
     
     <!-- Open Graph / Facebook -->
@@ -23,6 +27,14 @@
         @hasSection('og_image')
             <meta property="og:image" content="@yield('og_image')">
         @endif
+        <meta property="og:locale" content="{{ app()->getLocale() === 'ar' ? 'ar_AR' : (app()->getLocale() === 'tr' ? 'tr_TR' : 'en_US') }}">
+        <meta property="og:site_name" content="Balkis Premium Group">
+    @else
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:title" content="Balkis Premium Group">
+        <meta property="og:description" content="شركة بلقيس بريميوم جروب هي شركة سياحية وعقارية واستثمارية وتقدم خدمات عالية الجودة لعملائها في تركيا والعالم.">
+        <meta property="og:image" content="{{ asset('image/BALKIS GROUP TEXT HORIZONTAL.png') }}">
         <meta property="og:locale" content="{{ app()->getLocale() === 'ar' ? 'ar_AR' : (app()->getLocale() === 'tr' ? 'tr_TR' : 'en_US') }}">
         <meta property="og:site_name" content="Balkis Premium Group">
     @endif
