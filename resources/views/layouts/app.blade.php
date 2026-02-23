@@ -37,7 +37,7 @@
             <meta name="twitter:image" content="@yield('og_image')">
         @endif
     @endif
-    
+    <meta name="facebook-domain-verification" content="3jwxembxwo7c2uk6xoq1ilcjdfd7iz" />
     <!-- Canonical URL -->
     @hasSection('canonical_url')
         <link rel="canonical" href="@yield('canonical_url')">
