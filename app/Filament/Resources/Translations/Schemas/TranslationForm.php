@@ -105,6 +105,7 @@ class TranslationForm
                                 'ar' => 'العربية',
                                 'en' => 'English',
                                 'tr' => 'Türkçe',
+                                'fr' => 'Français',
                             ])
                             ->required()
                             ->default('en')

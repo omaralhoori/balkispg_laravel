@@ -19,7 +19,7 @@ trait HasTranslationSelector
      */
     protected function setTranslationLocale(string $locale): void
     {
-        if (in_array($locale, ['ar', 'en', 'tr'])) {
+        if (in_array($locale, ['ar', 'en', 'tr', 'fr'])) {
             Session::put('translation_locale', $locale);
         }
     }

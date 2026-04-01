@@ -3,8 +3,18 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Balkis Premium Group')</title>
+    <!-- Favicon Setup -->
+    <link rel="icon" href="{{ asset('image/balkis_travel.ico') }}" sizes="any">
+    <link rel="icon" href="{{ asset('image/balkis_travel.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('image/balkis_travel.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('image/BALKIS GROUP TEXT HORIZONTAL.png') }}">
     
+    <!-- SEO Technical Tags -->
+    <meta name="theme-color" content="#b69539">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
     <!-- Meta Tags -->
     @hasSection('meta_description')
         <meta name="description" content="@yield('meta_description')">
@@ -27,7 +37,7 @@
         @hasSection('og_image')
             <meta property="og:image" content="@yield('og_image')">
         @endif
-        <meta property="og:locale" content="{{ app()->getLocale() === 'ar' ? 'ar_AR' : (app()->getLocale() === 'tr' ? 'tr_TR' : 'en_US') }}">
+        <meta property="og:locale" content="{{ match(app()->getLocale()) { 'ar' => 'ar_SA', 'tr' => 'tr_TR', 'fr' => 'fr_FR', default => 'en_US' } }}">
         <meta property="og:site_name" content="Balkis Premium Group">
     @else
         <meta property="og:type" content="website">
@@ -35,25 +45,68 @@
         <meta property="og:title" content="Balkis Premium Group">
         <meta property="og:description" content="شركة بلقيس بريميوم جروب هي شركة سياحية وعقارية واستثمارية وتقدم خدمات عالية الجودة لعملائها في تركيا والعالم.">
         <meta property="og:image" content="{{ asset('image/BALKIS GROUP TEXT HORIZONTAL.png') }}">
-        <meta property="og:locale" content="{{ app()->getLocale() === 'ar' ? 'ar_AR' : (app()->getLocale() === 'tr' ? 'tr_TR' : 'en_US') }}">
+        <meta property="og:locale" content="{{ match(app()->getLocale()) { 'ar' => 'ar_SA', 'tr' => 'tr_TR', 'fr' => 'fr_FR', default => 'en_US' } }}">
         <meta property="og:site_name" content="Balkis Premium Group">
     @endif
     
     <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@BalkisGroup">
     @hasSection('og_title')
-        <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:url" content="@yield('og_url', url()->current())">
         <meta name="twitter:title" content="@yield('og_title')">
         <meta name="twitter:description" content="@yield('og_description')">
         @hasSection('og_image')
             <meta name="twitter:image" content="@yield('og_image')">
         @endif
+    @else
+        <meta name="twitter:url" content="{{ url()->current() }}">
+        <meta name="twitter:title" content="Balkis Premium Group">
+        <meta name="twitter:description" content="شركة بلقيس بريميوم جروب هي شركة سياحية وعقارية واستثمارية وتقدم خدمات عالية الجودة لعملائها في تركيا والعالم.">
+        <meta name="twitter:image" content="{{ asset('image/BALKIS GROUP TEXT HORIZONTAL.png') }}">
     @endif
     <meta name="facebook-domain-verification" content="3jwxembxwo7c2uk6xoq1ilcjdfd7iz" />
     <!-- Canonical URL -->
     @hasSection('canonical_url')
         <link rel="canonical" href="@yield('canonical_url')">
+    @else
+        <link rel="canonical" href="{{ url()->current() }}">
     @endif
+    
+    <!-- Alternate Language Links for SEO (Hreflang) -->
+    @php
+        $currentPath = request()->path();
+        $segments = explode('/', $currentPath);
+        $supportedLocales = config('app.supported_locales', ['ar', 'en', 'tr', 'fr']);
+        
+        $pathWithoutLocale = '';
+        if (in_array($segments[0] ?? '', $supportedLocales)) {
+            $pathWithoutLocale = implode('/', array_slice($segments, 1));
+        } else {
+            $pathWithoutLocale = $currentPath;
+        }
+    @endphp
+    @foreach($supportedLocales as $loc)
+        <link rel="alternate" hreflang="{{ $loc }}" href="{{ url($loc . '/' . $pathWithoutLocale) }}" />
+    @endforeach
+    <link rel="alternate" hreflang="x-default" href="{{ url('ar/' . $pathWithoutLocale) }}" />
+
+    <!-- JSON-LD Structured Data for Local Business / Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Balkis Premium Group",
+      "image": "{{ asset('image/BALKIS GROUP TEXT HORIZONTAL.png') }}",
+      "@id": "{{ url('/') }}",
+      "url": "{{ url('/') }}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "TR"
+      },
+      "description": "شركة بلقيس بريميوم جروب هي شركة سياحية وعقارية واستثمارية وتقدم خدمات عالية الجودة لعملائها في تركيا والعالم."
+    }
+    </script>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>

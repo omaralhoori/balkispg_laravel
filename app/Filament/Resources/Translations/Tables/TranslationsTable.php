@@ -66,6 +66,7 @@ class TranslationsTable
                         'ar' => 'العربية',
                         'en' => 'English',
                         'tr' => 'Türkçe',
+                        'fr' => 'Français',
                         default => $state,
                     })
                     ->badge()
@@ -73,6 +74,7 @@ class TranslationsTable
                         'ar' => 'success',
                         'en' => 'info',
                         'tr' => 'warning',
+                        'fr' => 'secondary',
                         default => 'gray',
                     })
                     ->searchable()
@@ -123,6 +125,7 @@ class TranslationsTable
                         'ar' => 'العربية',
                         'en' => 'English',
                         'tr' => 'Türkçe',
+                        'fr' => 'Français',
                     ])
                     ->searchable(),
 

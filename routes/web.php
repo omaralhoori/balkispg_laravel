@@ -7,9 +7,12 @@ Route::get('/', function () {
     return redirect('/'.config('app.locale', 'ar'));
 });
 
+// Dynamic XML Sitemap
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+
 // Locale-prefixed routes
 Route::prefix('{locale}')
-    ->where(['locale' => implode('|', config('app.supported_locales', ['ar', 'en', 'tr']))])
+    ->where(['locale' => implode('|', config('app.supported_locales', ['ar', 'en', 'tr', 'fr']))])
     ->group(function () {
         Route::get('/', function () {
             return view('home');
