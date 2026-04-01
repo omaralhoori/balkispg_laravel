@@ -51,7 +51,7 @@
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@BalkisGroup">
+    <meta name="twitter:site" content="@@BalkisGroup">
     @hasSection('og_title')
         <meta name="twitter:url" content="@yield('og_url', url()->current())">
         <meta name="twitter:title" content="@yield('og_title')">
@@ -94,14 +94,14 @@
     <!-- JSON-LD Structured Data for Local Business / Organization -->
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "TravelAgency",
+      "@@context": "https://schema.org",
+      "@@type": "TravelAgency",
       "name": "Balkis Premium Group",
       "image": "{{ asset('image/BALKIS GROUP TEXT HORIZONTAL.png') }}",
-      "@id": "{{ url('/') }}",
+      "@@id": "{{ url('/') }}",
       "url": "{{ url('/') }}",
       "address": {
-        "@type": "PostalAddress",
+        "@@type": "PostalAddress",
         "addressCountry": "TR"
       },
       "description": "شركة بلقيس بريميوم جروب هي شركة سياحية وعقارية واستثمارية وتقدم خدمات عالية الجودة لعملائها في تركيا والعالم."
