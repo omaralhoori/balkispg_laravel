@@ -1,139 +1,222 @@
 @php
     $homePage = $homePage ?? \App\Models\HomePage::getCurrent();
     $services = $services ?? $homePage->activeServices;
-    $firstService = $services->first();
     $mainBgImage = $homePage->main_background_image_url 
         ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuDgY6giqkj21tUvclk3yFwACm-TA3MpuiAmhESMAAJH30FG5E4lt2_XTywcqzvo_tHIfTmiA9hjqoMbJe96DTcRbx07K9FiJVUTN6gWYKdvrICMQGbdOZRqq6JE4lG8olMYHgocw45mNjTi4geQCEsHg1YKHdiaEdWZDKs9I_MkCqBnAMRFfDK013HRnHSCcnlUknLqOP0_mkrOjfvmq6hKdsaJtL205T0fFp44s8SqQPysOWE2-gtWdJ5s0_C7mMn83RH_WPbkPkj7';
 @endphp
 
-<section class="hero-section flex-grow flex items-center relative min-h-screen pt-20">
-    <!-- Background Image -->
-    <div class="hero-background absolute inset-0 z-0 bg-cover bg-center transition-all duration-700 ease-in-out" 
-         data-alt="Panaromic view of Istanbul skyline at sunset" 
-         style="background-image: linear-gradient(rgba(24, 24, 27, 0.7), rgba(24, 24, 27, 0.8)), url('{{ $mainBgImage }}');">
+<section class="hero-section relative min-h-screen flex flex-col items-center justify-start pt-24 pb-16 overflow-hidden">
+    {{-- Background Image --}}
+    <div class="absolute inset-0 z-0 bg-cover bg-center"
+         style="background-image: linear-gradient(rgba(18,18,22,0.72), rgba(18,18,22,0.88)), url('{{ $mainBgImage }}');">
     </div>
-    
-    <div class="relative z-10 container mx-auto px-6 lg:px-20 py-12 flex flex-col lg:flex-row items-center gap-12 h-full">
-        <!-- Content Side -->
-        <div class="hero-content-wrapper flex-1 flex flex-col gap-8 items-start transition-all duration-500 ease-in-out">
-            @if($homePage->main_badge_text && $homePage->main_badge_icon)
-                <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 border border-primary/20 backdrop-blur-md">
-                    <span class="hero-badge-icon material-symbols-outlined text-primary text-sm">{{ $homePage->main_badge_icon }}</span>
-                    <span class="hero-badge-text text-primary text-xs font-bold uppercase tracking-wide">{{ $homePage->main_badge_text }}</span>
-                </div>
-            @endif
-            <h1 class="text-4xl lg:text-6xl  text-white leading-[1.2]">
-                <span class="hero-title-main text-primary font-black block font-heading mb-2">{{ $homePage->main_title }}</span>
-                <span class="hero-subtitle font-heading">{{ $homePage->main_subtitle }}</span>
-            </h1>
-            <p class="hero-description text-gray-300 text-lg leading-relaxed max-w-xl">
-                {{ $homePage->main_description ?? 'اكتشف قمة السياحة الفاخرة في تركيا، والعقارات المتميزة، والاستثمارات الاستراتيجية. نحن نصنع تجارب لا تُنسى ومستقبلاً واعداً.' }}
-            </p>
-            <div class="flex gap-4 mt-4">
-                @if($firstService && $firstService->cta_button_text)
-                    <a href="{{ $firstService->cta_button_url ?? '#' }}" class="service-cta-button flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-gold-gradient text-white font-bold hover:brightness-110  transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
-                        <span class="service-cta-text">{{ $firstService->cta_button_text }}</span>
-                        @if(app()->getLocale() == 'ar')
-                            <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
-                        @else
-                            <span class="material-symbols-outlined text-xl">arrow_right_alt</span>
-                        @endif
-                    </a>
-                @elseif($homePage->cta_button_text)
-                    <a href="{{ $homePage->cta_button_url ?? '#' }}" class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg bg-gold-gradient text-[#201d13] font-bold hover:bg-white hover:text-[#201d13] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
-                        <span>{{ $homePage->cta_button_text }}</span>
-                        @if(app()->getLocale() == 'ar')
-                            <span class="material-symbols-outlined text-xl flip-rtl">arrow_right_alt</span>
-                        @else
-                            <span class="material-symbols-outlined text-xl">arrow_right_alt</span>
-                        @endif
-                    </a>
-                @endif
-                @if($homePage->video_button_text)
-                    <button class="flex items-center justify-center gap-2 h-12 px-8 rounded-lg border border-white/20 bg-white/5 text-white font-medium hover:bg-white/10 transition-all backdrop-blur-sm">
-                        <span class="material-symbols-outlined text-xl">play_circle</span>
-                        <span>{{ $homePage->video_button_text }}</span>
-                    </button>
-                @endif
+
+    {{-- Subtle decorative pattern --}}
+    <div class="bg-pattern opacity-[0.06]"></div>
+
+    {{-- Radial glow top --}}
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[340px] rounded-full pointer-events-none"
+         style="background: radial-gradient(ellipse at 50% 0%, rgba(198,162,100,0.18) 0%, transparent 70%); z-index:1;"></div>
+
+    <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-12 flex flex-col items-center gap-8">
+
+        {{-- ============================================================ --}}
+        {{-- 1. Company Name + Logo --}}
+        {{-- ============================================================ --}}
+        <div class="flex items-center justify-center gap-4 animate-hero-fade mt-10" style="animation-delay:0s">
+            
+            {{-- Company Name --}}
+            <div class="text-center ltr:text-left rtl:text-right">
+                <h1 class="text-4xl lg:text-5xl font-black font-heading  text-white leading-tight">
+                    <span class="font-heading">{{ $homePage->main_title ?? 'مجموعة بلقيس' }}</span> 
+                    <span class="text-4xl lg:text-5xl  text-primary  font-heading tracking-widest uppercase ">{{ $homePage->main_subtitle }}</span>
+                </h1>
             </div>
-            <div class="hero-stats mt-8 flex items-center gap-8 border-t border-white/10 pt-6 w-full max-w-md">
-                @if($firstService && $firstService->stats)
-                    @foreach($firstService->stats as $stat)
-                        <div class="stat-item">
-                            <p class="stat-value text-2xl font-bold text-white">{{ $stat['value'] ?? '' }}</p>
-                            <p class="stat-label text-xs text-gray-400">{{ $stat['label'] ?? '' }}</p>
-                        </div>
-                    @endforeach
-                @else
-                    <div class="stat-item">
-                        <p class="stat-value text-2xl font-bold text-white">١٥+</p>
-                        <p class="stat-label text-xs text-gray-400">سنة خبرة</p>
-                    </div>
-                    <div class="stat-item">
-                        <p class="stat-value text-2xl font-bold text-white">٥٠٠+</p>
-                        <p class="stat-label text-xs text-gray-400">مشروع ناجح</p>
-                    </div>
-                    <div class="stat-item">
-                        <p class="stat-value text-2xl font-bold text-white">٢٤/٧</p>
-                        <p class="stat-label text-xs text-gray-400">دعم كبار الشخصيات</p>
-                    </div>
-                @endif
+
+            {{-- Logo --}}
+            <div class="h-24 w-24 flex items-center justify-center rounded-full border-3 border-primary/40 bg-white/95 backdrop-blur-sm overflow-hidden shrink-0">
+                <img src="/image/BALKIS GROUP TEXT HORIZONTAL.png"
+                     alt="{{ __('شعار مجموعة بلقيس') }}"
+                     class="h-full w-full object-contain p-1"
+                     onerror="this.parentElement.innerHTML='<span class=\'material-symbols-outlined text-primary text-3xl\'>stars</span>'">
             </div>
         </div>
-        
-        <!-- Cards Side -->
-        <div class="w-full lg:w-1/3 flex flex-row lg:flex-col gap-4 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 snap-x">
-            @foreach($services as $index => $service)
-                @php
-                    $isActive = false;//$index === 0;
-                    $cardImage = $service->card_image_url ?? 'https://via.placeholder.com/400x300';
-                    $cardClass = $isActive 
-                        ? 'service-card active group relative shrink-0 w-[280px] lg:w-full h-[180px] rounded-xl overflow-hidden cursor-pointer border-2 border-primary shadow-2xl transition-all duration-500 hover:-translate-y-1 snap-center' 
-                        : 'service-card inactive group relative shrink-0 w-[280px] lg:w-full h-[160px] rounded-xl overflow-hidden cursor-pointer border border-white/10 opacity-70 hover:opacity-100 hover:border-primary/50 transition-all duration-500 snap-center';
-                @endphp
-                
-                <a href="{{ $service->card_url ?? '#' }}" class="{{ $cardClass }}" data-service-id="{{ $service->service_key }}">
-                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
-                         style="background-image: url('{{ $cardImage }}');">
+
+        {{-- ============================================================ --}}
+        {{-- 2. Description --}}
+        {{-- ============================================================ --}}
+        <p class="hero-description text-gray-300 text-lg leading-relaxed text-center max-w-2xl animate-hero-fade"
+           style="animation-delay:0.15s">
+            {{ $homePage->main_description ?? 'اكتشف قمة السياحة الفاخرة في تركيا، والعقارات المتميزة، والاستثمارات الاستراتيجية. نحن نصنع تجارب لا تُنسى ومستقبلاً واعداً.' }}
+        </p>
+
+        {{-- ============================================================ --}}
+        {{-- 3. Slogan — Gold Gradient Frame --}}
+        {{-- ============================================================ --}}
+        <div class="hero-slogan-wrapper animate-hero-fade" style="animation-delay:0.3s">
+            <div class="relative inline-flex items-center justify-center px-10 py-4 rounded-xl bg-gold-gradient"
+                 style="background: linear-gradient(135deg, rgba(118,92,57,0.18) 0%, rgba(196,165,113,0.18) 100%);
+                        border: 1.5px solid transparent;
+                        background-clip: padding-box;">
+                {{-- Gold border via pseudo via box shadow --}}
+                <div class="absolute inset-0 rounded-xl pointer-events-none"
+                     style="background: linear-gradient(135deg,#765C39,#C4A571,#765C39) border-box;
+                            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+                            -webkit-mask-composite: destination-out;
+                            mask-composite: exclude;
+                            border: 1.5px solid transparent;"></div>
+                {{-- Corner decorations --}}
+                <span class="absolute -top-1.5 -start-1.5 w-3 h-3 rounded-full bg-primary opacity-80"></span>
+                <span class="absolute -top-1.5 -end-1.5 w-3 h-3 rounded-full bg-primary opacity-80"></span>
+                <span class="absolute -bottom-1.5 -start-1.5 w-3 h-3 rounded-full bg-primary opacity-80"></span>
+                <span class="absolute -bottom-1.5 -end-1.5 w-3 h-3 rounded-full bg-primary opacity-80"></span>
+
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-xl">format_quote</span>
+                    <span class="text-gold-gradient font-heading font-bold text-xl sm:text-2xl tracking-wide">
+                        {{ $homePage->main_badge_text ?? 'التميز والفخامة في كل خطوة' }}
+                    </span>
+                    <span class="material-symbols-outlined text-primary text-xl rotate-180">format_quote</span>
+                </div>
+            </div>
+        </div>
+
+        {{-- ============================================================ --}}
+        {{-- 4. CTA Button (optional) --}}
+        {{-- ============================================================ --}}
+        @if($homePage->cta_button_text)
+        <div class="animate-hero-fade" style="animation-delay:0.42s">
+            <a href="{{ $homePage->cta_button_url ?? '#' }}"
+               class="inline-flex items-center gap-2 h-12 px-8 rounded-lg bg-gold-gradient text-[#201d13] font-bold hover:brightness-110 transition-all duration-300 shadow-[0_0_24px_rgba(198,162,100,0.3)]">
+                <span>{{ $homePage->cta_button_text }}</span>
+                <span class="material-symbols-outlined text-xl {{ app()->getLocale() == 'ar' ? 'flip-rtl' : '' }}">arrow_right_alt</span>
+            </a>
+        </div>
+        @endif
+
+        {{-- ============================================================ --}}
+        {{-- 5. Three Sub-Company Cards --}}
+        {{-- ============================================================ --}}
+        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-4 animate-hero-fade" style="animation-delay:0.55s">
+            @foreach($services as $idx => $service)
+            <a href="{{ $service->card_url ?? '#' }}"
+               class="sub-company-card group relative flex flex-col rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_16px_40px_-12px_rgba(198,162,100,0.35)]"
+               style="background: rgba(18,18,22,0.7); backdrop-filter: blur(14px);">
+
+                {{-- Card Top Accent Line --}}
+                <div class="absolute top-0 inset-x-0 h-0.5 bg-gold-gradient opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                {{-- Company Name (top) --}}
+                <div class="flex items-center justify-between px-5 pt-5 pb-3">
+                    <h3 class="text-white font-heading font-bold text-lg group-hover:text-primary transition-colors duration-300">
+                        {{ $service->card_title }}
+                    </h3>
+                    <span class="material-symbols-outlined text-primary text-2xl">{{ $service->card_icon }}</span>
+                </div>
+
+                {{-- Card Description --}}
+                <div class="px-5 mb-4">
+                    <p class="text-gray-400 text-sm leading-relaxed line-clamp-2 group-hover:text-gray-300 transition-colors duration-300">
+                        {{ $service->card_description }}
+                    </p>
+                </div>
+
+                {{-- Divider --}}
+                <div class="mx-5 h-px bg-white/10 group-hover:bg-primary/30 transition-colors duration-300"></div>
+
+                {{-- Card Bottom: Logo + Service Icons --}}
+                <div class="flex items-center justify-between gap-4 px-5 py-5">
+                   
+                    {{-- Service Icons with Tooltips --}}
+                    <div class="flex items-center gap-2 flex-wrap justify-end">
+                        @if($service->stats && is_array($service->stats))
+                            @foreach($service->stats as $svc)
+                            <div class="service-icon-wrapper relative group/tip">
+                                {{-- Icon Button --}}
+                                <div class="w-9 h-9 rounded-lg flex items-center justify-center border border-white/10 bg-white/5 hover:bg-primary/20 hover:border-primary/60 transition-all duration-200 cursor-default">
+                                    <span class="material-symbols-outlined text-gray-400 group-hover/tip:text-primary transition-colors duration-200 text-base">
+                                        {{ $svc['icon'] ?? ($svc['icon_name'] ?? 'star') }}
+                                    </span>
+                                </div>
+                                {{-- Tooltip --}}
+                                <div class="service-tooltip absolute z-50 bottom-full mb-2 start-1 -translate-x-1/2
+                                            w-48 rounded-xl px-3 py-2.5 pointer-events-none
+                                            opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible
+                                            transition-all duration-200 translate-y-1 group-hover/tip:translate-y-0"
+                                     style="background: linear-gradient(135deg, rgba(22,20,16,0.97) 0%, rgba(35,28,18,0.97) 100%);
+                                            border: 1px solid rgba(198,162,100,0.35);
+                                            box-shadow: 0 8px 24px -4px rgba(0,0,0,0.6);">
+                                    <p class="text-primary text-xs font-bold mb-1">{{ $svc['label'] ?? '' }}</p>
+                                    <p class="text-gray-300 text-xs leading-relaxed">{{ $svc['desc'] ?? ($svc['description'] ?? '') }}</p>
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 {{ $isActive ? 'p-6' : 'p-5' }} flex items-end justify-between">
-                        <div>
-                            <h3 class="{{ $isActive ? 'text-xl' : 'text-lg' }} font-bold text-white mb-1">{{ $service->card_title }}</h3>
-                            <p class="text-gray-300 {{ $isActive ? 'text-sm' : 'text-xs' }} line-clamp-1">{{ $service->card_description }}</p>
-                        </div>
-                        <div class="{{ $isActive ? 'h-10 w-10 rounded-full bg-gold-gradient flex items-center justify-center text-[#201d13]' : 'h-8 w-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-primary group-hover:text-[#201d13] transition-colors' }}">
-                            <span class="material-symbols-outlined {{ !$isActive ? 'text-sm' : '' }}">{{ $service->card_icon }}</span>
-                        </div>
+
+                    {{-- Company Logo --}}
+                    <div class="shrink-0 flex items-center justify-center w-14 h-14 rounded-xl border border-white/10 bg-white/5 overflow-hidden">
+                        @if($service->card_image_url)
+                            <img src="{{ $service->card_image_url }}"
+                                 alt="{{ $service->card_title }}"
+                                 class="w-full h-full object-contain p-1">
+                        @else
+                            <span class="material-symbols-outlined text-primary text-3xl">{{ $service->card_icon }}</span>
+                        @endif
                     </div>
-                </a>
+                </div>
+
+                {{-- Hover glow --}}
+                <div class="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                     style="background: radial-gradient(ellipse at 50% 100%, rgba(198,162,100,0.07) 0%, transparent 70%);"></div>
+            </a>
             @endforeach
         </div>
+
     </div>
-    
-    <!-- Bottom decorative element -->
-    <div class="absolute bottom-0 w-full h-24 bg-gradient-to-t from-bg-main to-transparent pointer-events-none"></div>
+
+    {{-- Bottom fade --}}
+    <div class="absolute bottom-0 w-full h-24 pointer-events-none" style="background: linear-gradient(to top, rgba(18,18,22,1) 0%, transparent 100%);"></div>
 </section>
+
+{{-- Hero Animations --}}
+<style>
+@keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.animate-hero-fade {
+    opacity: 0;
+    animation: heroFadeUp 0.75s ease forwards;
+}
+
+/* Tooltip: ensure it appears above on RTL too */
+[dir="rtl"] .service-tooltip {
+    transform: translateX(50%);
+}
+[dir="rtl"] .group\/tip:hover .service-tooltip {
+    transform: translateX(50%) translateY(0);
+}
+</style>
 
 @push('scripts')
 @php
     $servicesData = $services->mapWithKeys(function($service) {
         return [$service->service_key => [
-            'id' => $service->service_key,
-            'title' => $service->title,
-            'subtitle' => $service->subtitle,
-            'description' => $service->description,
-            'badge' => $service->badge_text,
-            'badgeIcon' => $service->badge_icon,
+            'id'            => $service->service_key,
+            'title'         => $service->title,
+            'subtitle'      => $service->subtitle,
+            'description'   => $service->description,
+            'badge'         => $service->badge_text,
+            'badgeIcon'     => $service->badge_icon,
             'backgroundImage' => $service->background_image_url,
             'ctaButtonText' => $service->cta_button_text,
-            'ctaButtonUrl' => $service->cta_button_url ?? '#',
-            'stats' => $service->stats ?? [],
+            'ctaButtonUrl'  => $service->cta_button_url ?? '#',
+            'stats'         => $service->stats ?? [],
         ]];
     })->toArray();
 @endphp
 <script>
-    // Pass services data to JavaScript
     window.homePageServices = @json($servicesData);
 </script>
 @endpush

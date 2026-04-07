@@ -296,18 +296,27 @@ class HomePageForm
                                     ->default(true),
 
                                 Repeater::make('stats')
-                                    ->label('الإحصائيات')
+                                    ->label('خدمات الشركة (الأيقونات والتلميحات)')
+                                    ->helperText('ستظهر هذه الأيقونات مع تلميحات نصية في كرت الشركة')
                                     ->schema([
-                                        TextInput::make('value')
-                                            ->label('القيمة')
-                                            ->required(),
+                                        TextInput::make('icon')
+                                            ->label('الأيقونة (Material Icons)')
+                                            ->required()
+                                            ->helperText('مثال: flight, hotel, tour'),
 
                                         TextInput::make('label')
-                                            ->label('التسمية')
-                                            ->required(),
+                                            ->label('عنوان الخدمة')
+                                            ->required()
+                                            ->helperText('يظهر كعنوان في التلميح'),
+
+                                        Textarea::make('desc')
+                                            ->label('وصف الخدمة')
+                                            ->required()
+                                            ->rows(2)
+                                            ->helperText('يظهر كشرح في التلميح'),
                                     ])
-                                    ->defaultItems(3)
-                                    ->columns(2)
+                                    ->defaultItems(4)
+                                    ->columns(1)
                                     ->columnSpanFull(),
                             ])
                             ->columns(2)
