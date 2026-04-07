@@ -78,6 +78,62 @@ class HomePageForm
                             ->default('شاهد الفيديو'),
                     ])
                     ->columns(2),
+                
+                Section::make('من نحن، الرؤية والرسالة')
+                    ->schema([
+                        TextInput::make('about_title')
+                            ->label('عنوان من نحن')
+                            ->required()
+                            ->maxLength(255)
+                            ->default('من نحن'),
+
+                        Textarea::make('about_description')
+                            ->label('وصف من نحن')
+                            ->required()
+                            ->rows(4)
+                            ->columnSpanFull(),
+
+                        FileUpload::make('about_image')
+                            ->label('صورة من نحن')
+                            ->image()
+                            ->disk('public')
+                            ->directory('home-page/about')
+                            ->visibility('public')
+                            ->columnSpanFull(),
+
+                        TextInput::make('vision_title')
+                            ->label('عنوان الرؤية')
+                            ->required()
+                            ->maxLength(255)
+                            ->default('رؤيتنا'),
+
+                        Textarea::make('vision_description')
+                            ->label('وصف الرؤية')
+                            ->required()
+                            ->rows(3),
+
+                        TextInput::make('vision_icon')
+                            ->label('أيقونة الرؤية (Material Icons)')
+                            ->maxLength(255)
+                            ->default('visibility'),
+
+                        TextInput::make('mission_title')
+                            ->label('عنوان الرسالة')
+                            ->required()
+                            ->maxLength(255)
+                            ->default('رسالتنا'),
+
+                        Textarea::make('mission_description')
+                            ->label('وصف الرسالة')
+                            ->required()
+                            ->rows(3),
+
+                        TextInput::make('mission_icon')
+                            ->label('أيقونة الرسالة (Material Icons)')
+                            ->maxLength(255)
+                            ->default('rocket_launch'),
+                    ])
+                    ->columns(2),
 
                 Section::make('الإحصائيات')
                     ->schema([

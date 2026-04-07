@@ -27,7 +27,13 @@ class HomePage extends Model
         'map_address_line1',
         'map_address_line2',
         'footer_brand_name',
-        'footer_brand_description'
+        'footer_brand_description',
+        'about_title',
+        'about_description',
+        'vision_title',
+        'vision_description',
+        'mission_title',
+        'mission_description',
     ];
 
     protected $fillable = [
@@ -74,6 +80,15 @@ class HomePage extends Model
         'footer_copyright_text',
         'footer_privacy_policy_url',
         'footer_terms_url',
+        'about_title',
+        'about_description',
+        'about_image',
+        'vision_title',
+        'vision_description',
+        'vision_icon',
+        'mission_title',
+        'mission_description',
+        'mission_icon',
     ];
 
     protected $casts = [
@@ -118,6 +133,14 @@ class HomePage extends Model
             'main_badge_icon' => 'stars',
             'cta_button_text' => 'استكشف خدماتنا',
             'video_button_text' => 'شاهد الفيديو',
+            'about_title' => 'من نحن',
+            'about_description' => 'مجموعة بلقيس هي شريككم الموثوق في عالم العقارات والسياحة والاستثمار في تركيا. نحن نجمع بين الخبرة العريقة والرؤية الطموحة لتقديم حلول متكاملة وفريدة من نوعها.',
+            'vision_title' => 'رؤيتنا',
+            'vision_description' => 'أن نكون الخيار الأول والوجهة الأكثر موثوقية للمستثمرين والباحثين عن الرقي والتميز في تركيا.',
+            'vision_icon' => 'visibility',
+            'mission_title' => 'رسالتنا',
+            'mission_description' => 'تقديم تجارب استثنائية وقيمة مضافة لعملائنا من خلال التزامنا بالشفافية والابتكار والبحث الدائم عن التميز.',
+            'mission_icon' => 'rocket_launch',
         ]);
     }
 }
