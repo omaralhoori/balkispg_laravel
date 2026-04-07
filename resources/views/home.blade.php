@@ -11,6 +11,7 @@
 @section('content')
     @include('components.hero-section', ['homePage' => $homePage, 'services' => $services])
     @include('components.about-vision-section', ['homePage' => $homePage])
+    @include('components.tourism-details-section', ['homePage' => $homePage])
     @include('components.programs-section', ['programs' => $programs])
     @include('components.statistics-section', ['homePage' => $homePage])
     @include('components.testimonials-section')

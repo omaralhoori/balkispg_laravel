@@ -34,6 +34,7 @@ class HomePage extends Model
         'vision_description',
         'mission_title',
         'mission_description',
+        'tourism_section_title',
     ];
 
     protected $fillable = [
@@ -89,6 +90,8 @@ class HomePage extends Model
         'mission_title',
         'mission_description',
         'mission_icon',
+        'tourism_api_url',
+        'tourism_section_title',
     ];
 
     protected $casts = [

@@ -134,7 +134,20 @@ class HomePageForm
                             ->default('rocket_launch'),
                     ])
                     ->columns(2),
-
+                Section::make('أهم التفاصيل السياحية - API')
+                    ->description('إعدادات جلب البيانات السياحية من موقع السياحة')
+                    ->schema([
+                        TextInput::make('tourism_section_title')
+                            ->label('عنوان القسم')
+                            ->maxLength(255)
+                            ->default('أهم التفاصيل السياحية'),
+                        TextInput::make('tourism_api_url')
+                            ->label('رابط الـ API')
+                            ->url()
+                            ->maxLength(500)
+                            ->helperText('اترك الرابط فارغاً لإخفاء هذا القسم من الصفحة الرئيسية'),
+                    ])
+                    ->columns(2),
                 Section::make('الإحصائيات')
                     ->schema([
                         TextInput::make('statistics_badge_text')
