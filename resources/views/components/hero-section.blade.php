@@ -11,8 +11,7 @@
          style="background-image: linear-gradient(rgba(18,18,22,0.72), rgba(18,18,22,0.88)), url('{{ $mainBgImage }}');">
     </div>
 
-    {{-- Subtle decorative pattern --}}
-    <div class="bg-pattern opacity-[0.06]"></div>
+   
 
     {{-- Radial glow top --}}
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[340px] rounded-full pointer-events-none"
