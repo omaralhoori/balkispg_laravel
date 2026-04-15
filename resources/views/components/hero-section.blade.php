@@ -28,7 +28,7 @@
             <div class="text-center ltr:text-left rtl:text-right">
                 <h1 class="text-4xl lg:text-5xl font-black font-heading  text-white leading-tight">
                     <span class="font-heading">{{ $homePage->main_title ?? 'مجموعة بلقيس' }}</span> 
-                    <span class="text-4xl lg:text-5xl  text-primary  font-heading tracking-widest uppercase ">{{ $homePage->main_subtitle }}</span>
+                    <span class="text-4xl lg:text-5xl  text-primary  font-heading uppercase ">{{ $homePage->main_subtitle }}</span>
                 </h1>
             </div>
 
