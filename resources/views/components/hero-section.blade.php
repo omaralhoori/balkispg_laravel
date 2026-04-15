@@ -33,8 +33,8 @@
             </div>
 
             {{-- Logo --}}
-            <div class="h-24 w-24 flex items-center justify-center rounded-full border-3 border-primary/40 bg-white/95 backdrop-blur-sm overflow-hidden shrink-0">
-                <img src="/image/BALKIS GROUP TEXT HORIZONTAL.png"
+            <div class="h-24 w-24 flex items-center justify-center rounded-full backdrop-blur-sm overflow-hidden shrink-0">
+                <img src="/image/bpg.png"
                      alt="{{ __('شعار مجموعة بلقيس') }}"
                      class="h-full w-full object-contain p-1"
                      onerror="this.parentElement.innerHTML='<span class=\'material-symbols-outlined text-primary text-3xl\'>stars</span>'">
