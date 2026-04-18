@@ -8,14 +8,14 @@
 @endphp
 
 <!-- Contact Section -->
-<section class="relative py-24 px-4 md:px-10 lg:px-20 section-border">
+<section class="relative py-12 px-4 md:px-10 lg:px-20 section-border">
     <div class="max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+        <div class="grid lg:grid-cols-2 gap-8 items-stretch">
             <!-- Contact Form Column -->
-            <div class="flex flex-col gap-8 order-2 lg:order-1">
-                <div class="flex flex-col gap-4">
-                    <h2 class="text-3xl md:text-4xl font-bold text-secondary">{{ __('Contact Us') }}</h2>
-                    <p class="text-secondary text-lg leading-relaxed">
+            <div class="flex flex-col gap-4 order-2 lg:order-1">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-2xl md:text-3xl font-bold text-secondary">{{ __('Contact Us') }}</h2>
+                    <p class="text-secondary text-base opacity-80">
                         {{ __('Our team is ready to answer all your questions related to investment and business opportunities in Turkey.') }}
                     </p>
                 </div>
@@ -40,36 +40,36 @@
                     </div>
                 @endif
 
-                <form class="flex flex-col gap-6 mt-4" action="{{ route('contact.submit', ['locale' => app()->getLocale()]) }}" method="POST">
+                <form class="flex flex-col gap-3 mt-2" action="{{ route('contact.submit', ['locale' => app()->getLocale()]) }}" method="POST">
                     @csrf
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <label class="flex flex-col gap-2">
-                            <span class="text-secondary text-sm font-medium">{{ __('Full Name') }}</span>
-                            <input class="w-full h-14 bg-white border border-[#3e3828] rounded-lg px-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="محمد عبدالله" type="text" name="name" required/>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <label class="flex flex-col gap-1">
+                            <span class="text-secondary text-xs font-medium">{{ __('Full Name') }}</span>
+                            <input class="w-full h-11 bg-white border border-[#3e3828] rounded-lg px-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm" placeholder="محمد عبدالله" type="text" name="name" required/>
                         </label>
-                        <label class="flex flex-col gap-2">
-                            <span class="text-secondary text-sm font-medium">{{ __('Phone Number') }}</span>
-                            <input class="w-full h-14 bg-white border border-[#3e3828] rounded-lg px-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+90 555 000 0000" type="tel" name="phone" required/>
+                        <label class="flex flex-col gap-1">
+                            <span class="text-secondary text-xs font-medium">{{ __('Phone Number') }}</span>
+                            <input class="w-full h-11 bg-white border border-[#3e3828] rounded-lg px-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm" placeholder="+90 555 000 0000" type="tel" name="phone" required/>
                         </label>
                     </div>
-                    <label class="flex flex-col gap-2">
-                            <span class="text-secondary text-sm font-medium">{{ __('Email') }}</span>
-                        <input class="w-full h-14 bg-white border border-[#3e3828] rounded-lg px-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="name@company.com" type="email" name="email" required/>
+                    <label class="flex flex-col gap-1">
+                            <span class="text-secondary text-xs font-medium">{{ __('Email') }}</span>
+                        <input class="w-full h-11 bg-white border border-[#3e3828] rounded-lg px-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm" placeholder="name@company.com" type="email" name="email" required/>
                     </label>
-                    <label class="flex flex-col gap-2">
-                        <span class="text-secondary text-sm font-medium">{{ __('Message') }}</span>
-                        <textarea class="w-full h-32 bg-white border border-[#3e3828] rounded-lg p-4 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="{{ __('Write your message here...') }}" name="message" required></textarea>
+                    <label class="flex flex-col gap-1">
+                        <span class="text-secondary text-xs font-medium">{{ __('Message') }}</span>
+                        <textarea class="w-full h-24 bg-white border border-[#3e3828] rounded-lg p-3 text-secondary placeholder-secondary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none text-sm" placeholder="{{ __('Write your message here...') }}" name="message" required></textarea>
                     </label>
-                    <button class="mt-2 h-14 bg-gold-gradient hover:bg-[#b8952a]  text-zinc-dark font-bold rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
-                        <span>{{ __('Send Message') }}</span>
-                        <span class="material-symbols-outlined rtl:rotate-180 ">arrow_right_alt</span>
+                    <button class="mt-1 h-11 bg-gold-gradient hover:bg-[#b8952a] text-zinc-dark font-bold rounded-lg transition-colors flex items-center justify-center gap-2" type="submit">
+                        <span class="text-sm">{{ __('Send Message') }}</span>
+                        <span class="material-symbols-outlined rtl:rotate-180 text-xl">arrow_right_alt</span>
                     </button>
                 </form>
             </div>
             <!-- Map/Info Column -->
-            <div class="flex flex-col gap-8 order-1 lg:order-2 h-full min-h-[400px]">
+            <div class="flex flex-col gap-4 order-1 lg:order-2 h-full min-h-[300px]">
                 <!-- Map Container -->
-                <div class="relative w-full h-full min-h-[300px] lg:min-h-[400px] rounded-2xl overflow-hidden border border-[#3e3828] group">
+                <div class="relative w-full h-full min-h-[250px] lg:min-h-[300px] rounded-2xl overflow-hidden border border-[#3e3828] group">
                     @if($mapUrl)
                         <a href="{{ $mapUrl }}" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
                     @endif
