@@ -79,59 +79,43 @@ class HomePageForm
                     ])
                     ->columns(2),
                 
-                Section::make('من نحن، الرؤية والرسالة')
+                Section::make('من نحن والروابط السريعة')
                     ->schema([
                         TextInput::make('about_title')
-                            ->label('عنوان من نحن')
+                            ->label('عنوان القسم')
                             ->required()
                             ->maxLength(255)
                             ->default('من نحن'),
 
                         Textarea::make('about_description')
-                            ->label('وصف من نحن')
+                            ->label('وصف القسم')
                             ->required()
-                            ->rows(4)
+                            ->rows(2)
                             ->columnSpanFull(),
 
-                        FileUpload::make('about_image')
-                            ->label('صورة من نحن')
-                            ->image()
-                            ->disk('public')
-                            ->directory('home-page/about')
-                            ->visibility('public')
-                            ->columnSpanFull(),
-
-                        TextInput::make('vision_title')
-                            ->label('عنوان الرؤية')
-                            ->required()
-                            ->maxLength(255)
-                            ->default('رؤيتنا'),
-
-                        Textarea::make('vision_description')
-                            ->label('وصف الرؤية')
-                            ->required()
-                            ->rows(3),
-
-                        TextInput::make('vision_icon')
-                            ->label('أيقونة الرؤية (Material Icons)')
-                            ->maxLength(255)
-                            ->default('visibility'),
-
-                        TextInput::make('mission_title')
-                            ->label('عنوان الرسالة')
-                            ->required()
-                            ->maxLength(255)
-                            ->default('رسالتنا'),
-
-                        Textarea::make('mission_description')
-                            ->label('وصف الرسالة')
-                            ->required()
-                            ->rows(3),
-
-                        TextInput::make('mission_icon')
-                            ->label('أيقونة الرسالة (Material Icons)')
-                            ->maxLength(255)
-                            ->default('rocket_launch'),
+                        Repeater::make('home_links')
+                            ->label('الروابط الخمسة')
+                            ->schema([
+                                TextInput::make('title')
+                                    ->label('العنوان')
+                                    ->required()
+                                    ->maxLength(255),
+                                TextInput::make('url')
+                                    ->label('الرابط')
+                                    ->required()
+                                    ->url()
+                                    ->maxLength(255)
+                                    ->default('#'),
+                                TextInput::make('icon')
+                                    ->label('الأيقونة (Material Icons)')
+                                    ->maxLength(255)
+                                    ->default('arrow_forward'),
+                            ])
+                            ->minItems(5)
+                            ->maxItems(5)
+                            ->columns(3)
+                            ->columnSpanFull()
+                            ->defaultItems(5),
                     ])
                     ->columns(2),
                 Section::make('أهم التفاصيل السياحية - API')

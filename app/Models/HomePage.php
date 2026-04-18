@@ -35,6 +35,7 @@ class HomePage extends Model
         'mission_title',
         'mission_description',
         'tourism_section_title',
+        'home_links',
     ];
 
     protected $fillable = [
@@ -92,10 +93,12 @@ class HomePage extends Model
         'mission_icon',
         'tourism_api_url',
         'tourism_section_title',
+        'home_links',
     ];
 
     protected $casts = [
         'statistics' => 'array',
+        'home_links' => 'array',
     ];
 
     public function getMainBackgroundImageUrlAttribute(): ?string
@@ -144,6 +147,13 @@ class HomePage extends Model
             'mission_title' => 'رسالتنا',
             'mission_description' => 'تقديم تجارب استثنائية وقيمة مضافة لعملائنا من خلال التزامنا بالشفافية والابتكار والبحث الدائم عن التميز.',
             'mission_icon' => 'rocket_launch',
+            'home_links' => [
+                ['title' => 'من نحن', 'url' => '#about', 'icon' => 'info'],
+                ['title' => 'رؤيتنا', 'url' => '#vision', 'icon' => 'visibility'],
+                ['title' => 'رسالتنا', 'url' => '#mission', 'icon' => 'rocket_launch'],
+                ['title' => 'خدماتنا', 'url' => '#services', 'icon' => 'card_membership'],
+                ['title' => 'اتصل بنا', 'url' => '#contact', 'icon' => 'contact_support'],
+            ],
         ]);
     }
 }

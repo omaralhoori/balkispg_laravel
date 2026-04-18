@@ -12,113 +12,56 @@
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
-        {{-- ============================================================ --}}
-        {{-- 1. About Us (Text + Image) --}}
-        {{-- ============================================================ --}}
-        <!-- <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-            {{-- Image Side --}}
-            <div class="relative group order-2 lg:order-1">
-                <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-                    <img src="{{ $aboutImage }}" alt="{{ $homePage->about_title }}" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#121216]/60 to-transparent"></div>
-                </div>
-                {{-- Decorative frame --}}
-                <div class="absolute -bottom-6 -start-6 w-32 h-32 border-s-4 border-b-4 border-primary/40 rounded-bl-3xl -z-10"></div>
-                <div class="absolute -top-6 -end-6 w-32 h-32 border-e-4 border-t-4 border-primary/40 rounded-tr-3xl -z-10"></div>
-                
-                {{-- Experience Badge --}}
-                <div class="absolute bottom-10 start-10 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl">
-                    <div class="flex items-center gap-4">
-                        <span class="text-4xl font-bold font-heading text-primary">15+</span>
-                        <div class="h-10 w-px bg-white/20"></div>
-                        <span class="text-white font-medium uppercase tracking-wider text-sm leading-tight">
-                            {{ __('سنوات من') }}<br>{{ __('الخبرة العقارية') }}
-                        </span>
-                    </div>
-                </div>
+        <!-- <div class="max-w-3xl mb-16">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-1 bg-gold-gradient rounded-full"></span>
+                <span class="text-primary font-bold uppercase tracking-[0.2em] text-sm">{{ $homePage->about_title }}</span>
             </div>
-
-            {{-- Text Side --}}
-            <div class="flex flex-col gap-6 order-1 lg:order-2">
-                <div class="flex items-center gap-3">
-                    <span class="w-8 h-1 bg-gold-gradient rounded-full"></span>
-                    <span class="text-primary font-bold uppercase tracking-[0.2em] text-sm">{{ __('لماذا نحن') }}</span>
-                </div>
-                <h2 class="text-4xl lg:text-5xl font-black font-heading text-white leading-tight">
-                   
-                </h2>
-                <div class="text-gray-400 text-lg leading-relaxed space-y-4">
-                    {!! nl2br(e($homePage->about_description)) !!}
-                </div>
-                
-                <div class="flex flex-wrap gap-4 mt-4">
-                    <div class="flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 rounded-xl transition-colors hover:bg-white/10 group">
-                        <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">verified_user</span>
-                        <span class="text-white font-medium">{{ __('جودة موثوقة') }}</span>
-                    </div>
-                    <div class="flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 rounded-xl transition-colors hover:bg-white/10 group">
-                        <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">handshake</span>
-                        <span class="text-white font-medium">{{ __('شراكات استراتيجية') }}</span>
-                    </div>
-                </div>
-            </div>
+            <h2 class="text-4xl lg:text-5xl font-black font-heading text-white leading-tight mb-6">
+                {{ $homePage->about_title }}
+            </h2>
+            <p class="text-gray-400 text-lg leading-relaxed">
+                {!! nl2br(e($homePage->about_description)) !!}
+            </p>
         </div> -->
 
         {{-- ============================================================ --}}
         {{-- 2. Highlights (Services Summary + Vision + Mission) --}}
         {{-- ============================================================ --}}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            @php
+                $links = $homePage->home_links ?? [];
+                // Ensure we have 5 if something went wrong
+                if (count($links) < 5) {
+                    $links = array_merge($links, array_fill(0, 5 - count($links), ['title' => '...', 'url' => '#', 'icon' => 'help']));
+                }
+            @endphp
             
-            {{-- Services Summary --}}
-            <div class="pillar-card group bg-white/[0.03] border border-white/10 p-8 rounded-3xl transition-all duration-500 hover:bg-primary/5 hover:border-primary/40">
+            @foreach($links as $index => $link)
+            <a href="{{ $link['url'] ?? '#' }}" 
+               class="link-card group relative bg-white/[0.03] border border-white/10 p-6 rounded-2xl transition-all duration-500 hover:bg-primary/10 hover:border-primary/40 flex flex-col items-center text-center gap-4"
+               style="animation-delay: {{ $index * 100 }}ms">
                 
-                <div class="w-14 h-14 bg-gold-gradient rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-[#201d13] text-3xl font-bold">apps</span>
-                </div>
-                <h3 class="text-2xl font-bold font-heading text-white mb-4 group-hover:text-primary transition-colors">
-                     {{ $homePage->about_title }}
-                </h3>
-                <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
-                    {!! nl2br(e($homePage->about_description)) !!}
-                </p>
-                <!-- <div class="mt-8">
-                    <a href="#services" class="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all">
-                        <span>{{ __('اكتشف المزيد') }}</span>
-                        <span class="material-symbols-outlined text-base">arrow_forward</span>
-                    </a>
-                </div> -->
-            </div>
-
-            {{-- Vision --}}
-            <div class="pillar-card group bg-white/[0.03] border border-white/10 p-8 rounded-3xl transition-all duration-500 hover:bg-primary/5 hover:border-primary/40">
-                <div class="w-14 h-14 bg-gold-gradient rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+                {{-- Icon Container --}}
+                <div class="w-16 h-16 bg-gold-gradient rounded-xl flex items-center justify-center shadow-lg shadow-primary/10 group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500">
                     <span class="material-symbols-outlined text-[#201d13] text-3xl font-bold">
-                        {{ $homePage->vision_icon ?? 'visibility' }}
+                        {{ $link['icon'] ?? 'arrow_forward' }}
                     </span>
                 </div>
-                <h3 class="text-2xl font-bold font-heading text-white mb-4 group-hover:text-primary transition-colors">
-                    {{ $homePage->vision_title }}
-                </h3>
-                <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
-                    {{ $homePage->vision_description }}
-                </p>
-            </div>
 
-            {{-- Mission --}}
-            <div class="pillar-card group bg-white/[0.03] border border-white/10 p-8 rounded-3xl transition-all duration-500 hover:bg-primary/5 hover:border-primary/40">
-                <div class="w-14 h-14 bg-gold-gradient rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-[#201d13] text-3xl font-bold">
-                        {{ $homePage->mission_icon ?? 'rocket_launch' }}
-                    </span>
+                <h3 class="text-lg font-bold font-heading text-white group-hover:text-primary transition-colors">
+                    {{ $link['title'] ?? '' }}
+                </h3>
+
+                {{-- Hover Decoration --}}
+                <div class="absolute bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="material-symbols-outlined text-primary text-sm animate-bounce">keyboard_double_arrow_down</span>
                 </div>
-                <h3 class="text-2xl font-bold font-heading text-white mb-4 group-hover:text-primary transition-colors">
-                    {{ $homePage->mission_title }}
-                </h3>
-                <p class="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
-                    {{ $homePage->mission_description }}
-                </p>
-            </div>
 
+                {{-- Card Glow --}}
+                <div class="absolute -inset-1 bg-primary/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity -z-10"></div>
+            </a>
+            @endforeach
         </div>
 
     </div>
@@ -137,7 +80,19 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
 }
-.pillar-card {
+.link-card {
     box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
