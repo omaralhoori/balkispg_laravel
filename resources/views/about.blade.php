@@ -19,7 +19,7 @@
 
 @section('content')
 @if($aboutPage->is_hero_visible ?? true)
-<section class="relative h-screen flex items-center justify-center overflow-hidden ">
+<section id="about" class="relative h-screen flex items-center justify-center overflow-hidden ">
     <div class="absolute inset-0">
         <img alt="Corporate Building" class="w-full h-full object-cover" src="{{ $aboutPage->hero_background_image_url }}"/>
         <div class="absolute inset-0 featured-overlay"></div>
@@ -42,7 +42,7 @@
 @endif
 
 @if($aboutPage->is_vision_mission_visible ?? true)
-<section class="py-24 px-6 relative">
+<section id="vision" class="py-24 px-6 relative">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         <div class=" p-12 rounded-3xl relative overflow-hidden group bg-white border border-primary/40">
             <div class="absolute -top-10 -left-10 w-40 h-40 rounded-full blur-3xl"></div>
@@ -73,7 +73,7 @@
 @endif
 
 @if(($aboutPage->is_timeline_visible ?? true) && $aboutPage->timeline_items && count($aboutPage->timeline_items) > 0)
-<section class="py-24 bg-white/50">
+<section id="timeline" class="py-24 bg-white/50">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-20">
             @if($aboutPage->timeline_badge)
@@ -116,7 +116,7 @@
 @endif
 
 @if(($aboutPage->is_values_visible ?? true) && $aboutPage->core_values && count($aboutPage->core_values) > 0)
-<section class="py-24 px-6">
+<section id="values" class="py-24 px-6">
     <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-5xl font-bold text-secondary  mb-6 text-center">{{ $aboutPage->values_title }}</h2>
@@ -138,7 +138,7 @@
 @endif
 
 @if(($aboutPage->is_team_visible ?? true) && $aboutPage->team_members && count($aboutPage->team_members) > 0)
-<section class="py-24 bg-white/50">
+<section id="team" class="py-24 bg-white/50">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16">
             @if($aboutPage->team_badge)
@@ -172,7 +172,7 @@
 @endif
 
 @if($aboutPage->is_commitment_visible ?? true)
-<section class="max-w-4xl mx-auto px-6 text-center pt-24 mb-24">
+<section id="commitment" class="max-w-4xl mx-auto px-6 text-center pt-24 mb-24">
     @if($aboutPage->commitment_badge)
         <span class="text-primary text-sm font-bold tracking-[0.4em] uppercase mb-6 block">{{ $aboutPage->commitment_badge }}</span>
     @endif
@@ -214,7 +214,7 @@
 @endif
 
 @if($aboutPage->is_compliance_visible ?? true)
-<section class="max-w-7xl mx-auto px-6 pb-6 mt-24">
+<section id="compliance" class="max-w-7xl mx-auto px-6 pb-6 mt-24">
     <div class="border-2 border-primary/40 bg-white rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10">
         <div class="flex-shrink-0">
             <div class="h-24 w-24 rounded-full border border-primary/30 flex items-center justify-center bg-zinc-dark shadow-[0_0_30px_rgba(212,175,53,0.15)]">
@@ -237,7 +237,7 @@
 @endif
 
 @if($aboutPage->is_contact_visible ?? true)
-<section class="max-w-4xl mx-auto px-6 mt-32 pb-6 text-center">
+<section id="contact" class="max-w-4xl mx-auto px-6 mt-32 pb-6 text-center">
     <div class="inline-block h-px w-16 bg-primary/50 mb-8"></div>
     @if($aboutPage->contact_question)
         <h5 class="text-secondary text-xl font-bold font-almarai mb-6">{{ $aboutPage->contact_question }}</h5>
